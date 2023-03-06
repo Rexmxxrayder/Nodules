@@ -5,7 +5,6 @@ using Sloot;
 
 public class AutomaticShoot : MonoBehaviour {
     [SerializeField] Transform target;
-    [SerializeField] Bullet bulletPrefab;
     [SerializeField] float shootRate;
     [SerializeField] Timer shootTimer;
 
@@ -16,7 +15,7 @@ public class AutomaticShoot : MonoBehaviour {
 
     void Shoot() {
         Vector3 direction = target.position - transform.position;
-        Bullet newBullet =  Instantiate(bulletPrefab);
+        Bullet newBullet =  Instantiate(BasicPrefabs.Gino.Bullet);
         newBullet.transform.position = transform.position;
         newBullet.Velocity = direction.normalized * 5;
     }
