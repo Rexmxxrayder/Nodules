@@ -307,7 +307,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 289023316}
   rb: {fileID: 0}
-  prefab: {fileID: 6826006571255521432, guid: 414798416f396de4cb4565d0a31d6832, type: 3}
   jumpCooldown: 0.2
   jumpLenght: 3
   targetDist: {x: 4, y: 7}

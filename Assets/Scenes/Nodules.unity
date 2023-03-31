@@ -2279,7 +2279,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1969358939}
   - component: {fileID: 1969358938}
-  - component: {fileID: 1969358937}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -2287,20 +2286,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1969358937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1969358936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4290dd14147b35b419f82d889ab7caad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 420969144849906304}
-  shootRate: 2
 --- !u!212 &1969358938
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2361,7 +2346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969358936}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 8.84, y: 0.17, z: 0}
+  m_LocalPosition: {x: 4.21, y: 0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public abstract class BodyPart : MonoBehaviour {
-    [SerializeField] protected Body body;
-    [SerializeField] protected Brain brain;
-
-    [SerializeField] protected Nodule currentNodule;
+public class BodyPart : MonoBehaviour {
+    public Body body;
     [SerializeField] protected string bodyPartName = "";
+    [SerializeField] protected Nodule currentNodule;
+    [SerializeField] Ability abilityOnUp;
+    [SerializeField] Ability abilityOnDown;
+
     [SerializeField] protected int health = 0;
     protected Sprite sprite;
     public Sprite Sprite => sprite;
@@ -16,15 +18,6 @@ public abstract class BodyPart : MonoBehaviour {
 
     private void Awake() {
         ColliderTwoD CTD = GetComponentInChildren<ColliderTwoD>();
-        if (CTD != null) {
-            CTD.OnCollisionEnter += BodyPartHit;
-        }
-        NewBody(GetComponentInParent<Body>());
-    }
-
-    protected virtual void NewBody(Body newBody) {
-        body = newBody;
-        brain = newBody.brain;
     }
 
     public void AddNodules(Nodule nodule) {
@@ -37,13 +30,13 @@ public abstract class BodyPart : MonoBehaviour {
         GetComponent<SpriteRenderer>().color = Color.white;
     }
 
-    public virtual void LaunchAbility(Vector2 mousePosition) {}
-
-    protected void BodyPartHit(Collision2D collision) {
-        if (collision.gameObject.CompareTag("DoDamage")) {
-            health -= 5;
-            if (health < 0) health = 0;
-        }
+    public void OnButtonUp(Brain brain) {
+        (Brain, Body) bodyBrain = new(brain, body);
+        abilityOnUp.Activate(bodyBrain);
+    }
+    public void OnButtonDown(Brain brain) {
+        (Brain, Body) bodyBrain = new(brain, body);
+        abilityOnDown.Activate(bodyBrain);
     }
 }
 

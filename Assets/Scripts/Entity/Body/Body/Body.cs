@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(EntityPhysics))]
-public abstract class Body : MonoBehaviour {
+public class Body : MonoBehaviour {
     [SerializeField] public string bodyName;
-    [SerializeField] public Brain brain;
+    [SerializeField] public List<BodyPart> bodyparts = new List<BodyPart>();
     [SerializeField] public EntityPhysics entityPhysics;
-    protected abstract void NewBrain(Brain newBrain);
-
+    private void Awake() {
+        for (int i = 0; i < bodyparts.Count; i++) {
+            bodyparts[i].body = this;
+        }
+    }
 }

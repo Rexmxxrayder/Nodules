@@ -13,7 +13,6 @@ public class TheLauncherBeta : MonoBehaviour {
 
 
     private void Start() {
-        rb = GetComponent<Rigidbody2D>();
         shootJump = new Timer(jumpCooldown, ShootJump).Start();
     }
 
