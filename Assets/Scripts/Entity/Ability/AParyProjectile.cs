@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityEmpty : Ability {
+public class AParyProjectile : Ability {
     protected override void LaunchAbility((Brain, Body) bodyBrain) {
         
-    }
-
-    protected override void ActivateDebug() {
-
     }
 }

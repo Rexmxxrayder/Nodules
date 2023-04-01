@@ -14,8 +14,9 @@ public abstract class Brain : MonoBehaviour {
     #endregion
 
     private void Awake() {
-        for (int i = 0; i < nerves.Count; i++) {
-            nerves[i].brain = this;
+        foreach (Nerve nerve in GetComponentsInChildren<Nerve>()) {
+            nerves.Add(nerve);
+            nerve.brain= this;
         }
     }
 }
