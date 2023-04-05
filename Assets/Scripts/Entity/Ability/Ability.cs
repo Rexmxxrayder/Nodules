@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Ability : MonoBehaviour {
-    public static bool isDebug = true;
+    public static bool isDebug = false;
     [SerializeField] string abilityName;
     List<Ability> abilities = new List<Ability>();
     public void Activate((Brain, Body) bodyBrain) {

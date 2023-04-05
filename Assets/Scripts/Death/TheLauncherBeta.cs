@@ -13,13 +13,13 @@ public class TheLauncherBeta : MonoBehaviour {
 
 
     private void Start() {
-        shootJump = new Timer(jumpCooldown, ShootJump).Start();
+        shootJump = new Timer(this, jumpCooldown, ShootJump).Start();
     }
 
     void ShootJump() {
-        Bullet b = Instantiate(BasicPrefabs.Gino.Bullet);
+        Basic b = BasicPrefabs.Gino.GetInstance("Bullet");
         b.transform.position= transform.position;
-        b.Velocity = (target.position - transform.position).normalized * 5;
+        b.GetComponentInChildren<EntityPhysics>().Add(Force.Const(target.position - transform.position, 5, Mathf.Infinity), (int)EntityPhysics.PhysicPriority.PROJECTION);
         StartCoroutine(Jump());
     }
 

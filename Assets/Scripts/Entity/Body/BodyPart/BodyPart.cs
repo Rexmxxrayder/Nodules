@@ -7,8 +7,10 @@ public class BodyPart : MonoBehaviour {
     public Body body;
     [SerializeField] protected string bodyPartName = "";
     [SerializeField] protected Nodule currentNodule;
-    [SerializeField] Ability abilityOnUp;
-    [SerializeField] Ability abilityOnDown;
+    [SerializeField] List<Ability> abilitiesOnUpList = new();
+    [SerializeField] List<Ability> abilitiesOnDownList = new();
+    Dictionary<int, Ability> abilitiesOnUp = new();
+    Dictionary<int, Ability> abilitiesOnDown = new();
 
     [SerializeField] protected int health = 0;
     protected Sprite sprite;
@@ -17,7 +19,16 @@ public class BodyPart : MonoBehaviour {
     public int Health => health;
 
     private void Awake() {
-        ColliderTwoD CTD = GetComponentInChildren<ColliderTwoD>();
+        for (int i = 0; i < transform.childCount; i++) {
+            abilitiesOnUpList.Add(transform.GetChild(i).GetChild(0).GetComponent<Ability>());
+            abilitiesOnDownList.Add(transform.GetChild(i).GetChild(1).GetComponent<Ability>());
+        }
+        for (int i = 0; i < abilitiesOnUpList.Count; i++) {
+            abilitiesOnUp.Add(i, abilitiesOnUpList[i]);
+        }
+        for (int i = 0; i < abilitiesOnDownList.Count; i++) {
+            abilitiesOnDown.Add(i, abilitiesOnDownList[i]);
+        }
     }
 
     public void AddNodules(Nodule nodule) {
@@ -32,11 +43,12 @@ public class BodyPart : MonoBehaviour {
 
     public void OnButtonUp(Brain brain) {
         (Brain, Body) bodyBrain = new(brain, body);
-        abilityOnUp.Activate(bodyBrain);
+        abilitiesOnUp[currentNodule == null ? 0 : currentNodule.Id].Activate(bodyBrain);
     }
+
     public void OnButtonDown(Brain brain) {
         (Brain, Body) bodyBrain = new(brain, body);
-        abilityOnDown.Activate(bodyBrain);
+        abilitiesOnDown[currentNodule == null ? 0 : currentNodule.Id].Activate(bodyBrain);
     }
 }
 

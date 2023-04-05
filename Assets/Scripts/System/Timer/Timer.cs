@@ -17,6 +17,7 @@ namespace Sloot {
 
         TimerState state = TimerState.WAITING;
 
+        MonoBehaviour manager;
         Coroutine coroutine;
 
         public float Duration { get => _duration; set => _duration = value; }
@@ -41,8 +42,8 @@ namespace Sloot {
         public event UnityAction OnEnd { add => _onEnd.AddListener(value); remove => _onEnd.RemoveListener(value); }
         public event UnityAction OnReset { add => _onReset.AddListener(value); remove => _onReset.RemoveListener(value); }
 
-        public Timer(float duration, UnityAction onActivateFunction = null, bool loop = true) {
-            TimerManager.Activate(this);
+        public Timer(MonoBehaviour theManager, float duration, UnityAction onActivateFunction = null, bool loop = true) {
+            manager = theManager;
             _duration = duration;
             _loop = loop;
             if (onActivateFunction != null) {
@@ -52,7 +53,7 @@ namespace Sloot {
 
         public Timer Start(float offset = 0) {
             Stop();
-            coroutine = TimerManager.instance.StartCoroutine(StartTimer(offset));
+            coroutine = manager.StartCoroutine(StartTimer(offset));
             return this;
         }
 
@@ -76,7 +77,7 @@ namespace Sloot {
             }
             state = TimerState.WAITING;
             if (coroutine != null) {
-                TimerManager.instance.StopCoroutine(coroutine);
+                manager.StopCoroutine(coroutine);
             }
             _onStop?.Invoke();
         }

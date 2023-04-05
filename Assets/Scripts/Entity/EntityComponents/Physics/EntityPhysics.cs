@@ -2,10 +2,11 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Sloot;
 
-public class EntityPhysics : EntityComponent {
+public class EntityPhysics : EntityComponent, IReset {
     public enum PhysicPriority {
-        PLAYER_INPUT, DASH, PROJECTION, BLOCK, ENVIRONNEMENT, SYSTEM
+        PLAYER_INPUT = 10, DASH = 20, PROJECTION = 30, BLOCK = 40, ENVIRONNEMENT = 50, SYSTEM = 60
     }
 
     [SerializeField] Rigidbody2D _rb;
@@ -111,5 +112,21 @@ public class EntityPhysics : EntityComponent {
         } catch (System.Exception e) {
             Debug.LogError(e);
         }
+    }
+
+    protected override void ChildSetup() {
+        if (_rb == null) {
+            if (_root.GetComponent<Rigidbody2D>() == null) {
+                _rb = _root.AddComponent<Rigidbody2D>();
+            } else {
+                _rb = _root.GetComponent<Rigidbody2D>();
+            }
+        }
+        _rb.gravityScale = 0;
+        _rb.freezeRotation = true;
+    }
+
+    public void InstanceReset() {
+        Purge();
     }
 }

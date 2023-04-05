@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public abstract class Brain : MonoBehaviour {
-    [SerializeField] protected List<Nerve> nerves = new List<Nerve>();
+    protected List<Nerve> nerves = new List<Nerve>();
     [SerializeField] protected List<Body> bodies = new List<Body>();
     [SerializeField] protected Vector2 visor;
 
