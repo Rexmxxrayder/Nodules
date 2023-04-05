@@ -10,7 +10,7 @@ public class SpikyWall : MonoBehaviour {
     public float SpikeDistSpawn;
     bool died = false;
     private void Start() {
-        GetComponentInChildren<EntityHealth>().OnDeath += Died;
+        gameObject.Get<EntityHealth>().OnDeath += Died;
     }
 
     void Died() {
@@ -19,8 +19,7 @@ public class SpikyWall : MonoBehaviour {
         } else {
             return;
         }
-        gameObject.SetActive(false);
-        Destroy(gameObject);
+        gameObject.Get<EntityHealth>().LethalDamage();
         for (int i = 0; i < SpikeNumber; i++) {
             Vector3 direction = RotationSloot.GetDirectionOnAxis(360 / SpikeNumber * i, RotationSloot.TranslateVector3("z"));
             Vector3 spikePosition = transform.position + direction * SpikeDistSpawn;

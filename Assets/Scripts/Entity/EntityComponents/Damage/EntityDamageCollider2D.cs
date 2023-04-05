@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EntityDamageCollider2D : EntityComponent, IReset {
     EntityCollider2D ec;
-    [SerializeField] int damage;
+    public int damage;
     public List<string> Damaged = new List<string>();
     [SerializeField] bool destroyOnHit;
     List<EntityHealth> hit = new List<EntityHealth>();
@@ -24,12 +24,7 @@ public class EntityDamageCollider2D : EntityComponent, IReset {
             }
         }
         if (destroyOnHit) {
-            Basic basic = _root.GetComponent<Basic>();
-            if (basic != null) {
-                BasicPrefabs.Gino.LetInstance(basic);
-            } else {
-                Destroy(_root.gameObject);
-            }
+            Get<EntityHealth>().LethalDamage();
         }
     }
 
@@ -38,7 +33,8 @@ public class EntityDamageCollider2D : EntityComponent, IReset {
     }
 
     protected override void ChildSetup() {
-        InstanceReset();
+        ResetHit();
+        Damaged.Add("Untagged");
         ec = GetComponentInChildren<EntityCollider2D>();
         if (ec == null) {
             Debug.LogError("No EntityCollider2D");

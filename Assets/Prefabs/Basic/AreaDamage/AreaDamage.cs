@@ -6,9 +6,11 @@ using UnityEngine;
 public class AreaDamage : Basic {
     [SerializeField] EntityDamageCollider2D edc;
     public float timeDamage;
+    public int damage;
 
     public override void Activate(EntityRoot root) {
         edc.InstanceReset();
+        edc.damage = damage;
         if (root.CompareTag("Ennemi")) {
             edc.Damaged.Add("Player");
         }
@@ -17,6 +19,6 @@ public class AreaDamage : Basic {
 
     IEnumerator DeathCooldown() {
         yield return new WaitForSeconds(timeDamage);
-        BasicPrefabs.Gino.LetInstance(this);
+        gameObject.Get<EntityHealth>().LethalDamage();
     }
 }

@@ -26,7 +26,9 @@ public class BasicPrefabs : MonoBehaviour {
     }
 
     public Basic GetInstance(string instanceName) {
-        return pools[instanceName].GetInstance();
+        Basic instance = pools[instanceName].GetInstance();
+        instance.gameObject.Get<EntityHealth>().NewDeathWay += () => LetInstance(instance);
+        return instance;
     }
 
     public void LetInstance(Basic instance) {

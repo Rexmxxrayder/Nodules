@@ -9,17 +9,30 @@ public class EntityHealth : EntityComponent {
     public int Health => _health;
     public int MaxHealth => _maxHealth;
 
-    public bool DestroyOnDeath;
-
     UnityEvent _onDeath = new();
     public event UnityAction OnDeath { add => _onDeath.AddListener(value); remove => _onDeath.RemoveListener(value); }
+
+    delegate void DeathWay();
+    DeathWay newDeathWay;
+    public event UnityAction NewDeathWay { add => newDeathWay = new(value); remove => newDeathWay = null; }
 
     protected override void ChildSetup() {
         NewMaxHealth(_maxHealth);
         _health = Mathf.Max(0, _health);
-        if (DestroyOnDeath) {
-            OnDeath += () => { _root.SetActive(false); Destroy(_root); };
+    }
+
+    void Die() {
+        _onDeath?.Invoke();
+        if (newDeathWay != null) {
+            newDeathWay();
+        } else {
+            _root.SetActive(false);
+            Destroy(_root);
         }
+    }
+
+    public void LethalDamage() {
+        RemoveHealth(_health);
     }
 
     public int AddHealth(int add) {
@@ -30,7 +43,7 @@ public class EntityHealth : EntityComponent {
     public int RemoveHealth(int remove) {
         _health = _health - remove < 0 ? 0 : _health - remove;
         if (_health == 0) {
-            _onDeath?.Invoke();
+            Die();
         }
         return _health;
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Sauteur : MonoBehaviour {
     public Transform target;
     public float TimeBeforeJump;
-    public float TimeDamage;
+    public int JumpDamage;
     public float DistMaxJump;
     public float SpeedJump;
     public float TimeAfterJump;
@@ -33,7 +33,7 @@ public class Sauteur : MonoBehaviour {
 
     void ImpactDamage() {
         AreaDamage ad = (AreaDamage)BasicPrefabs.Gino.GetInstance("CircleAreaDamage");
-        ad.timeDamage = TimeDamage;
+        ad.damage = JumpDamage;
         ad.transform.position = transform.position;
         ad.Activate(gameObject.Get<EntityRoot>());
     }

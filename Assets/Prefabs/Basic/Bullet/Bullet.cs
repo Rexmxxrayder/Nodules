@@ -4,19 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : Basic {
-    Collider2D _c;
+    protected Collider2D _c;
     public float lifeTime = 10f;
-    public float collisionActivation = 0.5f;
-    Timer beforeDeath;
-    Timer beforeColliderActivation;
+    public int damage;
+    protected Timer beforeDeath;
 
     private void Awake() {
         _c = GetComponentInChildren<Collider2D>();
     }
 
-    public override void Activate(EntityRoot root) {
-        _c.isTrigger = true;
-        beforeDeath = new Timer(this, lifeTime, () => BasicPrefabs.Gino.LetInstance(this)).Start();
-        beforeColliderActivation = new Timer(this, collisionActivation, () => _c.isTrigger = false).Start();
+    public override void Activate(EntityRoot root) {;
+        beforeDeath = new Timer(this, lifeTime, () => gameObject.Get<EntityHealth>().LethalDamage()).Start();
+        GetComponentInChildren<EntityDamageCollider2D>().damage = damage;
     }
 }
