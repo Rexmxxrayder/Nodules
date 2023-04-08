@@ -1,14 +1,16 @@
+using Sloot;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EntityHealth : EntityComponent {
+public class EntityHealth : EntityComponent, IReset {
     [SerializeField] int _health;
     [SerializeField] int _maxHealth;
     public int Health => _health;
     public int MaxHealth => _maxHealth;
 
+    bool died = false;
     UnityEvent _onDeath = new();
     public event UnityAction OnDeath { add => _onDeath.AddListener(value); remove => _onDeath.RemoveListener(value); }
 
@@ -22,6 +24,11 @@ public class EntityHealth : EntityComponent {
     }
 
     void Die() {
+        if(died) {
+            return;
+        } else {
+            died = true;
+        }
         _onDeath?.Invoke();
         if (newDeathWay != null) {
             newDeathWay();
@@ -56,5 +63,12 @@ public class EntityHealth : EntityComponent {
             _health = newMaxHealth;
         }
         return _health;
+    }
+
+    public void InstanceReset() {
+        died = false;
+        newDeathWay = null;
+        _onDeath.RemoveAllListeners();
+        _health = _maxHealth;
     }
 }

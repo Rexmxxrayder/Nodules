@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5588603144485917908}
   - component: {fileID: 5266195227083997743}
-  - component: {fileID: 329417140643195161}
+  - component: {fileID: 6826006571255521432}
   m_Layer: 6
-  m_Name: YellowBullet
+  m_Name: AllyBullet
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &329417140643195161
+--- !u!114 &6826006571255521432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,13 +66,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6956140750816823575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72ad765620499f47ae6564c145a6eed, type: 3}
+  m_Script: {fileID: 11500000, guid: 40f9e7245cd55454baf51375007cece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: YellowBullet
+  type: AllyBullet
   lifeTime: 10
-  damage: 2
-  explosiondamage: 10
+  damage: 10
 --- !u!1001 &1200627921878383042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84,18 +83,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -2413806693520163455, guid: efe928220c5e5a4418550cb3580cb0aa, type: 3}
-    - target: {fileID: 444313235202619573, guid: 893af02564a110441a6d8a271c1650c8, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 444313235202619573, guid: 893af02564a110441a6d8a271c1650c8, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 444313235202619573, guid: 893af02564a110441a6d8a271c1650c8, type: 3}
-      propertyPath: m_Color.r
-      value: 0.9427508
-      objectReference: {fileID: 0}
     - target: {fileID: 4616786049981863968, guid: 893af02564a110441a6d8a271c1650c8, type: 3}
       propertyPath: m_RootOrder
       value: 0

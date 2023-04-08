@@ -7,7 +7,8 @@ public class EntityDamageCollider2D : EntityComponent, IReset {
     EntityCollider2D ec;
     public int damage;
     public List<string> Damaged = new List<string>();
-    [SerializeField] bool destroyOnHit;
+    [SerializeField] bool destroyOnCollide;
+    [SerializeField] bool destroyOnTrigger;
     List<EntityHealth> hit = new List<EntityHealth>();
 
 
@@ -20,21 +21,30 @@ public class EntityDamageCollider2D : EntityComponent, IReset {
             if (Damaged.Contains(health.GetRoot().tag)) {
                 health.RemoveHealth(damage);
                 hit.Add(health);
-                Debug.Log(game.gameObject.Get<EntityRoot>().name);
+               // Debug.Log(game.gameObject.Get<EntityRoot>().name);
             }
         }
-        if (destroyOnHit) {
+        if (destroyOnTrigger) {
             Get<EntityHealth>().LethalDamage();
         }
     }
 
     void DoDamageCollision(Collision2D game) {
-        DoDamageCollider(game.collider);
+        EntityHealth health = game.gameObject.Get<EntityHealth>();
+        if (health != null && !hit.Contains(health)) {
+            if (Damaged.Contains(health.GetRoot().tag)) {
+                health.RemoveHealth(damage);
+                hit.Add(health);
+                // Debug.Log(game.gameObject.Get<EntityRoot>().name);
+            }
+        }
+        if (destroyOnCollide) {
+            Get<EntityHealth>().LethalDamage();
+        }
     }
 
     protected override void ChildSetup() {
         ResetHit();
-        Damaged.Add("Untagged");
         ec = GetComponentInChildren<EntityCollider2D>();
         if (ec == null) {
             Debug.LogError("No EntityCollider2D");
@@ -50,8 +60,7 @@ public class EntityDamageCollider2D : EntityComponent, IReset {
     }
 
     public void InstanceReset() {
-        ResetHit();
-        Damaged.Clear();
-        Damaged.Add("Untagged");
+        ec.ResetListeners();
+        ChildSetup();
     }
 }

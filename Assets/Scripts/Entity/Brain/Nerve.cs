@@ -8,35 +8,42 @@ public class Nerve : MonoBehaviour {
     public Brain brain;
     [SerializeField] KeyCode keyCode;
     [SerializeField] public List<BodyPart> bodyparts = new List<BodyPart>();
-    [SerializeField] protected UnityEvent<Brain> _abilityUp = new UnityEvent<Brain>();
-    [SerializeField] protected UnityEvent<Brain> _abilityDown = new UnityEvent<Brain>();
-    public event UnityAction<Brain> AbilityUp { add { _abilityUp.AddListener(value); } remove { _abilityUp.RemoveListener(value); } }
-    public event UnityAction<Brain> AbilityDown { add { _abilityDown.AddListener(value); } remove { _abilityDown.RemoveListener(value); } }
+    [SerializeField] protected UnityEvent<Brain> _keyUp = new UnityEvent<Brain>();
+    [SerializeField] protected UnityEvent<Brain> _keyDown = new UnityEvent<Brain>();
+    public event UnityAction<Brain> KeyUp { add { _keyUp.AddListener(value); } remove { _keyUp.RemoveListener(value); } }
+    public event UnityAction<Brain> KeyDown { add { _keyDown.AddListener(value); } remove { _keyDown.RemoveListener(value); } }
     private void Update() {
         if (Input.GetKeyDown(keyCode)) {
-            _abilityDown?.Invoke(brain);
+            PressKeyDown();
         }
         if (Input.GetKeyUp(keyCode)) {
-            _abilityUp?.Invoke(brain);
+            PressKeyUp();
         }
     }
 
     private void Start() {
         for (int i = 0; i < bodyparts.Count; i++) {
-            AbilityUp += bodyparts[i].OnButtonUp;
-            AbilityDown += bodyparts[i].OnButtonDown;
+            KeyUp += bodyparts[i].OnButtonUp;
+            KeyDown += bodyparts[i].OnButtonDown;
         }
     }
 
     public void AssignBodyPart(BodyPart bodyPart) {
         bodyparts.Add(bodyPart);
-        AbilityUp += bodyPart.OnButtonUp;
-        AbilityDown += bodyPart.OnButtonDown;
+        KeyUp += bodyPart.OnButtonUp;
+        KeyDown += bodyPart.OnButtonDown;
     }
 
     public void UnAssignBodyPart(BodyPart bodyPart) {
         bodyparts.Remove(bodyPart);
-        AbilityUp -= bodyPart.OnButtonUp;
-        AbilityDown -= bodyPart.OnButtonDown;
+        KeyUp -= bodyPart.OnButtonUp;
+        KeyDown -= bodyPart.OnButtonDown;
+    }
+    public void PressKeyUp() {
+        _keyUp?.Invoke(brain);
+    }
+
+    public void PressKeyDown() {
+        _keyDown?.Invoke(brain);
     }
 }

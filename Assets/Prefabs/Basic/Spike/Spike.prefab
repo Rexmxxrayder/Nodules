@@ -139,9 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485c842475734424ca435b05ba600593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: Spike
+  type: Spike
   lifeTime: 10
-  collisionActivation: 0.5
+  damage: 0
 --- !u!1001 &535632988873919819
 PrefabInstance:
   m_ObjectHideFlags: 0

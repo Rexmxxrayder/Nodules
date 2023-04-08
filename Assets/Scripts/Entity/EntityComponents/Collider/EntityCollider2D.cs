@@ -1,3 +1,4 @@
+using Sloot;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -46,4 +47,13 @@ public abstract class EntityCollider2D : EntityComponent {
     }
 
     public abstract void SetTrigger(bool newState);
+
+    public void ResetListeners() {
+        _onCollisionEnter.RemoveAllListeners();
+        _onCollisionExit.RemoveAllListeners();
+        _onCollisionStay.RemoveAllListeners();      
+        _onTriggerEnter.RemoveAllListeners();
+        _onTriggerExit.RemoveAllListeners();
+        _onTriggerStay.RemoveAllListeners();
+    }
 }

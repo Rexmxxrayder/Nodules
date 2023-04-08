@@ -21,9 +21,10 @@ public abstract class EntityComponent : MonoBehaviour, IEntity {
                 GameObject newParent = new GameObject();
                 newParent.name = "Root";
                 transform.parent = newParent.transform;
+                Debug.Log(transform.gameObject.name);
             }
             EntityComponent parentComponent = transform.parent.GetComponent<EntityComponent>();
-            _root = parentComponent == null ? transform.parent.AddComponent<EntityRoot>().SetRoot() : parentComponent.GetRoot();
+            _root = parentComponent == null ? transform.parent.AddComponent<EntityRoot>().GetRoot() : parentComponent.GetRoot();
         }
         return _root;
     }

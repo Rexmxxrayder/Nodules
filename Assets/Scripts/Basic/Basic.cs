@@ -4,6 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Basic : MonoBehaviour {
-    public string Type;
-    public abstract void Activate(EntityRoot root);
+    [SerializeField] string type;
+    public string Type => type;
+    private void Awake() {
+        AwakeSetup();
+    }
+
+    protected virtual void AwakeSetup() {
+
+    }
+    public abstract void Activate();
 }

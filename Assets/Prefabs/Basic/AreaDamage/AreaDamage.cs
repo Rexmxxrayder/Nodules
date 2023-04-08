@@ -8,12 +8,9 @@ public class AreaDamage : Basic {
     public float timeDamage;
     public int damage;
 
-    public override void Activate(EntityRoot root) {
+    public override void Activate() {
         edc.InstanceReset();
         edc.damage = damage;
-        if (root.CompareTag("Ennemi")) {
-            edc.Damaged.Add("Player");
-        }
         StartCoroutine(DeathCooldown());
     }
 

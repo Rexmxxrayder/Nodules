@@ -9,11 +9,11 @@ public class Bullet : Basic {
     public int damage;
     protected Timer beforeDeath;
 
-    private void Awake() {
+    protected override void AwakeSetup() {
         _c = GetComponentInChildren<Collider2D>();
     }
 
-    public override void Activate(EntityRoot root) {;
+    public override void Activate() {;
         beforeDeath = new Timer(this, lifeTime, () => gameObject.Get<EntityHealth>().LethalDamage()).Start();
         GetComponentInChildren<EntityDamageCollider2D>().damage = damage;
     }
