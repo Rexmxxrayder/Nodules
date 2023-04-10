@@ -8,10 +8,18 @@ public abstract class EntityComponent : MonoBehaviour, IEntity {
 
     private void Awake() {
         SetRoot();
-        ChildSetup();
+        AwakeSetup();
     }
 
-    protected virtual void ChildSetup() {
+    private void Start() {
+        StartSetup();
+    }
+
+    protected virtual void AwakeSetup() {
+
+    }
+
+    protected virtual void StartSetup() {
 
     }
 

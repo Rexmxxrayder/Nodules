@@ -1,8 +1,9 @@
+using Sloot;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomber : Ennemi {
+public class Bomber : EntityEnemy {
     public Transform target;
     public string areaDamage;
     public float TimeBeforeExplode;
@@ -10,11 +11,7 @@ public class Bomber : Ennemi {
     public float Speed;
     EntityPhysics ep;
     EntityCollider2D ec;
-    Force follow;
-
-    private void Start() {
-        Activate();
-    }
+    Force follow = Force.Const(Vector3.zero, 0f);
 
     void Update() {
         ep.Remove(follow);
@@ -32,20 +29,25 @@ public class Bomber : Ennemi {
         gameObject.Get<EntityHealth>().LethalDamage();
     }
     void Explode() {
-        AreaDamage ad = (AreaDamage)BasicPrefabs.Gino.GetInstance(areaDamage);
+        AreaDamage ad = (AreaDamage)BasicPools.Gino.GetInstance(areaDamage);
         ad.transform.position = transform.position;
         ad.Activate();
     }
 
-    public override void Activate() {
-        ep = gameObject.GetComponentInChildren<EntityPhysics>();
+    protected override void AwakeSetup() {
+        ep = gameObject.Get<EntityPhysics>();
         ec = gameObject.Get<EntityCollider2D>();
+    }
+
+    public override void InstanceReset() {
+        timerBeforeExplode = 0;
+    }
+
+    public override void InstanceResetSetup() {
         gameObject.Get<EntityHealth>().OnDeath += Explode;
         ec.OnCollisionEnter += MustExplode;
-        follow = Force.Const(Vector3.zero, 0f);
-        timerBeforeExplode = 0;
         if (target == null) {
-            target = FindObjectOfType<Body>().transform;
+            target = FindObjectOfType<EntityBodyPart>().transform;
         }
     }
 }

@@ -13,8 +13,8 @@ TagManager:
   - Projectile
   - Water
   - UI
-  - AllyProjectile
-  - EnnemiProjectile
+  - AllyAttack
+  - EnnemiAttack
   - Player
   - Ennemi
   - 

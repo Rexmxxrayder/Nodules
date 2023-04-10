@@ -7,10 +7,11 @@ public class ADash : Ability {
     public float Dist;
     [SerializeField] Force dashForce;
 
-    protected override void LaunchAbility((Brain, Body) bodyBrain) {
-        EntityPhysics ep = bodyBrain.Item2.gameObject.Get<EntityPhysics>();
-        Vector3 startPosition = bodyBrain.Item2.transform.position;
-        Vector3 goToPosition = bodyBrain.Item1.Visor;
+    protected override void LaunchAbility(EntityBrain brain) {
+        EntityPhysics ep = entityBodyPart.Get<EntityPhysics>();
+        Vector3 startPosition = entityBodyPart.GetRoot().transform.position;
+        Vector3 goToPosition = brain.Visor;
+        entityBodyPart.onMovement?.Invoke();
         DashTo(ep, startPosition, goToPosition);
     }
 

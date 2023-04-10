@@ -17,7 +17,7 @@ public class TheLauncherBeta : MonoBehaviour {
     }
 
     void ShootJump() {
-        Basic b = BasicPrefabs.Gino.GetInstance("Bullet");
+        EntityBasic b = BasicPools.Gino.GetInstance("Bullet");
         b.transform.position= transform.position;
         b.GetComponentInChildren<EntityPhysics>().Add(Force.Const(target.position - transform.position, 5, Mathf.Infinity), (int)EntityPhysics.PhysicPriority.PROJECTION);
         StartCoroutine(Jump());

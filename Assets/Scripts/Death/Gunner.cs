@@ -2,24 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gunner : MonoBehaviour {
+public class Gunner : EntityEnemy {
     public Transform target;
     public string BulletType;
     public float ShootRate;
-    public int damage;
     public float BulletSpeed;
 
-    private void Start() {
-        StartCoroutine(Shoot());
-    }
     IEnumerator Shoot() {
         while (true) {
             yield return new WaitForSeconds(ShootRate);
-            Bullet newBullet = (Bullet)BasicPrefabs.Gino.GetInstance(BulletType);
+            Vector3 direction = target.position - transform.position;
+            direction.Normalize();
+            Bullet newBullet = (Bullet)BasicPools.Gino.GetInstance(BulletType);
             newBullet.transform.position = transform.position;
-            newBullet.GetComponentInChildren<EntityPhysics>().Add(Force.Const((Vector2)(target.position - transform.position), BulletSpeed, 100), (int)EntityPhysics.PhysicPriority.PROJECTION);
-            newBullet.damage = damage;
+            newBullet.StartDirection = direction;
             newBullet.Activate();
         }
+    }
+
+    public override void InstanceReset() {
+    }
+
+    public override void InstanceResetSetup() {
+        if (target == null) {
+            target = FindObjectOfType<EntityBodyPart>().transform;
+        }
+        StartCoroutine(Shoot());
     }
 }

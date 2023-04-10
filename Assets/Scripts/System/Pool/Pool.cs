@@ -46,8 +46,7 @@ namespace Sloot {
                     _alive.Remove(newObject);
                 } else {
                     newObject = UnityEngine.Object.Instantiate(_original);
-                    newObject.gameObject.name = newObject.GetType().Name + " N°" + _count;
-                    Reset(newObject);
+                    newObject.gameObject.name = _original.name + " N°" + _count;
                     _count++;
                     if (_poolStorage != null) {
                         newObject.gameObject.transform.parent = _poolStorage.transform;
@@ -58,14 +57,15 @@ namespace Sloot {
                 _pool.Remove(newObject);
             }
             _alive.Add(newObject);
+            Reset(newObject);
             newObject.gameObject.SetActive(true);
+            ResetSetup(newObject);
             return newObject;
         }
 
         public void LetInstance(T instance) {
             if (_alive.Contains(instance)) {
                 instance.gameObject.SetActive(false);
-                Reset(instance);
                 _alive.Remove(instance);
                 _pool.Add(instance);
                 if (_poolStorage != null) {
@@ -86,9 +86,14 @@ namespace Sloot {
             instance.transform.position = Vector3.zero;
             instance.transform.rotation = Quaternion.identity;
             instance.StopAllCoroutines();
-            (instance as IReset)?.InstanceReset();
             foreach (IReset component in instance.GetComponentsInChildren<IReset>()) { 
                 component.InstanceReset();
+            }
+        }
+
+        void ResetSetup(T instance) {
+            foreach (IReset component in instance.GetComponentsInChildren<IReset>()) {
+                component.InstanceResetSetup();
             }
         }
     }

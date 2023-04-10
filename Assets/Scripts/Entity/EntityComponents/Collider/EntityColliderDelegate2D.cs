@@ -11,7 +11,7 @@ public class EntityColliderDelegate2D : EntityCollider2D {
         return collider2d;
     }
 
-    protected override void ChildSetup() {
+    protected override void AwakeSetup() {
         collider2d = GetComponent<Collider2D>();
         if(GetCollider() == null) {
             Debug.LogError("No Collider");

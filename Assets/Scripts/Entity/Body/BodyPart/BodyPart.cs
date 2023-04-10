@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class BodyPart : MonoBehaviour {
-    public Body body;
     [SerializeField] protected string bodyPartName = "";
     [SerializeField] protected Nodule currentNodule;
     [SerializeField] List<Ability> abilitiesOnUpList = new();
@@ -41,14 +40,12 @@ public class BodyPart : MonoBehaviour {
         GetComponent<SpriteRenderer>().color = Color.white;
     }
 
-    public void OnButtonUp(Brain brain) {
-        (Brain, Body) bodyBrain = new(brain, body);
-        abilitiesOnUp[currentNodule == null ? 0 : currentNodule.Id].Activate(bodyBrain);
+    public void OnButtonUp(EntityBrain brain) {
+        abilitiesOnUp[currentNodule == null ? 0 : currentNodule.Id].Activate(brain);
     }
 
-    public void OnButtonDown(Brain brain) {
-        (Brain, Body) bodyBrain = new(brain, body);
-        abilitiesOnDown[currentNodule == null ? 0 : currentNodule.Id].Activate(bodyBrain);
+    public void OnButtonDown(EntityBrain brain) {
+        abilitiesOnDown[currentNodule == null ? 0 : currentNodule.Id].Activate(brain);
     }
 }
 

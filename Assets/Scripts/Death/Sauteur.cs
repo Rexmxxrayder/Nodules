@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Sauteur : MonoBehaviour {
+public class Sauteur : EntityEnemy {
     public Transform target;
     public string areaDamage;
     public float TimeBeforeJump;
@@ -13,9 +13,8 @@ public class Sauteur : MonoBehaviour {
     public float TimeAfterJump;
     EntityPhysics ep;
 
-    private void Start() {
-        StartCoroutine(Jump());
-        ep = gameObject.GetComponentInChildren<EntityPhysics>();
+    protected override void AwakeSetup() {
+        ep = gameObject.Get<EntityPhysics>();
     }
     IEnumerator Jump() {
         Vector3 directionJump;
@@ -33,8 +32,19 @@ public class Sauteur : MonoBehaviour {
     }
 
     void ImpactDamage() {
-        AreaDamage ad = (AreaDamage)BasicPrefabs.Gino.GetInstance(areaDamage);
+        AreaDamage ad = (AreaDamage)BasicPools.Gino.GetInstance(areaDamage);
         ad.transform.position = transform.position;
         ad.Activate();
+    }
+
+    public override void InstanceReset() {
+        throw new System.NotImplementedException();
+    }
+
+    public override void InstanceResetSetup() {
+        if (target == null) {
+            target = FindObjectOfType<EntityBodyPart>().transform;
+        }
+        StartCoroutine(Jump());
     }
 }

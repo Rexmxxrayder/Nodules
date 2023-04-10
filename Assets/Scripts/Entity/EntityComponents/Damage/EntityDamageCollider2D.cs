@@ -43,24 +43,30 @@ public class EntityDamageCollider2D : EntityComponent, IReset {
         }
     }
 
-    protected override void ChildSetup() {
-        ResetHit();
+    protected override void AwakeSetup() {
         ec = GetComponentInChildren<EntityCollider2D>();
         if (ec == null) {
             Debug.LogError("No EntityCollider2D");
         }
+        ResetSetup();
+    }
+
+    void ResetSetup() {
         ec.OnCollisionEnter += DoDamageCollision;
         ec.OnCollisionStay += DoDamageCollision;
         ec.OnTriggerEnter += DoDamageCollider;
         ec.OnTriggerStay += DoDamageCollider;
     }
-
     public void ResetHit() {
         hit.Clear();
     }
 
     public void InstanceReset() {
+        ResetHit();
         ec.ResetListeners();
-        ChildSetup();
+    }
+
+    public void InstanceResetSetup() {
+        ResetSetup();
     }
 }

@@ -114,7 +114,7 @@ public class EntityPhysics : EntityComponent, IReset {
         }
     }
 
-    protected override void ChildSetup() {
+    protected override void AwakeSetup() {
         if (_rb == null) {
             if (_root.GetComponent<Rigidbody2D>() == null) {
                 _rb = _root.AddComponent<Rigidbody2D>();
@@ -129,4 +129,6 @@ public class EntityPhysics : EntityComponent, IReset {
     public void InstanceReset() {
         Purge();
     }
+
+    public void InstanceResetSetup() { }
 }

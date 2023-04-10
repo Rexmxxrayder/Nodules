@@ -7,7 +7,7 @@ public class EntityLifeBar : EntityComponent {
     EntityHealth eh;
     [SerializeField]
     Slider slider;
-    protected override void ChildSetup() {
+    protected override void AwakeSetup() {
         eh = _root.Get<EntityHealth>();
         if (eh == null) {
             Destroy(gameObject);

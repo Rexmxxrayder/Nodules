@@ -5,8 +5,6 @@ using Sloot;
 
 public class SpikyWall : MonoBehaviour {
     public int SpikeNumber;
-    public float SpikeSpeed;
-    public float SpikeTime;
     public float SpikeDistSpawn;
     bool died = false;
     private void Start() {
@@ -28,11 +26,10 @@ public class SpikyWall : MonoBehaviour {
     }
 
     void SpawnSpikes(Vector3 position, Quaternion rotation, Vector3 direction) {
-        Basic newSpike = BasicPrefabs.Gino.GetInstance("Spike");
+        EntityBasic newSpike = BasicPools.Gino.GetInstance("Spike");
         newSpike.transform.position = position;
         newSpike.transform.rotation = rotation;
-        ((Spike)newSpike).lifeTime = SpikeTime;
-        Force force = Force.Const(direction.normalized, SpikeSpeed, SpikeTime);
+        Force force = Force.Const(direction.normalized, 10, 2);
         newSpike.gameObject.Get<EntityPhysics>().Add(force, (int)EntityPhysics.PhysicPriority.DASH);
     }
 }

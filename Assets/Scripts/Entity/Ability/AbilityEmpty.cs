@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AbilityEmpty : Ability {
-    protected override void LaunchAbility((Brain, Body) bodyBrain) {
+    protected override void LaunchAbility(EntityBrain brain) {
         
-    }
-
-    protected override void ActivateDebug() {
-
     }
 }

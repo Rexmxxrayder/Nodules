@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class EntityMultipleCollider2D : EntityCollider2D {
     [SerializeField] List<EntityColliderDelegate2D> hitboxs = new List<EntityColliderDelegate2D>();
 
-    protected override void ChildSetup() {
+    protected override void AwakeSetup() {
         foreach (EntityColliderDelegate2D colliderDelegate in GetComponentsInChildren<EntityColliderDelegate2D>()) {
             hitboxs.Add(colliderDelegate);
             AssignTo(colliderDelegate);

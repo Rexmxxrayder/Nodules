@@ -4,25 +4,39 @@ using UnityEngine;
 
 public class AWalk : Ability {
     public float Speed;
-    [SerializeField] Force walkForce;
+    public float MinimumDistance;
+    [SerializeField] Force walkForce = Force.Const(Vector3.zero, 0);
     [SerializeField] Coroutine coroutine;
 
-    protected override void LaunchAbility((Brain, Body) bodyBrain) {
-        EntityPhysics ep = bodyBrain.Item2.gameObject.Get<EntityPhysics>();
-        Transform bodyTransform = bodyBrain.Item2.transform;
-        Vector3 goToPosition = bodyBrain.Item1.Visor;
-        if(coroutine!= null) {
-            StopCoroutine(coroutine);
-        }
-        coroutine = StartCoroutine(WalkTo(ep, bodyTransform, goToPosition));
+    private void Start() {
+        entityBodyPart.OnMovement += StopWalk;
     }
 
-    IEnumerator WalkTo(EntityPhysics ep, Transform bodyTransform, Vector3 goToPosition) {
+    protected override void LaunchAbility(EntityBrain brain) {
+        EntityPhysics ep = entityBodyPart.Get<EntityPhysics>();
+        Transform root = entityBodyPart.GetRoot().transform;
+        Vector3 goToPosition = brain.Visor;
+        StopWalk();
+        coroutine = StartCoroutine(WalkTo(ep, root, goToPosition));
+    }
+
+    IEnumerator WalkTo(EntityPhysics ep, Transform root, Vector3 goToPosition) {
         do {
+            if (Vector3.Distance(goToPosition, root.position) < MinimumDistance) {
+                yield break;
+            }
             ep.Remove(walkForce);
-            walkForce = Force.Const(goToPosition - bodyTransform.position, Speed, Vector3.Distance(goToPosition, bodyTransform.position) / Speed);
+            walkForce = Force.Const(goToPosition - root.position, Speed, Vector3.Distance(goToPosition, root.position) / Speed);
             ep.Add(walkForce, (int)EntityPhysics.PhysicPriority.PLAYER_INPUT);
             yield return null;
         } while (!walkForce.HasEnded);
+        ep.Remove(walkForce);
+    }
+
+    public void StopWalk() {
+        entityBodyPart.Get<EntityPhysics>().Remove(walkForce);
+        if (coroutine != null) {
+            StopCoroutine(coroutine);
+        }
     }
 }

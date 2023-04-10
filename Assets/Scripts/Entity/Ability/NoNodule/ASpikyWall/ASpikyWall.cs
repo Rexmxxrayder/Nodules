@@ -7,9 +7,9 @@ public class ASpikyWall : Ability {
     [SerializeField] SpikyWall SpikyWallprefab;
     [SerializeField] float distSpawn;
 
-    protected override void LaunchAbility((Brain, Body) bodyBrain) {
-        Vector3 BodyPosition = bodyBrain.Item2.transform.position;
-        Vector3 Visor = bodyBrain.Item1.Visor;
+    protected override void LaunchAbility(EntityBrain brain) {
+        Vector3 BodyPosition = entityBodyPart.GetRoot().transform.position;
+        Vector3 Visor = brain.Visor;
         SpawnSpikyWall(BodyPosition + (Visor - BodyPosition).normalized * distSpawn);
     }
 

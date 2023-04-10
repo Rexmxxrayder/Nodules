@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sloot;
 
-public class Spawner : MonoBehaviour {
+public class Spawner : EntityEnemy {
+    Coroutine coroutine = null;
     public string ennemiType;
     public float spawnTimer;
     public float distSpawn;
     public int NumberSpawn;
-
-    private void Start() {
-        StartCoroutine(Spawning());
-    }
 
     IEnumerator Spawning() {
         while (true) {
@@ -24,10 +21,15 @@ public class Spawner : MonoBehaviour {
         for (int i = 0; i < NumberSpawn; i++) {
             Vector3 direction = RotationSloot.GetDirectionOnAxis(360 / NumberSpawn * i, RotationSloot.TranslateVector3("z"));
             Vector3 ennemiPosition = transform.position + direction * distSpawn;
-            Ennemi ennemi = (Ennemi)BasicPrefabs.Gino.GetInstance(ennemiType);
+            EntityEnemy ennemi = EnemyPools.Gino.GetInstance(ennemiType);
             ennemi.transform.position = ennemiPosition;
-            ennemi.Activate();
         }
+    }
 
+    public override void InstanceReset() {
+    }
+
+    public override void InstanceResetSetup() {
+        coroutine = StartCoroutine(Spawning());
     }
 }

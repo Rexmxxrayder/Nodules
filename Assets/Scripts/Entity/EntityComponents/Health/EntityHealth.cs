@@ -18,21 +18,23 @@ public class EntityHealth : EntityComponent, IReset {
     DeathWay newDeathWay;
     public event UnityAction NewDeathWay { add => newDeathWay = new(value); remove => newDeathWay = null; }
 
-    protected override void ChildSetup() {
+    protected override void AwakeSetup() {
         NewMaxHealth(_maxHealth);
         _health = Mathf.Max(0, _health);
     }
 
     void Die() {
-        if(died) {
+        if (died) {
             return;
         } else {
             died = true;
         }
+        //Debug.Log("Dead" + _root.name);
         _onDeath?.Invoke();
         if (newDeathWay != null) {
             newDeathWay();
         } else {
+            Debug.Log("DESTROY" + _root.name);
             _root.SetActive(false);
             Destroy(_root);
         }
@@ -70,5 +72,8 @@ public class EntityHealth : EntityComponent, IReset {
         newDeathWay = null;
         _onDeath.RemoveAllListeners();
         _health = _maxHealth;
+    }
+
+    public void InstanceResetSetup() {
     }
 }

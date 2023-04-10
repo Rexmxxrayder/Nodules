@@ -15,7 +15,7 @@ public class AutomaticShoot : MonoBehaviour {
 
     void Shoot() {
         Vector3 direction = target.position - transform.position;
-        Basic newBullet = BasicPrefabs.Gino.GetInstance("Bullet");
+        EntityBasic newBullet = BasicPools.Gino.GetInstance("Bullet");
         newBullet.transform.position = transform.position;
         newBullet.GetComponentInChildren<EntityPhysics>().Add(Force.Const(direction, bulletSpeed, Mathf.Infinity), (int)EntityPhysics.PhysicPriority.PROJECTION);
     }

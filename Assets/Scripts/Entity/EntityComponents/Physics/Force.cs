@@ -22,7 +22,7 @@ public class Force {
 
     #region Properties
 
-    public Vector2 Direction { get => _direction; set => _direction = value; }
+    public Vector2 Direction { get => _direction; set => _direction = value.normalized; }
     public float CurrentStrength { get => Evaluate().magnitude; }
     public float Weight { get => _weight; set => _weight = value; }
     public bool Ignored { get => _ignored; set => _ignored = value; }
