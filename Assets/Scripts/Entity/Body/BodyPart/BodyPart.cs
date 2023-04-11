@@ -32,12 +32,10 @@ public class BodyPart : MonoBehaviour {
 
     public void AddNodules(Nodule nodule) {
         currentNodule = nodule;
-        GetComponent<SpriteRenderer>().color = nodule.Color;
     }
 
     public void RemoveNodules() {
         currentNodule = null;
-        GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     public void OnButtonUp(EntityBrain brain) {

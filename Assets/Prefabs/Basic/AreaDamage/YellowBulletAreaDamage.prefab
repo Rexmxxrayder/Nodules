@@ -116,6 +116,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.9427508
       objectReference: {fileID: 0}
+    - target: {fileID: 8210306683156392227, guid: b646acb1cde1e4644bafbec68b04048a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8636315176406662656, guid: b646acb1cde1e4644bafbec68b04048a, type: 3}
       propertyPath: m_Name
       value: YellowBulletAreaDamage

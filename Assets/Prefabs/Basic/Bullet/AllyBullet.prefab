@@ -73,6 +73,7 @@ MonoBehaviour:
   type: AllyBullet
   StartDirection: {x: 0, y: 0, z: 0}
   BulletSpeed: 2
+  lifeTime: 10
 --- !u!1001 &1200627921878383042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84,6 +85,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -2413806693520163455, guid: efe928220c5e5a4418550cb3580cb0aa, type: 3}
+    - target: {fileID: 444313235202619573, guid: 893af02564a110441a6d8a271c1650c8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4616786049981863968, guid: 893af02564a110441a6d8a271c1650c8, type: 3}
       propertyPath: m_RootOrder
       value: 0

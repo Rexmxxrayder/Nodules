@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 3021040967999159569}
+  bodyPart: {fileID: 0}
   nodulePartImage: {fileID: 1093519576512183634}
 --- !u!61 &3021040967999159571
 BoxCollider2D:
@@ -106,7 +107,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.0013123, y: -1.0013123}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -117,7 +118,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 88.44757, y: 89.78265}
+  m_Size: {x: 90, y: 90}
   m_EdgeRadius: 0
 --- !u!1 &5883907305315616747
 GameObject:

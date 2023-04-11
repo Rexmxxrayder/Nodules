@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 
 public class BodyPartUI : ItemUI {
-    [SerializeField] BodyPart bodyPart;
     [SerializeField] Image nodulePartImage;
+    [SerializeField] BodyPart bodyPart;
     public BodyPart BodyPart { get { return bodyPart; } }
 
     protected override void ItemUpdate() {

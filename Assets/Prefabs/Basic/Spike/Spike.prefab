@@ -74,7 +74,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -141,6 +141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: Spike
+  StartDirection: {x: 0, y: 0, z: 0}
+  BulletSpeed: 0
+  lifeTime: 10
 --- !u!1001 &535632988873919819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154,6 +157,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1416209778303633653, guid: b96154906ec8a764f905dd414d5ad8dc, type: 3}
       propertyPath: destroyOnHit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416209778303633653, guid: b96154906ec8a764f905dd414d5ad8dc, type: 3}
+      propertyPath: destroyOnTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6482157132034039559, guid: b96154906ec8a764f905dd414d5ad8dc, type: 3}

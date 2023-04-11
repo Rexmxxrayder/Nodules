@@ -5,7 +5,7 @@ using UnityEngine;
 public class ADash : Ability {
     public float Speed;
     public float Dist;
-    [SerializeField] Force dashForce;
+    Force dashForce;
 
     protected override void LaunchAbility(EntityBrain brain) {
         EntityPhysics ep = entityBodyPart.Get<EntityPhysics>();
