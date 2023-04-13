@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1155878366292799847}
   - component: {fileID: 6830400820888269479}
   m_Layer: 0
-  m_Name: ASpikyWall
+  m_Name: ASpawnEntity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b68777fdf5e92b46bbedfd528d38290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityName: 
+  toSpawn: SpikyWall
+  distSpawn: 0

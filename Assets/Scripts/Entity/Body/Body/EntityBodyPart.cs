@@ -8,4 +8,5 @@ public class EntityBodyPart : EntityComponent {
    // public List<BodyPart> bodyparts = new List<BodyPart>();
     public UnityEvent onMovement = new UnityEvent();
     public event UnityAction OnMovement { add { onMovement.AddListener(value); } remove { onMovement.RemoveListener(value); } }
+    public bool isDashing = false;
 }

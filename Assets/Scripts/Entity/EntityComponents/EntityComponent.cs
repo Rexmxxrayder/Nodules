@@ -4,6 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class EntityComponent : MonoBehaviour, IEntity {
+    [SerializeField] string type;
+    public string Type => type;
+
     protected GameObject _root = null;
 
     private void Awake() {

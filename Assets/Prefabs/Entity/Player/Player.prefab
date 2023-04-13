@@ -130,21 +130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 20
   Dist: 3
-  dashForce:
-    _direction: {x: 0, y: 0}
-    _weight: 0
-    _curves: []
-    _currentCurve: 0
-    _currentPercent: 0
-    _onStart:
-      m_PersistentCalls:
-        m_Calls: []
-    _onNewCurve:
-      m_PersistentCalls:
-        m_Calls: []
-    _onEnd:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1 &2541874754301607105
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2541874754301607104}
   - component: {fileID: 2541874754301607106}
+  - component: {fileID: 4336882125771869941}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -205,6 +191,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &4336882125771869941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2541874754301607105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5972bef766f2d7746b1c88fe2ca1d270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  ebp: []
+  visor: {x: 0, y: 0, z: 0}
 --- !u!1 &2541874754819529835
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +215,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2541874754819529834}
-  - component: {fileID: 2541874754819529837}
   m_Layer: 8
   m_Name: Brain
   m_TagString: Untagged
@@ -238,20 +238,6 @@ Transform:
   m_Father: {fileID: 2541874754301607104}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2541874754819529837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2541874754819529835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5972bef766f2d7746b1c88fe2ca1d270, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ebp: []
-  visor: {x: 0, y: 0, z: 0}
 --- !u!1 &2541874755468358872
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,21 +284,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 30
   Dist: 5
-  dashForce:
-    _direction: {x: 0, y: 0}
-    _weight: 0
-    _curves: []
-    _currentCurve: 0
-    _currentPercent: 0
-    _onStart:
-      m_PersistentCalls:
-        m_Calls: []
-    _onNewCurve:
-      m_PersistentCalls:
-        m_Calls: []
-    _onEnd:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1 &2541874755778483624
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,9 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class EntityBrain : EntityComponent {
-    protected List<Nerve> nerves = new List<Nerve>();
-    [SerializeField] protected List<EntityBodyPart> ebp = new List<EntityBodyPart>();
+public abstract class EntityBrain : EntityRoot {
+    //protected List<Nerve> nerves = new List<Nerve>();
     [SerializeField] protected Vector3 visor;
 
     #region Properties
@@ -15,8 +14,13 @@ public abstract class EntityBrain : EntityComponent {
 
     protected override void AwakeSetup() {
         foreach (Nerve nerve in GetComponentsInChildren<Nerve>()) {
-            nerves.Add(nerve);
-            nerve.brain= this;
+            //nerves.Add(nerve);
+            nerve.brain = this;
         }
+        Get<EntityHealth>().OnDeath += Death;
+    }
+
+    private void Death() {
+        Time.timeScale = 0;
     }
 }

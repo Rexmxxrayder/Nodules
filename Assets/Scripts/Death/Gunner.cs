@@ -9,7 +9,7 @@ public class Gunner : EntityEnemy {
     public float BulletSpeed;
 
     IEnumerator Shoot() {
-        while (true) {
+        while (true) {     
             yield return new WaitForSeconds(ShootRate);
             Vector3 direction = target.position - transform.position;
             direction.Normalize();

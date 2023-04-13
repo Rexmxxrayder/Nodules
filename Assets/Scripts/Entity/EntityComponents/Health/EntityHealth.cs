@@ -10,6 +10,12 @@ public class EntityHealth : EntityComponent, IReset {
     public int Health => _health;
     public int MaxHealth => _maxHealth;
 
+    UnityEvent<int> _onDamaged = new();
+    public event UnityAction<int> OnDamaged { add => _onDamaged.AddListener(value); remove => _onDamaged.RemoveListener(value); }
+
+    UnityEvent<int> _onHealed = new();
+    public event UnityAction<int> OnHealed { add => _onHealed.AddListener(value); remove => _onHealed.RemoveListener(value); }
+
     bool died = false;
     UnityEvent _onDeath = new();
     public event UnityAction OnDeath { add => _onDeath.AddListener(value); remove => _onDeath.RemoveListener(value); }
@@ -34,7 +40,7 @@ public class EntityHealth : EntityComponent, IReset {
         if (newDeathWay != null) {
             newDeathWay();
         } else {
-            Debug.Log("DESTROY" + _root.name);
+            Debug.Log("DESTROY " + _root.name);
             _root.SetActive(false);
             Destroy(_root);
         }
@@ -45,12 +51,24 @@ public class EntityHealth : EntityComponent, IReset {
     }
 
     public int AddHealth(int add) {
-        _health = _health + add > _maxHealth ? _maxHealth : _health + add;
+        add = Mathf.Max(0, add);
+        if (_health + add > _maxHealth) {
+            _health = _maxHealth;
+        } else {
+            _health = _health + add;
+        }
+        if (add != 0) {
+            _onHealed?.Invoke(add);
+        }
         return _health;
     }
 
     public int RemoveHealth(int remove) {
+        remove = Mathf.Max(0, remove);
         _health = _health - remove < 0 ? 0 : _health - remove;
+        if (remove != 0) {
+            _onDamaged?.Invoke(remove);
+        }
         if (_health == 0) {
             Die();
         }
