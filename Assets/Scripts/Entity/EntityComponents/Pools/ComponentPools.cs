@@ -18,7 +18,7 @@ public class ComponentPool : MonoBehaviour {
         for (int i = 0; i < prefabs.Count; i++) {
             GameObject storage = new GameObject(prefabs[i].gameObject.name + " Storage");
             storage.transform.parent = transform;
-            pools.Add(prefabs[i].GetComponent<EntityComponent>().Type, new Pool<EntityComponent>(prefabs[i], storage));
+            pools.Add(prefabs[i].GetComponent<EntityComponent>().name, new Pool<EntityComponent>(prefabs[i], storage));
         }
     }
 
@@ -28,6 +28,6 @@ public class ComponentPool : MonoBehaviour {
     }
 
     public virtual void LetInstance(EntityComponent instance) {
-        pools[instance.Type].LetInstance(instance);
+        pools[instance.name].LetInstance(instance);
     }
 }

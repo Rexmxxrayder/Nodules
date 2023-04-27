@@ -4,9 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class EntityComponent : MonoBehaviour, IEntity {
-    [SerializeField] string type;
-    public string Type => type;
-
     protected GameObject _root = null;
 
     private void Awake() {
@@ -48,15 +45,43 @@ public abstract class EntityComponent : MonoBehaviour, IEntity {
         }
     }
 
+    public Vector3 GetRootPosition() {
+        return GetRoot().transform.position;
+    }
+
+    public Quaternion GetRootRotation() {
+        return GetRoot().transform.rotation;
+    }
+
+    public Vector3 GetRootScale() {
+        return GetRoot().transform.localScale;
+    }
+
     public T Get<T>() where T : MonoBehaviour, IEntity {
         return _root.GetComponentInChildren<T>();
     }
 }
 public static class ExtensionForEntityComponent {
+    public static EntityRoot GetRoot(this GameObject gO) {
+        return gO.GetComponentInParent<EntityRoot>();
+    }
+
     public static T Get<T>(this GameObject gO) where T : MonoBehaviour, IEntity {
-        EntityComponent ec = gO.GetComponent<EntityComponent>();
-        if (ec != null) {
-            return ec.Get<T>();
-        } else { return null; }
+        if(gO.GetRoot() == null) {
+            return null;
+        }
+        return gO.GetRoot().Get<T>();
+    }
+
+    public static Vector3 GetRootPosition(this GameObject gO) {
+        return gO.GetRoot().GetRootPosition();
+    }
+
+    public static Quaternion GetRootRotation(this GameObject gO) {
+        return gO.GetRoot().GetRootRotation();
+    }
+
+    public static Vector3 GetRootScale(this GameObject gO) {
+        return gO.GetRoot().GetRootScale();
     }
 }

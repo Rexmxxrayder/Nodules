@@ -8,6 +8,7 @@ namespace Sloot {
         List<T> _pool;
         List<T> _alive;
         T _original;
+        public T Original => _original;
         int _count;
         int _maxCount;
         GameObject _poolStorage;

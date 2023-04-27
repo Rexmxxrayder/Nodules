@@ -85,6 +85,10 @@ public class Force {
             direction, weight);
     }
 
+    public static Force Empty() {
+        return new Force(AnimationCurve.Constant(0f, 0f, 0f), Vector3.zero, 1f);
+    }
+
     #endregion
 
     public void AddCurves(List<AnimationCurve> curves) {

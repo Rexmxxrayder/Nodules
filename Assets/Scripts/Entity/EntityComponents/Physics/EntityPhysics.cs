@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using Sloot;
 
 public class EntityPhysics : EntityComponent, IReset {
     public enum PhysicPriority {
-        PLAYER_INPUT = 10, DASH = 20, PROJECTION = 30, BLOCK = 40, ENVIRONNEMENT = 50, SYSTEM = 60
+        INPUT = 10, DASH = 20, PROJECTION = 30, BLOCK = 40, ENVIRONNEMENT = 50, SYSTEM = 60
     }
 
     [SerializeField] Rigidbody2D _rb;
@@ -131,4 +132,15 @@ public class EntityPhysics : EntityComponent, IReset {
     }
 
     public void InstanceResetSetup() { }
+
+    public void ModifyForces(Func<Force, Force> func, int minPriority = 0, int maxPriority = 100) {
+        for (int priority = maxPriority; priority >= minPriority; --priority) {
+            if (!_forces.ContainsKey(priority)) { continue; }
+            for (int index = 0; index < _forces[priority].Count; ++index) {
+                if (_forces[priority][index] == null) { continue; }
+                if (_forces[priority][index].Ignored) { continue; }
+                _forces[priority][index] = func(_forces[priority][index]);
+            }
+        }
+    }
 }
