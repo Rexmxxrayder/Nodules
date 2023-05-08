@@ -132,11 +132,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 226906521127371257, guid: 33cb13daf07f2664c8c3bad0aba969e0, type: 3}
       propertyPath: _health
-      value: 10000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 226906521127371257, guid: 33cb13daf07f2664c8c3bad0aba969e0, type: 3}
       propertyPath: _maxHealth
-      value: 10000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 586689668137883826, guid: 33cb13daf07f2664c8c3bad0aba969e0, type: 3}
       propertyPath: bodyparts.Array.size
@@ -1834,7 +1834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ennemiToSpawn:
-  - SpawnerBomber
+  - Bomber
   numberToSpawn: 01000000
   SpawnPoint:
   - {fileID: 1427821562}
@@ -7333,7 +7333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7425981532779631892, guid: e798afc3211ae0949bad197079c3cb34, type: 3}
       propertyPath: prefabs.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7425981532779631892, guid: e798afc3211ae0949bad197079c3cb34, type: 3}
       propertyPath: prefabs.Array.data[0]
@@ -7363,6 +7363,10 @@ PrefabInstance:
       propertyPath: prefabs.Array.data[6]
       value: 
       objectReference: {fileID: 6847753247797916961, guid: 9f65f29459d3c2d46b8f92531f3a0c32, type: 3}
+    - target: {fileID: 7425981532779631892, guid: e798afc3211ae0949bad197079c3cb34, type: 3}
+      propertyPath: prefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 7758075438991334835, guid: a992dc44a25bf49449b139478714d89e, type: 3}
     - target: {fileID: 7425981532779631893, guid: e798afc3211ae0949bad197079c3cb34, type: 3}
       propertyPath: m_Name
       value: EntityPools

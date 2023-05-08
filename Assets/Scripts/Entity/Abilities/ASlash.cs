@@ -34,6 +34,6 @@ public class ASlash : Ability
         dashForce = Force.Const(goToPosition - startPosition, Speed, Dist / Speed);
         dashForce.OnEnd += (Force) => GetComponentInParent<EntityBodyParts>().isDashing = false;
         dashForce.OnEnd += (Force) => Slash(goToPosition + goToPosition.normalized);
-        ep.Add(dashForce, (int)EntityPhysics.PhysicPriority.DASH);
+        ep.Add(dashForce, EntityPhysics.PhysicPriority.DASH);
     }
 }

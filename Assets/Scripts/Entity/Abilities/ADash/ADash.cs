@@ -20,6 +20,6 @@ public class ADash : Ability {
         ep.Remove(dashForce);
         dashForce = Force.Const(goToPosition - startPosition, Speed, Dist / Speed);
         dashForce.OnEnd += (Force) => GetComponentInParent<EntityBodyParts>().isDashing = false;
-        ep.Add(dashForce, (int)EntityPhysics.PhysicPriority.DASH); 
+        ep.Add(dashForce, EntityPhysics.PhysicPriority.DASH); 
     }
 }

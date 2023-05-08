@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ASpawnEntity : Ability {
-
     [SerializeField] string toSpawn;
     [SerializeField] float distSpawn;
 

@@ -67,8 +67,11 @@ public static class ExtensionForEntityComponent {
     }
 
     public static T Get<T>(this GameObject gO) where T : MonoBehaviour, IEntity {
-        if(gO.GetRoot() == null) {
+        if (gO.GetRoot() == null) {
             return null;
+        }
+        if (gO.GetComponent<EntityComponent>() != null) {
+            return gO.GetComponent<EntityComponent>().Get<T>();
         }
         return gO.GetRoot().Get<T>();
     }

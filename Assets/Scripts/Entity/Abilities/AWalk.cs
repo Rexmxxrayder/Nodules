@@ -27,7 +27,7 @@ public class AWalk : Ability {
             }
             ep.Remove(walkForce);
             walkForce = Force.Const(goToPosition - root.position, Speed, Vector3.Distance(goToPosition, root.position) / Speed);
-            ep.Add(walkForce, (int)EntityPhysics.PhysicPriority.INPUT);
+            ep.Add(walkForce, EntityPhysics.PhysicPriority.INPUT);
             yield return null;
         } while (!walkForce.HasEnded);
         ep.Remove(walkForce);

@@ -27,7 +27,7 @@ public class MinionBrain : EntityBrain, IReset {
     void Hit(Collision2D c) { 
         EntityPhysics ep = c.gameObject.Get<EntityPhysics>();
         if (ep != null) {
-            ep.Add(Force.Const(c.transform.position - transform.position, projectionStrenght, projectionDist / projectionStrenght), (int)EntityPhysics.PhysicPriority.PROJECTION);
+            ep.Add(Force.Const(c.transform.position - transform.position, projectionStrenght, projectionDist / projectionStrenght), EntityPhysics.PhysicPriority.PROJECTION);
             Get<EntityDamageCollider2D>().ResetHit();
             c.gameObject.Get<EntityBodyParts>().onMovement?.Invoke();
         }

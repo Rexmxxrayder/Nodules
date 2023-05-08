@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public abstract class EntityCollider2D : EntityComponent {
     protected bool _active = true;
+    public bool CanTakeDamage = true;
     public bool Active { get => _active; set => _active = value; }
 
     #region Events

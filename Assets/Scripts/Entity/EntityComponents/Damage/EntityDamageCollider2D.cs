@@ -16,12 +16,14 @@ public class EntityDamageCollider2D : EntityComponent, IReset {
         damage = Mathf.Max(0, newDamage);
     }
     void DoDamageCollider(Collider2D game) {
-        EntityHealth health = game.gameObject.Get<EntityHealth>();
-        if (health != null && !hit.Contains(health)) {
-            if (Damaged.Contains(health.GetRoot().tag)) {
-                health.RemoveHealth(damage);
-                hit.Add(health);
-               // Debug.Log(game.gameObject.Get<EntityRoot>().name);
+        if (game.gameObject.Get<EntityCollider2D>() != null && game.gameObject.Get<EntityCollider2D>().CanTakeDamage) {
+            EntityHealth health = game.gameObject.Get<EntityHealth>();
+            if (health != null && !hit.Contains(health)) {
+                if (Damaged.Contains(health.GetRoot().tag)) {
+                    health.RemoveHealth(damage);
+                    hit.Add(health);
+                    // Debug.Log(game.gameObject.Get<EntityRoot>().name);
+                }
             }
         }
         if (destroyOnTrigger) {

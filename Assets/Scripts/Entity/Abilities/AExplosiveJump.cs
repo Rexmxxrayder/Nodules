@@ -17,7 +17,7 @@ public class AExplosiveJump : Ability {
         ImpactDamage();
         directionJump = destination - (Vector2)GetComponentInParent<EntityBodyParts>().GetRoot().transform.position;
         distJump = Mathf.Min(Vector3.Distance(destination, (Vector2)GetComponentInParent<EntityBodyParts>().GetRootPosition()), distMaxJump);
-        GetComponentInParent<EntityRoot>().Get<EntityPhysics>().Add(Force.Const(directionJump, SpeedJump, distJump / SpeedJump), 20);
+        GetComponentInParent<EntityRoot>().Get<EntityPhysics>().Add(Force.Const(directionJump, SpeedJump, distJump / SpeedJump), EntityPhysics.PhysicPriority.DASH);
         yield return new WaitForSeconds(distJump / SpeedJump);
         ImpactDamage();
     }

@@ -24,7 +24,7 @@ public class SpikyWall : EntityBasic {
         newSpike.transform.position = position;
         newSpike.transform.rotation = rotation;
         Force force = Force.Const(direction.normalized, 10, 2);
-        newSpike.gameObject.Get<EntityPhysics>().Add(force, (int)EntityPhysics.PhysicPriority.DASH);
+        newSpike.gameObject.Get<EntityPhysics>().Add(force, EntityPhysics.PhysicPriority.PROJECTION);
     }
 
 }

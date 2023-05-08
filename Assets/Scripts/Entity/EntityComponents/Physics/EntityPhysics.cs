@@ -4,35 +4,66 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Sloot;
+using System.Reflection;
+using System.Net.Mail;
 
 public class EntityPhysics : EntityComponent, IReset {
     public enum PhysicPriority {
-        INPUT = 10, DASH = 20, PROJECTION = 30, BLOCK = 40, ENVIRONNEMENT = 50, SYSTEM = 60
+        INPUT = 1, DASH = 2, PROJECTION = 3, BLOCK = 4, ENVIRONNEMENT = 5, SYSTEM = 6
     }
 
     [SerializeField] Rigidbody2D _rb;
     [SerializeField] List<Force> _forcesDisplay = new List<Force>();
     [SerializeField] bool _debug = false;
-    [SerializeField, HideInInspector] UnityEvent<Vector2> _onMove = new UnityEvent<Vector2>();
 
     SortedDictionary<int, List<Force>> _forces = new SortedDictionary<int, List<Force>>();
 
     public Vector2 Velocity => _rb.velocity;
-    public event UnityAction<Vector2> OnMove { add => _onMove.AddListener(value); remove => _onMove.RemoveListener(value); }
+
 
     private void FixedUpdate() {
-        Vector2 velocity = ComputeForces();
-        if (velocity != Vector2.zero) { _onMove.Invoke(velocity); }
-        _rb.velocity = velocity;
+        _rb.velocity = ComputeForces();
     }
+
+    #region EntityComponentFunctions
+    protected override void AwakeSetup() {
+        if (_rb == null) {
+            if (_root.GetComponent<Rigidbody2D>() == null) {
+                _rb = _root.AddComponent<Rigidbody2D>();
+            } else {
+                _rb = _root.GetComponent<Rigidbody2D>();
+            }
+        }
+        _rb.gravityScale = 0;
+        _rb.freezeRotation = true;
+    }
+
+    public void InstanceReset() {
+        Purge();
+    }
+
+    public void InstanceResetSetup() { }
+
+    #endregion
 
     #region Get/Set
 
-    public void Add(Force force, int priority) {
-        if (!_forces.ContainsKey(priority)) { _forces.Add(priority, new List<Force>()); }
+    public void Add(Force force, PhysicPriority forcePriority, bool CrushEqualAndUnderForces = true) {
+        if (!_forces.ContainsKey((int)forcePriority)) { _forces.Add((int)forcePriority, new List<Force>()); }
+        if (CrushEqualAndUnderForces) {
+            for (int priority = (int)forcePriority; priority > 0; --priority) {
+                if (!_forces.ContainsKey(priority)) { continue; }
+                for (int index = 0; index < _forces[priority].Count; ++index) {
+                    if (_forces[priority][index] == null) { continue; }
+                    if (_forces[priority][index].Ignored) { continue; }
+                    _forces[priority][index].End();
+                }
+            }
+        }
         _forcesDisplay.Add(force);
-        _forces[priority].Add(force);
+        _forces[(int)forcePriority].Add(force);
     }
+
 
     public void Remove(Force force) {
         try {
@@ -59,6 +90,8 @@ public class EntityPhysics : EntityComponent, IReset {
     }
 
     #endregion
+
+    #region ForcesFunction
 
     public Vector2 ComputeForces() {
         Vector2 force = Vector2.zero;
@@ -99,6 +132,16 @@ public class EntityPhysics : EntityComponent, IReset {
 
         return force;
     }
+    public void ModifyForces(Func<Force, Force> func, PhysicPriority minPriority = PhysicPriority.INPUT, PhysicPriority maxPriority = PhysicPriority.SYSTEM) {
+        for (int priority = (int)maxPriority; priority >= (int)minPriority; --priority) {
+            if (!_forces.ContainsKey(priority)) { continue; }
+            for (int index = 0; index < _forces[priority].Count; ++index) {
+                if (_forces[priority][index] == null) { continue; }
+                if (_forces[priority][index].Ignored) { continue; }
+                _forces[priority][index] = func(_forces[priority][index]);
+            }
+        }
+    }
 
     public void Purge() {
         _rb.velocity = Vector2.zero;
@@ -114,33 +157,6 @@ public class EntityPhysics : EntityComponent, IReset {
             Debug.LogError(e);
         }
     }
+    #endregion
 
-    protected override void AwakeSetup() {
-        if (_rb == null) {
-            if (_root.GetComponent<Rigidbody2D>() == null) {
-                _rb = _root.AddComponent<Rigidbody2D>();
-            } else {
-                _rb = _root.GetComponent<Rigidbody2D>();
-            }
-        }
-        _rb.gravityScale = 0;
-        _rb.freezeRotation = true;
-    }
-
-    public void InstanceReset() {
-        Purge();
-    }
-
-    public void InstanceResetSetup() { }
-
-    public void ModifyForces(Func<Force, Force> func, int minPriority = 0, int maxPriority = 100) {
-        for (int priority = maxPriority; priority >= minPriority; --priority) {
-            if (!_forces.ContainsKey(priority)) { continue; }
-            for (int index = 0; index < _forces[priority].Count; ++index) {
-                if (_forces[priority][index] == null) { continue; }
-                if (_forces[priority][index].Ignored) { continue; }
-                _forces[priority][index] = func(_forces[priority][index]);
-            }
-        }
-    }
 }
