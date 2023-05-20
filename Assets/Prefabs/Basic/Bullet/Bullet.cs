@@ -12,6 +12,6 @@ public class Bullet : EntityBasic {
 
     public override void Activate() {
         Get<EntityPhysics>().Add(Force.Const(StartDirection.normalized, BulletSpeed, 100), EntityPhysics.PhysicPriority.PROJECTION);
-        beforeDeath = new Timer(this, lifeTime, () => gameObject.Get<EntityHealth>().LethalDamage()).Start();
+        beforeDeath = new Timer(this, lifeTime, () => gameObject.Get<EntityDeath>().Die()).Start();
     }
 }

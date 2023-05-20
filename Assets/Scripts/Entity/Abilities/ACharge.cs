@@ -41,7 +41,6 @@ public class ACharge : Ability {
         EntityPhysics ep = c.gameObject.Get<EntityPhysics>();
         if (ep != null) {
             ep.Add(Force.Const(c.transform.position - transform.position, projectionStrenght, projectionDist / projectionStrenght), EntityPhysics.PhysicPriority.PROJECTION);
-            gameObject.Get<EntityDamageCollider2D>().ResetHit();
             c.gameObject.Get<EntityBodyParts>().onMovement?.Invoke();
         }
     }

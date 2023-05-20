@@ -6,11 +6,7 @@ using Sloot;
 public class SlasherBrain : EntityBrain, IReset {
     public Transform target;
 
-    public void InstanceReset() {
-
-    }
-
-    public void InstanceResetSetup() {
+    public override void InstanceResetSetup() {
         if (target == null) {
             target = FindObjectOfType<PlayerBrain>().transform;
         }

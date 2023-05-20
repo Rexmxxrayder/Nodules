@@ -5,10 +5,7 @@ using Sloot;
 public class GunnerBrain : EntityBrain, IReset {
     public Transform target;
 
-    public void InstanceReset() {
-    }
-
-    public void InstanceResetSetup() {
+    public override void InstanceResetSetup() {
         if (target == null) {
             target = FindObjectOfType<PlayerBrain>().transform;
         }

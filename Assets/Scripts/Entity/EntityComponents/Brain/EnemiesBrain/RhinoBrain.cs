@@ -4,11 +4,7 @@ using Sloot;
 public class RhinoBrain : EntityBrain, IReset {
     public Transform target;
 
-    public void InstanceReset() {
-
-    }
-
-    public void InstanceResetSetup() {
+    public override void InstanceResetSetup() {
         if (target == null) {
             target = FindObjectOfType<PlayerBrain>().transform;
         }

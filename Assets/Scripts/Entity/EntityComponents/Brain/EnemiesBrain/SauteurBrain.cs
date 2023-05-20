@@ -4,14 +4,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SauteurBrain : EntityBrain, IReset {
+public class SauteurBrain : EntityBrain {
     public Transform target;
 
-    public void InstanceReset() {
-
-    }
-
-    public void InstanceResetSetup() {
+    public override void InstanceResetSetup() {
         if (target == null) {
             target = FindObjectOfType<PlayerBrain>().transform;
         }

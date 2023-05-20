@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6190914083337744164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6593279902352402189}
+  - component: {fileID: 4659526260890381484}
+  m_Layer: 0
+  m_Name: Death
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6593279902352402189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6190914083337744164}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8636315176406662670}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4659526260890381484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6190914083337744164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05773221600669844acd79bd5c60f755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8636315176406662656
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +75,7 @@ Transform:
   m_Children:
   - {fileID: 8101225847096145871}
   - {fileID: 4019538080794479030}
+  - {fileID: 6593279902352402189}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,7 +91,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d7dfe4807c3814b99d20861ef9ecff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: CircleAreaDamage
   edc: {fileID: 1421687897177890986}
   timeDamage: 0.5
 --- !u!1001 &8636315175657364962
@@ -151,11 +195,11 @@ PrefabInstance:
       objectReference: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
     - target: {fileID: 444313235202619573, guid: 893af02564a110441a6d8a271c1650c8, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 444313235202619573, guid: 893af02564a110441a6d8a271c1650c8, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 444313235202619573, guid: 893af02564a110441a6d8a271c1650c8, type: 3}
       propertyPath: m_Color.r

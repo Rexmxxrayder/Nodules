@@ -38,11 +38,9 @@ public class EntityPhysics : EntityComponent, IReset {
         _rb.freezeRotation = true;
     }
 
-    public void InstanceReset() {
+    public override void InstanceReset() {
         Purge();
     }
-
-    public void InstanceResetSetup() { }
 
     #endregion
 

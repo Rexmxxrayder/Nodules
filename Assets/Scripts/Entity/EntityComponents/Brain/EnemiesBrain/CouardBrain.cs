@@ -8,10 +8,7 @@ public class CouardBrain : EntityBrain, IReset {
     bool awake = false;
     Timer newDirection;
 
-    public void InstanceReset() {
-    }
-
-    public void InstanceResetSetup() {
+    public override void InstanceResetSetup() {
         if (target == null) {
             target = FindObjectOfType<PlayerBrain>().transform;
         }

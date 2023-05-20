@@ -8,7 +8,7 @@ public class SpikyWall : EntityBasic {
     public float SpikeDistSpawn;
 
     public override void Activate() {
-        gameObject.Get<EntityHealth>().OnDeath += Died;
+        gameObject.Get<EntityDeath>().OnDeath += Died;
     }
 
     void Died() {

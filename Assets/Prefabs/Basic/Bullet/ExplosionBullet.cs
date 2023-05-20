@@ -7,7 +7,7 @@ public class ExplosionBullet : Bullet {
     [SerializeField] string explosionType;
     public override void Activate() {
         base.Activate();
-        gameObject.Get<EntityHealth>().OnDeath += YellowBoom;
+        gameObject.Get<EntityDeath>().OnDeath += YellowBoom;
     }
 
     void YellowBoom() {

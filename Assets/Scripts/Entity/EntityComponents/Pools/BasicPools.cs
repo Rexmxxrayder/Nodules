@@ -25,7 +25,7 @@ public class BasicPools : MonoBehaviour {
     public EntityBasic GetInstance(string instanceName) {
         EntityBasic instance = pools[instanceName].GetInstance();
         instance.GiveType(pools[instanceName].Original.Type);
-        instance.gameObject.Get<EntityHealth>().NewDeathWay += () => LetInstance(instance);
+        instance.gameObject.Get<EntityDeath>().NewDeathWay += () => LetInstance(instance);
         return instance;
     }
 

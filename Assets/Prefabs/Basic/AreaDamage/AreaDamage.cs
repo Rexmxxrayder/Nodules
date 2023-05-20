@@ -17,6 +17,6 @@ public class AreaDamage : EntityBasic {
         } else {
             yield return new WaitForSeconds(timeDamage);
         }
-        gameObject.Get<EntityHealth>().LethalDamage();
+        gameObject.Get<EntityDeath>().Die();
     }
 }

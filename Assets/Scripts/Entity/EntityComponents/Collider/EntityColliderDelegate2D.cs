@@ -3,62 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Collider2D))]
 public class EntityColliderDelegate2D : EntityCollider2D {
     protected Collider2D collider2d;
-    [SerializeField] bool _debug = false;
-
-    public Collider2D GetCollider() {
-        return collider2d;
+    public override bool IsActive {
+        get { return isActive; }
+        set {
+            isActive = value;
+            Collider.enabled = value;
+        }
     }
+    public Collider2D Collider => collider2d;
 
     protected override void AwakeSetup() {
         collider2d = GetComponent<Collider2D>();
-        if(GetCollider() == null) {
-            Debug.LogError("No Collider");
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (!_active) { return; }
-        if (_debug) { DebugMe("Collision Enter " + collision.gameObject.name); }
+        if (!isActive) { return; }
         _onCollisionEnter.Invoke(collision);
     }
 
     private void OnCollisionStay2D(Collision2D collision) {
-        if (!_active) { return; }
-        if (_debug) { DebugMe("Collision Stay " + collision.gameObject.name); }
+        if (!isActive) { return; }
         _onCollisionStay.Invoke(collision);
     }
 
     private void OnCollisionExit2D(Collision2D collision) {
-        if (!_active) { return; }
-        if (_debug) { DebugMe("Collision Exit " + collision.gameObject.name); }
+        if (!isActive) { return; }
         _onCollisionExit.Invoke(collision);
     }
 
     private void OnTriggerEnter2D(Collider2D collider) {
-        if (!_active) { return; }
-        if (_debug) { DebugMe("Trigger Enter " + collider.gameObject.name); }
+        if (!isActive) { return; }
         _onTriggerEnter.Invoke(collider);
     }
 
     private void OnTriggerStay2D(Collider2D collider) {
-        if (!_active) { return; }
-        if (_debug) { DebugMe("Trigger Stay " + collider.gameObject.name); }
+        if (!isActive) { return; }
         _onTriggerStay.Invoke(collider);
     }
 
     private void OnTriggerExit2D(Collider2D collider) {
-        if (!_active) { return; }
-        if (_debug) { DebugMe("Trigger Exit " + collider.gameObject.name); }
+        if (!isActive) { return; }
         _onTriggerExit.Invoke(collider);
-    }
-
-    private void DebugMe(string message) {
-        Debug.Log(name + " debug: " + message);
-    }
-
-    public override void SetTrigger(bool newState) {
-        collider2d.isTrigger= newState;
     }
 }

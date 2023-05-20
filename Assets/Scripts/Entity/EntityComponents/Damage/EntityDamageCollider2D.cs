@@ -3,72 +3,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityDamageCollider2D : EntityComponent, IReset {
-    EntityCollider2D ec;
+public class EntityDamageCollider2D : EntityColliderDelegate2D, IReset {
     public int damage;
     public List<string> Damaged = new List<string>();
     [SerializeField] bool destroyOnCollide;
     [SerializeField] bool destroyOnTrigger;
-    List<EntityHealth> hit = new List<EntityHealth>();
-
 
     public void SetDamage(int newDamage) {
         damage = Mathf.Max(0, newDamage);
     }
+
     void DoDamageCollider(Collider2D game) {
-        if (game.gameObject.Get<EntityCollider2D>() != null && game.gameObject.Get<EntityCollider2D>().CanTakeDamage) {
-            EntityHealth health = game.gameObject.Get<EntityHealth>();
-            if (health != null && !hit.Contains(health)) {
-                if (Damaged.Contains(health.GetRoot().tag)) {
-                    health.RemoveHealth(damage);
-                    hit.Add(health);
-                    // Debug.Log(game.gameObject.Get<EntityRoot>().name);
-                }
+        EntityHealth health = game.gameObject.Get<EntityHealth>();
+        if (health != null) {
+            if (Damaged.Contains(health.GetRoot().tag)) {
+                health.RemoveHealth(damage);
             }
         }
+
         if (destroyOnTrigger) {
-            Get<EntityHealth>().LethalDamage();
+            Get<EntityDeath>().Die();
         }
     }
+
 
     void DoDamageCollision(Collision2D game) {
         EntityHealth health = game.gameObject.Get<EntityHealth>();
-        if (health != null && !hit.Contains(health)) {
+        if (health != null) {
             if (Damaged.Contains(health.GetRoot().tag)) {
                 health.RemoveHealth(damage);
-                hit.Add(health);
-                // Debug.Log(game.gameObject.Get<EntityRoot>().name);
             }
         }
+
         if (destroyOnCollide) {
-            Get<EntityHealth>().LethalDamage();
+            Get<EntityDeath>().Die();
         }
     }
-
-    protected override void AwakeSetup() {
-        ec = GetComponentInChildren<EntityCollider2D>();
-        if (ec == null) {
-            Debug.LogError("No EntityCollider2D");
-        }
-        ResetSetup();
-    }
-
     void ResetSetup() {
-        ec.OnCollisionEnter += DoDamageCollision;
-        ec.OnCollisionStay += DoDamageCollision;
-        ec.OnTriggerEnter += DoDamageCollider;
-        ec.OnTriggerStay += DoDamageCollider;
-    }
-    public void ResetHit() {
-        hit.Clear();
+        OnCollisionEnter += DoDamageCollision;
+        OnCollisionStay += DoDamageCollision;
+        OnTriggerEnter += DoDamageCollider;
+        OnTriggerStay += DoDamageCollider;
     }
 
-    public void InstanceReset() {
-        ResetHit();
-        ec.ResetListeners();
+    public override void InstanceReset() {
+        ResetListeners();
     }
 
-    public void InstanceResetSetup() {
+
+    public override void InstanceResetSetup() {
         ResetSetup();
     }
 }

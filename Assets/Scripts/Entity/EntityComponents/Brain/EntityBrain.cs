@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class EntityBrain : EntityRoot{
+public abstract class EntityBrain : EntityRoot {
     //protected List<Nerve> nerves = new List<Nerve>();
     [SerializeField] protected Vector3 visor;
 

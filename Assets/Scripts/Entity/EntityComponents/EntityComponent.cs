@@ -1,26 +1,21 @@
+using Sloot;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class EntityComponent : MonoBehaviour, IEntity {
+public abstract class EntityComponent : MonoBehaviour, IEntity, IReset {
     protected GameObject _root = null;
 
     private void Awake() {
         SetRoot();
         AwakeSetup();
+        InstanceReset();
     }
 
     private void Start() {
         StartSetup();
-    }
-
-    protected virtual void AwakeSetup() {
-
-    }
-
-    protected virtual void StartSetup() {
-
+        InstanceResetSetup();
     }
 
     public virtual GameObject SetRoot() {
@@ -29,7 +24,6 @@ public abstract class EntityComponent : MonoBehaviour, IEntity {
                 GameObject newParent = new GameObject();
                 newParent.name = "Root";
                 transform.parent = newParent.transform;
-                Debug.Log(transform.gameObject.name);
             }
             EntityComponent parentComponent = transform.parent.GetComponent<EntityComponent>();
             _root = parentComponent == null ? transform.parent.AddComponent<EntityRoot>().GetRoot() : parentComponent.GetRoot();
@@ -60,20 +54,18 @@ public abstract class EntityComponent : MonoBehaviour, IEntity {
     public T Get<T>() where T : MonoBehaviour, IEntity {
         return _root.GetComponentInChildren<T>();
     }
+
+    protected virtual void AwakeSetup() {}
+
+    protected virtual void StartSetup() {}
+
+    public virtual void InstanceReset() {}
+
+    public virtual void InstanceResetSetup() {}
 }
-public static class ExtensionForEntityComponent {
+public static class ExtensionEntityComponent {
     public static EntityRoot GetRoot(this GameObject gO) {
         return gO.GetComponentInParent<EntityRoot>();
-    }
-
-    public static T Get<T>(this GameObject gO) where T : MonoBehaviour, IEntity {
-        if (gO.GetRoot() == null) {
-            return null;
-        }
-        if (gO.GetComponent<EntityComponent>() != null) {
-            return gO.GetComponent<EntityComponent>().Get<T>();
-        }
-        return gO.GetRoot().Get<T>();
     }
 
     public static Vector3 GetRootPosition(this GameObject gO) {
@@ -86,5 +78,12 @@ public static class ExtensionForEntityComponent {
 
     public static Vector3 GetRootScale(this GameObject gO) {
         return gO.GetRoot().GetRootScale();
+    }
+
+    public static T Get<T>(this GameObject gO) where T : MonoBehaviour, IEntity {
+        if (gO.GetRoot() == null) {
+            return null;
+        }
+        return gO.GetRoot().Get<T>();
     }
 }

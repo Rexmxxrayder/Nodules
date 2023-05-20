@@ -17,7 +17,6 @@ public class EntityRoot : EntityComponent {
     }
 
     public void GiveType(string typeGiven) { 
-        if(type != null) { return ; }
-        type = typeGiven;
+        type ??= typeGiven;
     }
 }

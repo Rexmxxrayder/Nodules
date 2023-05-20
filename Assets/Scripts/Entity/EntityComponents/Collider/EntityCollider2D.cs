@@ -5,18 +5,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class EntityCollider2D : EntityComponent {
-    protected bool _active = true;
-    public bool CanTakeDamage = true;
-    public bool Active { get => _active; set => _active = value; }
+public abstract class EntityCollider2D : EntityCollider {
+    protected override void AwakeSetup() {
+        if(Get<EntityMainCollider2D>() == null) { 
+            GetRoot().AddComponent<EntityMainCollider2D>();
+        }
+    }
 
     #region Events
-    [SerializeField] protected UnityEvent<Collision2D> _onCollisionEnter = new UnityEvent<Collision2D>();
-    [SerializeField] protected UnityEvent<Collision2D> _onCollisionExit = new UnityEvent<Collision2D>();
-    [SerializeField] protected UnityEvent<Collision2D> _onCollisionStay = new UnityEvent<Collision2D>();
-    [SerializeField] protected UnityEvent<Collider2D> _onTriggerEnter = new UnityEvent<Collider2D>();
-    [SerializeField] protected UnityEvent<Collider2D> _onTriggerExit = new UnityEvent<Collider2D>();
-    [SerializeField] protected UnityEvent<Collider2D> _onTriggerStay = new UnityEvent<Collider2D>();
+    protected UnityEvent<Collision2D> _onCollisionEnter = new UnityEvent<Collision2D>();
+    protected UnityEvent<Collision2D> _onCollisionExit = new UnityEvent<Collision2D>();
+    protected UnityEvent<Collision2D> _onCollisionStay = new UnityEvent<Collision2D>();
+    protected UnityEvent<Collider2D> _onTriggerEnter = new UnityEvent<Collider2D>();
+    protected UnityEvent<Collider2D> _onTriggerExit = new UnityEvent<Collider2D>();
+    protected UnityEvent<Collider2D> _onTriggerStay = new UnityEvent<Collider2D>();
 
     public event UnityAction<Collision2D> OnCollisionEnter { add => _onCollisionEnter.AddListener(value); remove => _onCollisionEnter.RemoveListener(value); }
     public event UnityAction<Collision2D> OnCollisionExit { add => _onCollisionExit.AddListener(value); remove => _onCollisionExit.RemoveListener(value); }
@@ -46,8 +48,6 @@ public abstract class EntityCollider2D : EntityComponent {
         OnCollisionExit += (x) => method(x);
         OnCollisionStay += (x) => method(x);
     }
-
-    public abstract void SetTrigger(bool newState);
 
     public void ResetListeners() {
         _onCollisionEnter.RemoveAllListeners();

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 555929681069582893}
   - component: {fileID: 7232925557432646984}
+  - component: {fileID: 8965813370489591950}
   m_Layer: 0
   m_Name: DamageCircle
   m_TagString: Untagged
@@ -28,8 +29,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5353996098387388878}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45,68 +45,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6d29766d943aa4d8f47d68ecbf1051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onCollisionEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  _onCollisionExit:
+    m_PersistentCalls:
+      m_Calls: []
+  _onCollisionStay:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTriggerStay:
+    m_PersistentCalls:
+      m_Calls: []
   damage: 0
   Damaged: []
-  destroyOnHit: 0
---- !u!1001 &3509880282232967902
-PrefabInstance:
+--- !u!58 &8965813370489591950
+CircleCollider2D:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 555929681069582893}
-    m_Modifications:
-    - target: {fileID: 56182489725149681, guid: f4a10e4e1e1b550409d4ee0ef672445c, type: 3}
-      propertyPath: m_Name
-      value: CircleCollider
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861024204503513872, guid: f4a10e4e1e1b550409d4ee0ef672445c, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861024204503513872, guid: f4a10e4e1e1b550409d4ee0ef672445c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861024204503513872, guid: f4a10e4e1e1b550409d4ee0ef672445c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861024204503513872, guid: f4a10e4e1e1b550409d4ee0ef672445c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861024204503513872, guid: f4a10e4e1e1b550409d4ee0ef672445c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861024204503513872, guid: f4a10e4e1e1b550409d4ee0ef672445c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861024204503513872, guid: f4a10e4e1e1b550409d4ee0ef672445c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861024204503513872, guid: f4a10e4e1e1b550409d4ee0ef672445c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861024204503513872, guid: f4a10e4e1e1b550409d4ee0ef672445c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861024204503513872, guid: f4a10e4e1e1b550409d4ee0ef672445c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861024204503513872, guid: f4a10e4e1e1b550409d4ee0ef672445c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f4a10e4e1e1b550409d4ee0ef672445c, type: 3}
---- !u!4 &5353996098387388878 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8861024204503513872, guid: f4a10e4e1e1b550409d4ee0ef672445c, type: 3}
-  m_PrefabInstance: {fileID: 3509880282232967902}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3328968963127487162}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
