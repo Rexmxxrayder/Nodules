@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityDamageCollider2D : EntityColliderDelegate2D, IReset {
+public class EntityDamageCollider2D : EntityColliderDelegate2D {
     public int damage;
-    public List<string> Damaged = new List<string>();
+    public List<string> Damaged = new();
     [SerializeField] bool destroyOnCollide;
     [SerializeField] bool destroyOnTrigger;
 
@@ -46,12 +46,7 @@ public class EntityDamageCollider2D : EntityColliderDelegate2D, IReset {
         OnTriggerStay += DoDamageCollider;
     }
 
-    public override void InstanceReset() {
-        ResetListeners();
-    }
-
-
-    public override void InstanceResetSetup() {
+    protected override void StartSetup() {
         ResetSetup();
     }
 }

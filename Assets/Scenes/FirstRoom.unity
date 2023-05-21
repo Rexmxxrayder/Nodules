@@ -135,8 +135,16 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 226906521127371257, guid: 33cb13daf07f2664c8c3bad0aba969e0, type: 3}
+      propertyPath: _maxValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 226906521127371257, guid: 33cb13daf07f2664c8c3bad0aba969e0, type: 3}
       propertyPath: _maxHealth
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 226906521127371257, guid: 33cb13daf07f2664c8c3bad0aba969e0, type: 3}
+      propertyPath: _currentValue
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 586689668137883826, guid: 33cb13daf07f2664c8c3bad0aba969e0, type: 3}
       propertyPath: bodyparts.Array.size
@@ -245,7 +253,7 @@ PrefabInstance:
     - target: {fileID: 4566812030027829085, guid: 33cb13daf07f2664c8c3bad0aba969e0, type: 3}
       propertyPath: currentNodule
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -574009526323046643, guid: 95bbafc0fe481fa4c91100d486a00e63, type: 3}
     - target: {fileID: 7157508352215333825, guid: 33cb13daf07f2664c8c3bad0aba969e0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1656,12 +1664,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3722746134136191574, guid: 64a896225c6ad4e4e82a01f2b60e0c93, type: 3}
       propertyPath: prefabs.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3722746134136191574, guid: 64a896225c6ad4e4e82a01f2b60e0c93, type: 3}
-      propertyPath: prefabs.Array.data[7]
+      propertyPath: prefabs.Array.data[8]
       value: 
-      objectReference: {fileID: 1938883627651126750, guid: 1acad13cf7c245547a7ccf5068310fa3, type: 3}
+      objectReference: {fileID: 6826006571255521432, guid: 3976dbfb1f0fedf4aafa49acad904e3b, type: 3}
     - target: {fileID: 4394670192201552089, guid: 64a896225c6ad4e4e82a01f2b60e0c93, type: 3}
       propertyPath: m_Name
       value: BasicPools
@@ -1843,7 +1851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ennemiToSpawn:
-  - Bomber
+  - Gunner
   numberToSpawn: 01000000
   SpawnPoint:
   - {fileID: 1427821562}
@@ -7298,7 +7306,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 200795257508570664, guid: 0202c12f1c3c1bb429291311f0f95391, type: 3}
       propertyPath: m_Name
-      value: AShield
+      value: AWindShield
       objectReference: {fileID: 0}
     - target: {fileID: 7282434551034618195, guid: 0202c12f1c3c1bb429291311f0f95391, type: 3}
       propertyPath: m_RootOrder
@@ -7397,42 +7405,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7425981532779631892, guid: e798afc3211ae0949bad197079c3cb34, type: 3}
-      propertyPath: prefabs.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7425981532779631892, guid: e798afc3211ae0949bad197079c3cb34, type: 3}
-      propertyPath: prefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 1163794730351377737, guid: cc05f94b645697144a3148ae30c05eef, type: 3}
-    - target: {fileID: 7425981532779631892, guid: e798afc3211ae0949bad197079c3cb34, type: 3}
-      propertyPath: prefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 2392709674048779496, guid: c9f68ca608db621448e736f9f812ca8c, type: 3}
-    - target: {fileID: 7425981532779631892, guid: e798afc3211ae0949bad197079c3cb34, type: 3}
-      propertyPath: prefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 9119961898807227378, guid: e6a7c433b5620414e823004d984a84f0, type: 3}
-    - target: {fileID: 7425981532779631892, guid: e798afc3211ae0949bad197079c3cb34, type: 3}
-      propertyPath: prefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 4384184480739560155, guid: 1f975d259694edb4a95462620a9571f6, type: 3}
-    - target: {fileID: 7425981532779631892, guid: e798afc3211ae0949bad197079c3cb34, type: 3}
-      propertyPath: prefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 3987794130472022632, guid: 7e80c817c0f85ce419372985c4c0e3f9, type: 3}
-    - target: {fileID: 7425981532779631892, guid: e798afc3211ae0949bad197079c3cb34, type: 3}
-      propertyPath: prefabs.Array.data[5]
-      value: 
-      objectReference: {fileID: 830897611207545523, guid: c49b8793b11637f46a2ef83b75d813f2, type: 3}
-    - target: {fileID: 7425981532779631892, guid: e798afc3211ae0949bad197079c3cb34, type: 3}
-      propertyPath: prefabs.Array.data[6]
-      value: 
-      objectReference: {fileID: 6847753247797916961, guid: 9f65f29459d3c2d46b8f92531f3a0c32, type: 3}
-    - target: {fileID: 7425981532779631892, guid: e798afc3211ae0949bad197079c3cb34, type: 3}
-      propertyPath: prefabs.Array.data[7]
-      value: 
-      objectReference: {fileID: 7758075438991334835, guid: a992dc44a25bf49449b139478714d89e, type: 3}
     - target: {fileID: 7425981532779631893, guid: e798afc3211ae0949bad197079c3cb34, type: 3}
       propertyPath: m_Name
       value: EntityPools

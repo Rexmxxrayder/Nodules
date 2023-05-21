@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &200795257508570664
+--- !u!1 &404185454712138380
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7282434551034618195}
-  - component: {fileID: 3063454564990722092}
-  m_Layer: 8
-  m_Name: AShield
+  - component: {fileID: 9197691544143196269}
+  - component: {fileID: 9297944555579820}
+  - component: {fileID: 7001364594360134025}
+  m_Layer: 0
+  m_Name: CircleCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7282434551034618195
+--- !u!4 &9197691544143196269
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 200795257508570664}
+  m_GameObject: {fileID: 404185454712138380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,19 +33,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3063454564990722092
+--- !u!114 &9297944555579820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 200795257508570664}
+  m_GameObject: {fileID: 404185454712138380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d32f94510a4c4d4eba2595a43f40355, type: 3}
+  m_Script: {fileID: 11500000, guid: 5dda694698ce8dc428fc26180e249dcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 1
-  TimeRemainingCooldown: 0
-  shield: {fileID: 1032843754951504039, guid: 566b8200e7b642e48bcc3319c87aab58, type: 3}
-  shieldDuration: 1
+--- !u!58 &7001364594360134025
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404185454712138380}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

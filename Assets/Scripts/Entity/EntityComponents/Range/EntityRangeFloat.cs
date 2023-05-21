@@ -2,7 +2,7 @@ using Sloot;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EntityRangeFloat : EntityComponent, IReset {
+public class EntityRangeFloat : EntityComponent {
     [SerializeField] protected float _currentValue;
     [SerializeField] protected float _maxValue;
     [SerializeField] protected float _minValue;
@@ -78,7 +78,7 @@ public class EntityRangeFloat : EntityComponent, IReset {
         return (_maxValue - _minValue) * percent / 100;
     }
 
-    public override void InstanceReset() {
+    protected override void AwakeSetup() {
         NewMaxValue(_maxValue);
         _currentValue = _minValue;
         RemoveAllListeners();

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sloot;
 
-public class SlasherBrain : EntityBrain, IReset {
+public class SlasherBrain : EntityBrain {
     public Transform target;
 
-    public override void InstanceResetSetup() {
+    protected override void StartSetup() {
         if (target == null) {
             target = FindObjectOfType<PlayerBrain>().transform;
         }

@@ -13,6 +13,5 @@ public class AShootBullet : Ability {
         Bullet newBullet = (Bullet)BasicPools.Gino.GetInstance(typeBullet);
         newBullet.transform.position = transform.position;
         newBullet.StartDirection = direction;
-        newBullet.Activate();
     }
 }

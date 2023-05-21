@@ -10,6 +10,7 @@ public abstract class EntityCollider2D : EntityCollider {
         if(Get<EntityMainCollider2D>() == null) { 
             GetRoot().AddComponent<EntityMainCollider2D>();
         }
+        ResetListeners();
     }
 
     #region Events

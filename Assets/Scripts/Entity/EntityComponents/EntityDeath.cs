@@ -4,17 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EntityDeath : EntityComponent, IReset
+public class EntityDeath : EntityComponent
 {
     bool died;
-    UnityEvent _onDeath = new();
+    readonly UnityEvent _onDeath = new();
     public event UnityAction OnDeath { add => _onDeath.AddListener(value); remove => _onDeath.RemoveListener(value); }
 
     delegate void DeathWay();
     DeathWay newDeathWay;
     public event UnityAction NewDeathWay { add => newDeathWay = new(value); remove => newDeathWay = null; }
 
+    protected override void AwakeSetup() {
+        died = false;
+        newDeathWay = null;
+        _onDeath.RemoveAllListeners();
+    }
+
     protected override void StartSetup() {
+        if(Get<EntityHealth>() != null)
         Get<EntityHealth>().OnZeroHealth += Die;
     }
 
@@ -34,9 +41,4 @@ public class EntityDeath : EntityComponent, IReset
         }
     }
 
-    public override void InstanceReset() {
-        died = false;
-        newDeathWay = null;
-        _onDeath.RemoveAllListeners();
-    }
 }

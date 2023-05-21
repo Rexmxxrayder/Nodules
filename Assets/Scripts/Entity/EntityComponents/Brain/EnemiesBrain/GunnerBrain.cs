@@ -2,10 +2,10 @@ using System.Collections;
 using UnityEngine;
 using Sloot;
 
-public class GunnerBrain : EntityBrain, IReset {
+public class GunnerBrain : EntityBrain {
     public Transform target;
 
-    public override void InstanceResetSetup() {
+    protected override void StartSetup() {
         if (target == null) {
             target = FindObjectOfType<PlayerBrain>().transform;
         }

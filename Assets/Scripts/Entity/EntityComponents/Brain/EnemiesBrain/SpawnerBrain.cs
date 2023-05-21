@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sloot;
 
-public class SpawnerBrain : EntityBrain, IReset {
+public class SpawnerBrain : EntityBrain {
 
     private void Update() {
         if (Get<EntityBodyParts>().Bodyparts[0].Available) {

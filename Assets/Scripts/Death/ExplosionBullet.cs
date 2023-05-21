@@ -5,14 +5,13 @@ using Sloot;
 
 public class ExplosionBullet : Bullet {
     [SerializeField] string explosionType;
-    public override void Activate() {
-        base.Activate();
+    protected override void StartSetup() {
+        base.StartSetup();
         gameObject.Get<EntityDeath>().OnDeath += YellowBoom;
     }
 
     void YellowBoom() {
         AreaDamage ad = (AreaDamage)BasicPools.Gino.GetInstance(explosionType);
         ad.transform.position = transform.position;
-        ad.Activate();
     }    
 }

@@ -16,6 +16,5 @@ public class ASpawnEntity : Ability {
     void SpawnEntity(Vector3 SpawnPosition) {
         EntityBasic er = BasicPools.Gino.GetInstance(toSpawn);
         er.transform.position = SpawnPosition;
-        er.Activate();
     }
 }

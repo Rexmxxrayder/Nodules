@@ -16,6 +16,7 @@ public class EntityColliderDelegate2D : EntityCollider2D {
     public Collider2D Collider => collider2d;
 
     protected override void AwakeSetup() {
+        base.AwakeSetup();
         collider2d = GetComponent<Collider2D>();
     }
 

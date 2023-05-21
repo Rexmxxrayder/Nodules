@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sloot;
 
-public class MinionBrain : EntityBrain, IReset {
+public class MinionBrain : EntityBrain{
     public Transform target;
     public float projectionStrenght, projectionDist;
 
-    public override void InstanceResetSetup() {
+    protected override void StartSetup() {
         if (target == null) {
             target = FindObjectOfType<PlayerBrain>().transform;
         }

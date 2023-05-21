@@ -25,6 +25,5 @@ public class AExplosiveJump : Ability {
     void ImpactDamage() {
         AreaDamage ad = (AreaDamage)BasicPools.Gino.GetInstance(areaDamage);
         ad.transform.position = transform.position;
-        ad.Activate();
     }
 }

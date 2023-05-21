@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Mia : EntityBasic {
-    public override void Activate() {
-
-    }
-
     void Boing(Collision c) {
         if (!c.gameObject.CompareTag("Wall")) {
             return;

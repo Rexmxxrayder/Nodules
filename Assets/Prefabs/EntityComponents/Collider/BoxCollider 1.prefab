@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9297944555579820}
   - component: {fileID: 3675164112330590172}
   m_Layer: 0
-  m_Name: BoxCollider
+  m_Name: BoxCollider 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

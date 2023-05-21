@@ -25,20 +25,15 @@ public class BomberBrain : EntityBrain {
     void Explode() {
         AreaDamage ad = (AreaDamage)BasicPools.Gino.GetInstance(areaDamage);
         ad.transform.position = transform.position;
-        ad.Activate();
     }
 
     protected override void AwakeSetup() {
         base.AwakeSetup();
         ec = gameObject.Get<EntityCollider2D>();
-    }
-
-
-    public override void InstanceReset() {
         timerBeforeExplode = 0;
     }
 
-    public override void InstanceResetSetup() {
+    protected override void StartSetup() {
         gameObject.Get<EntityDeath>().OnDeath += Explode;
         ec.OnCollisionEnter += MustExplode;
         if (target == null) {

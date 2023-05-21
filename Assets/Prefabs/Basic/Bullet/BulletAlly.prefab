@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5266195227083997743}
   - component: {fileID: 6826006571255521432}
   m_Layer: 6
-  m_Name: AllyBullet
+  m_Name: BulletAlly
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,10 +70,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f9e7245cd55454baf51375007cece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: AllyBullet
+  _duration: 10
   StartDirection: {x: 0, y: 0, z: 0}
   BulletSpeed: 2
-  lifeTime: 10
 --- !u!1001 &1200627921878383042
 PrefabInstance:
   m_ObjectHideFlags: 0

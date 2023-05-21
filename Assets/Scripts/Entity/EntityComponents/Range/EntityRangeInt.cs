@@ -2,7 +2,7 @@ using Sloot;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EntityRangeInt : EntityComponent, IReset {
+public abstract class EntityRangeInt : EntityComponent {
     [SerializeField] protected int _currentValue;
     [SerializeField] protected int _maxValue;
     [SerializeField] protected int _minValue;
@@ -16,7 +16,7 @@ public class EntityRangeInt : EntityComponent, IReset {
     protected readonly UnityEvent<int> _onOverIncreased = new();
     protected readonly UnityEvent<int> _onOverDecreased = new();
 
-    public int IncreaseOf(int value) {
+    protected int IncreaseOf(int value) {
         value = Mathf.Max(0, value);
         if (value == 0) { return _currentValue; }
 
@@ -31,7 +31,7 @@ public class EntityRangeInt : EntityComponent, IReset {
         return _currentValue;
     }
 
-    public int DecreaseOf(int value) {
+    protected int DecreaseOf(int value) {
         value = Mathf.Max(0, value);
         if (value == 0) { return _currentValue; }
 
@@ -45,7 +45,7 @@ public class EntityRangeInt : EntityComponent, IReset {
         return _currentValue;
     }
 
-    public void EqualTo(int value) {
+    protected void EqualTo(int value) {
         if (_currentValue == value) { return; }
         if (_currentValue < value) {
             IncreaseOf(Mathf.Abs(value - _currentValue));
@@ -54,7 +54,7 @@ public class EntityRangeInt : EntityComponent, IReset {
         }
     }
 
-    public void NewMaxValue(int newMaxValue) {
+    protected void NewMaxValue(int newMaxValue) {
         _maxValue = newMaxValue;
         if (_currentValue > _maxValue) {
             _currentValue = _maxValue;
@@ -64,7 +64,7 @@ public class EntityRangeInt : EntityComponent, IReset {
         }
     }
 
-    public void NewMinValue(int newMinValue) {
+    protected void NewMinValue(int newMinValue) {
         _minValue = newMinValue;
         if (_currentValue < _minValue) {
             _currentValue = _minValue;
@@ -74,20 +74,20 @@ public class EntityRangeInt : EntityComponent, IReset {
         }
     }
 
-    public int GetPercentRange(int percent) {
+    protected int GetPercentRange(int percent) {
         return (_maxValue - _minValue) * percent / 100;
     }
-
-    public override void InstanceReset() {
-        NewMaxValue(_maxValue);
-        _currentValue = _minValue;
-        RemoveAllListeners();
-    }
-
     protected virtual void RemoveAllListeners() {
         _onIncreasing.RemoveAllListeners();
         _onDecreasing.RemoveAllListeners();
         _onOverIncreased.RemoveAllListeners();
         _onOverDecreased.RemoveAllListeners();
     }
+
+    protected override void AwakeSetup() {
+        NewMaxValue(_maxValue);
+        _currentValue = _minValue;
+        RemoveAllListeners();
+    }
+
 }

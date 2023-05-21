@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class EntityHealth : EntityRangeInt {
+
     public int Health => _currentValue;
     public int MaxHealth => _maxValue;
 
@@ -20,9 +21,10 @@ public class EntityHealth : EntityRangeInt {
         if(Get<EntityDeath>() == null) {
             gameObject.AddComponent<EntityDeath>();
         }
-        if(_maxValue == 0) {
-            _maxValue = 10;
-        }
+        NewMinValue(_maxValue);
+        NewMinValue(0);
+        _currentValue = _maxValue;
+        RemoveAllListeners();
     }
 
     public int AddHealth(int add) {
@@ -46,13 +48,6 @@ public class EntityHealth : EntityRangeInt {
 
     public int GetPercentHealth(int percent) {
         return GetPercentRange(percent);
-    }
-
-    public override void InstanceReset() {
-        NewMinValue(_maxValue);
-        NewMinValue(0);
-        _currentValue = _maxValue;
-        RemoveAllListeners();
     }
 
     protected override void RemoveAllListeners() {

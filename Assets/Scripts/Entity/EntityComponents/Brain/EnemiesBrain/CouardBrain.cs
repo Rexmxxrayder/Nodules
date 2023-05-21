@@ -1,14 +1,14 @@
 using UnityEngine;
 using Sloot;
 
-public class CouardBrain : EntityBrain, IReset {
+public class CouardBrain : EntityBrain {
     public Transform target;
     [SerializeField] float distDetect;
     [SerializeField] float timeNewDirection;
     bool awake = false;
     Timer newDirection;
 
-    public override void InstanceResetSetup() {
+    protected override void StartSetup() {
         if (target == null) {
             target = FindObjectOfType<PlayerBrain>().transform;
         }

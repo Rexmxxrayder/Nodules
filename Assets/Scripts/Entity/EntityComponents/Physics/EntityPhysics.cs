@@ -7,22 +7,24 @@ using Sloot;
 using System.Reflection;
 using System.Net.Mail;
 
-public class EntityPhysics : EntityComponent, IReset {
+public class EntityPhysics : EntityComponent {
     public enum PhysicPriority {
         INPUT = 1, DASH = 2, PROJECTION = 3, BLOCK = 4, ENVIRONNEMENT = 5, SYSTEM = 6
     }
 
     [SerializeField] Rigidbody2D _rb;
-    [SerializeField] List<Force> _forcesDisplay = new List<Force>();
+    [SerializeField] Vector2 _velocity;
+    [SerializeField] List<Force> _forcesDisplay = new ();
     [SerializeField] bool _debug = false;
 
-    SortedDictionary<int, List<Force>> _forces = new SortedDictionary<int, List<Force>>();
+    SortedDictionary<int, List<Force>> _forces = new ();
 
-    public Vector2 Velocity => _rb.velocity;
+    public Vector2 Velocity => _velocity;
 
 
     private void FixedUpdate() {
-        _rb.velocity = ComputeForces();
+        _velocity = ComputeForces();
+        _rb.velocity = _velocity;
     }
 
     #region EntityComponentFunctions
@@ -36,9 +38,6 @@ public class EntityPhysics : EntityComponent, IReset {
         }
         _rb.gravityScale = 0;
         _rb.freezeRotation = true;
-    }
-
-    public override void InstanceReset() {
         Purge();
     }
 
