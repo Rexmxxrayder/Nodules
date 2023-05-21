@@ -7308,6 +7308,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: AWindShield
       objectReference: {fileID: 0}
+    - target: {fileID: 3063454564990722092, guid: 0202c12f1c3c1bb429291311f0f95391, type: 3}
+      propertyPath: _shield
+      value: 
+      objectReference: {fileID: 1587177492169189223, guid: 566b8200e7b642e48bcc3319c87aab58, type: 3}
+    - target: {fileID: 3063454564990722092, guid: 0202c12f1c3c1bb429291311f0f95391, type: 3}
+      propertyPath: Cooldown
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3063454564990722092, guid: 0202c12f1c3c1bb429291311f0f95391, type: 3}
+      propertyPath: _shieldDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7282434551034618195, guid: 0202c12f1c3c1bb429291311f0f95391, type: 3}
       propertyPath: m_RootOrder
       value: 0
