@@ -7,8 +7,8 @@ public class SpikyWall : EntityBasic {
     public int SpikeNumber;
     public float SpikeDistSpawn;
 
-    protected override void StartSetup() {
-        gameObject.Get<EntityDeath>().OnDeath += Died;
+    protected override void ResetSetup() {
+        gameObject.GetRoot().OnDeath += Died;
     }
 
     void Died() {
@@ -24,7 +24,7 @@ public class SpikyWall : EntityBasic {
         newSpike.transform.position = position;
         newSpike.transform.rotation = rotation;
         Force force = Force.Const(direction.normalized, 10, 2);
-        newSpike.gameObject.Get<EntityPhysics>().Add(force, EntityPhysics.PhysicPriority.PROJECTION);
+        newSpike.gameObject.RootGet<EntityPhysics>().Add(force, EntityPhysics.PhysicPriority.PROJECTION);
     }
 
 }

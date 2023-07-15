@@ -2,7 +2,7 @@ using Sloot;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class EntityRangeInt : EntityComponent {
+public class RangeInt {
     [SerializeField] protected int _currentValue;
     [SerializeField] protected int _maxValue;
     [SerializeField] protected int _minValue;
@@ -11,12 +11,18 @@ public abstract class EntityRangeInt : EntityComponent {
     public int MaxValue => _maxValue;
     public int MinValue => _minValue;
 
-    protected readonly UnityEvent<int> _onIncreasing = new();
-    protected readonly UnityEvent<int> _onDecreasing = new();
-    protected readonly UnityEvent<int> _onOverIncreased = new();
-    protected readonly UnityEvent<int> _onOverDecreased = new();
+    UnityEvent<int> _onIncreasing = new();
+    UnityEvent<int> _onDecreasing = new();
+    UnityEvent<int> _onOverIncreased = new();
+    UnityEvent<int> _onOverDecreased = new();
 
-    protected int IncreaseOf(int value) {
+    public event UnityAction<int> OnIncreasing  { add =>  _onIncreasing.AddListener(value);  remove => _onIncreasing.RemoveListener(value); }
+    public event UnityAction<int> OnDecreasing { add => _onDecreasing.AddListener(value); remove => _onDecreasing.RemoveListener(value); }
+    public event UnityAction<int> OnOverIncreased { add => _onOverIncreased.AddListener(value); remove => _onOverIncreased.RemoveListener(value); }
+    public event UnityAction<int> OnOverDecreased { add => _onOverDecreased.AddListener(value); remove => _onOverDecreased.RemoveListener(value); }
+
+
+    public int IncreaseOf(int value) {
         value = Mathf.Max(0, value);
         if (value == 0) { return _currentValue; }
 
@@ -31,7 +37,7 @@ public abstract class EntityRangeInt : EntityComponent {
         return _currentValue;
     }
 
-    protected int DecreaseOf(int value) {
+    public int DecreaseOf(int value) {
         value = Mathf.Max(0, value);
         if (value == 0) { return _currentValue; }
 
@@ -45,7 +51,7 @@ public abstract class EntityRangeInt : EntityComponent {
         return _currentValue;
     }
 
-    protected void EqualTo(int value) {
+    public void EqualTo(int value) {
         if (_currentValue == value) { return; }
         if (_currentValue < value) {
             IncreaseOf(Mathf.Abs(value - _currentValue));
@@ -54,7 +60,7 @@ public abstract class EntityRangeInt : EntityComponent {
         }
     }
 
-    protected void NewMaxValue(int newMaxValue) {
+    public void NewMaxValue(int newMaxValue) {
         _maxValue = newMaxValue;
         if (_currentValue > _maxValue) {
             _currentValue = _maxValue;
@@ -64,7 +70,7 @@ public abstract class EntityRangeInt : EntityComponent {
         }
     }
 
-    protected void NewMinValue(int newMinValue) {
+    public void NewMinValue(int newMinValue) {
         _minValue = newMinValue;
         if (_currentValue < _minValue) {
             _currentValue = _minValue;
@@ -74,20 +80,13 @@ public abstract class EntityRangeInt : EntityComponent {
         }
     }
 
-    protected int GetPercentRange(int percent) {
+    public int GetPercentRange(int percent) {
         return (_maxValue - _minValue) * percent / 100;
     }
-    protected virtual void RemoveAllListeners() {
+    public void RemoveAllListeners() {
         _onIncreasing.RemoveAllListeners();
         _onDecreasing.RemoveAllListeners();
         _onOverIncreased.RemoveAllListeners();
         _onOverDecreased.RemoveAllListeners();
     }
-
-    protected override void AwakeSetup() {
-        NewMaxValue(_maxValue);
-        _currentValue = _minValue;
-        RemoveAllListeners();
-    }
-
 }

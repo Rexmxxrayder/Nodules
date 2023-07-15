@@ -14,10 +14,10 @@ public class MouseUI : ItemUI {
         rectTransform.position = Input.mousePosition;
         if (Input.GetMouseButtonUp(0)) {
             if (HoverItemSelected != LastItemSelected) {
-                if (HoverItemSelected is BodyPartUI isBodyPart && LastItemSelected.GetNodule() != null) {
-                    isBodyPart.BodyPart.AddNodules(LastItemSelected.GetNodule());
-                    if (LastItemSelected is BodyPartUI isBodyPartTwo)
-                        isBodyPartTwo.BodyPart.RemoveNodules();
+                if (HoverItemSelected is EntityBodyPartUI isBodyPart && LastItemSelected.GetNodule() != null) {
+                    isBodyPart.EntityBodyPart.AddNodules(LastItemSelected.GetNodule());
+                    if (LastItemSelected is EntityBodyPartUI isBodyPartTwo)
+                        isBodyPartTwo.EntityBodyPart.RemoveNodules();
                 }
             }
             LastItemSelected = null;

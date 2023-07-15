@@ -7,15 +7,17 @@ public class EntityLifeBar : EntityComponent {
     EntityHealth eh;
     [SerializeField]
     Slider slider;
-    protected override void AwakeSetup() {
-        eh = _root.Get<EntityHealth>();
+    protected override void DefinitveSetup() {
+        eh = _root.RootGet<EntityHealth>();
         if (eh == null) {
             Destroy(gameObject);
-        } else {
-            slider.minValue = 0;
-            slider.maxValue = eh.MaxHealth;
-            slider.value = eh.Health;
         }
+    }
+
+    protected override void LoadSetup() {
+        slider.minValue = 0;
+        slider.maxValue = eh.MaxHealth;
+        slider.value = eh.Health;
     }
 
     private void Update() {

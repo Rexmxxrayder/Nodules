@@ -5,6 +5,6 @@ using UnityEngine;
 namespace Sloot {
     public interface IReset {
         public void InstanceReset();
-        public void InstanceResetSetup();
+        public void InstanceLoad();
     }
 }

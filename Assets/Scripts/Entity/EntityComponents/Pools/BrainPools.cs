@@ -25,7 +25,7 @@ public class BrainPools : MonoBehaviour {
     public EntityBrain GetInstance(string instanceName) {
         EntityBrain instance = pools[instanceName].GetInstance();
         instance.GiveType(pools[instanceName].Original.Type);
-        instance.gameObject.Get<EntityDeath>().NewDeathWay += () => LetInstance(instance);
+        instance.gameObject.GetRoot().NewDeathWay += () => LetInstance(instance);
         return instance;
     }
 

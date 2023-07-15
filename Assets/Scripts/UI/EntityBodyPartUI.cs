@@ -5,10 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 
-public class BodyPartUI : ItemUI {
+public class EntityBodyPartUI : ItemUI {
     [SerializeField] Image nodulePartImage;
-    [SerializeField] BodyPart bodyPart;
-    public BodyPart BodyPart { get { return bodyPart; } }
+    [SerializeField] EntityBodyPart bodyPart;
+    public EntityBodyPart EntityBodyPart { get { return bodyPart; } }
 
     protected override void ItemUpdate() {
         if (Input.GetMouseButtonDown(0) && mouseOver) {
@@ -33,7 +33,7 @@ public class BodyPartUI : ItemUI {
         }
     }
 
-    public void AssignBodyPart(BodyPart newBodyPart) {
+    public void AssignBodyPart(EntityBodyPart newBodyPart) {
         bodyPart = newBodyPart;
         VisualUpdate();
     }

@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class SauteurBrain : EntityBrain {
     public Transform target;
+    [SerializeField] EntityBodyPart jump;
 
-    protected override void StartSetup() {
+    protected override void ResetSetup() {
         if (target == null) {
             target = FindObjectOfType<PlayerBrain>().transform;
         }
@@ -15,8 +16,8 @@ public class SauteurBrain : EntityBrain {
 
     private void Update() {
         visor = target.transform.position;
-        if (Get<EntityBodyParts>().Bodyparts[0].Available) {
-            Get<EntityBodyParts>().Bodyparts[0].OnButtonUp(this);
+        if (jump.Available) {
+            jump.Activate(true);
         }
     }
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1032843754951504033}
   - component: {fileID: 1587177492169189223}
+  - component: {fileID: 1029645130441655384}
   m_Layer: 10
   m_Name: WindShield
   m_TagString: Untagged
@@ -46,6 +47,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b50514530df5548ba82a7cea4cb5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _duration: 1
+--- !u!50 &1029645130441655384
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032843754951504039}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1001 &2075375576057248925
 PrefabInstance:
   m_ObjectHideFlags: 0

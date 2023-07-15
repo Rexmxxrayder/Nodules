@@ -14,39 +14,32 @@ public class EntityDamageCollider2D : EntityColliderDelegate2D {
     }
 
     void DoDamageCollider(Collider2D game) {
-        EntityHealth health = game.gameObject.Get<EntityHealth>();
-        if (health != null) {
-            if (Damaged.Contains(health.GetRoot().tag)) {
+        EntityHealth health = game.gameObject.RootGet<EntityHealth>();
+        if (health != null && Damaged.Contains(health.GetRoot().tag)) {
                 health.RemoveHealth(damage);
-            }
         }
 
         if (destroyOnTrigger) {
-            Get<EntityDeath>().Die();
+            Die();
         }
     }
 
 
     void DoDamageCollision(Collision2D game) {
-        EntityHealth health = game.gameObject.Get<EntityHealth>();
-        if (health != null) {
-            if (Damaged.Contains(health.GetRoot().tag)) {
-                health.RemoveHealth(damage);
-            }
+        EntityHealth health = game.gameObject.RootGet<EntityHealth>();
+        if (health != null && Damaged.Contains(health.GetRoot().tag)) {
+            health.RemoveHealth(damage);
         }
 
         if (destroyOnCollide) {
-            Get<EntityDeath>().Die();
+            Die();
         }
     }
-    void ResetSetup() {
+
+    protected override void ResetSetup() {
         OnCollisionEnter += DoDamageCollision;
         OnCollisionStay += DoDamageCollision;
         OnTriggerEnter += DoDamageCollider;
         OnTriggerStay += DoDamageCollider;
-    }
-
-    protected override void StartSetup() {
-        ResetSetup();
     }
 }

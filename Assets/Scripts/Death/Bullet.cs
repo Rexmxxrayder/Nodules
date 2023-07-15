@@ -4,12 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : EntityBasic {
-    public Vector3 StartDirection;
-    public float BulletSpeed;
+    public float Speed;
+    private bool shoot;
 
+    protected override void ResetSetup() {
+        base.ResetSetup();
+        shoot = false;
+    }
 
-    protected override void StartSetup() {
-        base.StartSetup();
-        Get<EntityPhysics>().Add(Force.Const(StartDirection.normalized, BulletSpeed, 100), EntityPhysics.PhysicPriority.PROJECTION);
+    public void Fire(Vector2 direction) {
+        if (shoot) {
+            return;
+        }
+        shoot = true;
+        RootGet<EntityPhysics>().Add(Force.Const(direction.normalized, Speed, 100), EntityPhysics.PhysicPriority.PROJECTION);
+    }
+
+    public void Fire(Vector2 direction, float speed) {
+        Speed = speed;
+        Fire(direction);
     }
 }

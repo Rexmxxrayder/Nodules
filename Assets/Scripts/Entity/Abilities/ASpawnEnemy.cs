@@ -6,8 +6,7 @@ public class ASpawnEnemy : Ability {
     public float distSpawn;
     public int NumberSpawn;
 
-    protected override void LaunchAbility(EntityBrain brain) {
-        GetComponentInParent<EntityBodyParts>().onMovement?.Invoke();
+    protected override void LaunchAbilityUp(EntityBrain brain) {
         Vector3 BodyPosition = gameObject.GetRootPosition();
         for (int i = 0; i < NumberSpawn; i++) {
             Vector3 direction = RotationSloot.GetDirectionOnAxis(360 / NumberSpawn * i, Vector3.up);

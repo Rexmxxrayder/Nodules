@@ -6,26 +6,26 @@ using Sloot;
 public class MinionBrain : EntityBrain{
     public Transform target;
     public float projectionStrenght, projectionDist;
+    [SerializeField] private EntityBodyPart follow;
 
-    protected override void StartSetup() {
+    protected override void ResetSetup() {
         if (target == null) {
             target = FindObjectOfType<PlayerBrain>().transform;
         }
-        Get<EntityCollider2D>().OnCollisionEnter += Hit;
+        RootGet<EntityCollider2D>().OnCollisionEnter += Hit;
     }
 
     private void Update() {
         visor = target.transform.position;
-        if (Get<EntityBodyParts>().Bodyparts[0].Available) {
-            Get<EntityBodyParts>().Bodyparts[0].OnButtonUp(this);
+        if (follow.Available) {
+            follow.Activate(true);
         }
     }
 
     void Hit(Collision2D c) { 
-        EntityPhysics ep = c.gameObject.Get<EntityPhysics>();
+        EntityPhysics ep = c.gameObject.RootGet<EntityPhysics>();
         if (ep != null) {
             ep.Add(Force.Const(c.transform.position - transform.position, projectionStrenght, projectionDist / projectionStrenght), EntityPhysics.PhysicPriority.PROJECTION);
-            c.gameObject.Get<EntityBodyParts>().onMovement?.Invoke();
         }
     }
 }

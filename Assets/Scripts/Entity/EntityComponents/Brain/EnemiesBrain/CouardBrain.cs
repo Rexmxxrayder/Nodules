@@ -5,15 +5,17 @@ public class CouardBrain : EntityBrain {
     public Transform target;
     [SerializeField] float distDetect;
     [SerializeField] float timeNewDirection;
+    [SerializeField] EntityBodyPart shoot;
+    [SerializeField] EntityBodyPart move;
     bool awake = false;
     Timer newDirection;
 
-    protected override void StartSetup() {
+    protected override void ResetSetup() {
         if (target == null) {
             target = FindObjectOfType<PlayerBrain>().transform;
         }
         newDirection = new Timer(this, timeNewDirection, NewDirection);
-        Get<EntityHealth>().OnDamaged += (x) => AwakeCouard();
+        RootGet<EntityHealth>().OnDamaged += (x) => AwakeCouard();
     }
 
 
@@ -28,15 +30,15 @@ public class CouardBrain : EntityBrain {
 
     public void ShootOnEnemy() {
         visor = target.transform.position;
-        if (Get<EntityBodyParts>().Bodyparts[0].Available) {
-            Get<EntityBodyParts>().Bodyparts[0].OnButtonUp(this);
+        if (RootGet<EntityBodyPart>().Available) {
+            shoot.Activate(true);
         }
     }
 
     public void NewDirection() {
         Vector3 direction = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
         visor = direction.normalized * 100 + gameObject.GetRootPosition();
-        Get<EntityBodyParts>().Bodyparts[1].OnButtonUp(this);
+        move.Activate(true);
     }
 
     public void AwakeCouard() {

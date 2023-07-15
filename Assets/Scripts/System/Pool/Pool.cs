@@ -60,7 +60,7 @@ namespace Sloot {
             _alive.Add(newObject);
             Reset(newObject);
             newObject.gameObject.SetActive(true);
-            ResetSetup(newObject);
+            Load(newObject);
             return newObject;
         }
 
@@ -92,9 +92,9 @@ namespace Sloot {
             }
         }
 
-        void ResetSetup(T instance) {
+        void Load(T instance) {
             foreach (IReset component in instance.GetComponentsInChildren<IReset>()) {
-                component.InstanceResetSetup();
+                component.InstanceLoad();
             }
         }
     }

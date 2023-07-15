@@ -4,15 +4,12 @@ using UnityEngine;
 public class EntityMainCollider2D : EntityCollider2D {
     [SerializeField] List<EntityCollider2D> colliders = new();
 
-    protected override void AwakeSetup() {
+    protected override void LoadSetup() {
         colliders.Clear();
-    }
-
-    protected override void StartSetup() {
-        foreach (EntityCollider2D colliderDelegate in GetComponentsInChildren<EntityCollider2D>()) {
-            if(colliderDelegate == this) { continue; }
-            colliders.Add(colliderDelegate);
-            AssignTo(colliderDelegate);
+        foreach (EntityCollider2D collider in GetComponentsInChildren<EntityCollider2D>(true)) {
+            if(collider == this) { continue; }
+            colliders.Add(collider);
+            AssignTo(collider);
         }
     }
 }

@@ -5,9 +5,9 @@ using UnityEngine;
 public class EntityPlayer : EntityComponent {
     public static GameObject Player;
 
-    protected override void AwakeSetup() {
+    protected override void DefinitveSetup() {
         if (Player == null) {
-            Player = _root;
+            Player = GetRootGameObject();
         } else {
             Destroy(gameObject);
         }

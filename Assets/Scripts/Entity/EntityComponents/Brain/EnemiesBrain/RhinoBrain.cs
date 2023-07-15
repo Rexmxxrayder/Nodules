@@ -3,8 +3,8 @@ using Sloot;
 
 public class RhinoBrain : EntityBrain {
     public Transform target;
-
-    protected override void StartSetup() {
+    [SerializeField] private EntityBodyPart charge;
+    protected override void ResetSetup() {
         if (target == null) {
             target = FindObjectOfType<PlayerBrain>().transform;
         }
@@ -12,8 +12,8 @@ public class RhinoBrain : EntityBrain {
 
     private void Update() {
         visor = target.transform.position;
-        if (Get<EntityBodyParts>().Bodyparts[0].Available) {
-            Get<EntityBodyParts>().Bodyparts[0].OnButtonUp(this);
+        if (charge.Available) {
+            charge.Activate(true);
         }
     }
 }

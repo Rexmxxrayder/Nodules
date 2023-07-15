@@ -7,34 +7,35 @@ public class BomberBrain : EntityBrain {
     public float TimeBeforeExplode;
     float timerBeforeExplode = 0;
     EntityCollider2D ec;
+    [SerializeField] private EntityBodyPart follow;
 
     void Update() {
         visor = target.position;
-        Get<EntityBodyParts>().Bodyparts[0].OnButtonUp(this);
+        follow.Activate(true);
         timerBeforeExplode += Time.deltaTime;
             if (timerBeforeExplode > TimeBeforeExplode) {
-                gameObject.Get<EntityDeath>().Die();
+                gameObject.Die();
             }
     }
 
     void MustExplode(Collision2D c) {
         if (!c.gameObject.CompareTag("Player"))
             return;
-        gameObject.Get<EntityDeath>().Die();
+        gameObject.Die();
     }
     void Explode() {
         AreaDamage ad = (AreaDamage)BasicPools.Gino.GetInstance(areaDamage);
         ad.transform.position = transform.position;
     }
 
-    protected override void AwakeSetup() {
-        base.AwakeSetup();
-        ec = gameObject.Get<EntityCollider2D>();
+    protected override void DefinitveSetup() {
+        base.DefinitveSetup();
+        ec = gameObject.RootGet<EntityCollider2D>();
         timerBeforeExplode = 0;
     }
 
-    protected override void StartSetup() {
-        gameObject.Get<EntityDeath>().OnDeath += Explode;
+    protected override void ResetSetup() {
+        gameObject.GetRoot().OnDeath += Explode;
         ec.OnCollisionEnter += MustExplode;
         if (target == null) {
             target = FindObjectOfType<PlayerBrain>().transform;

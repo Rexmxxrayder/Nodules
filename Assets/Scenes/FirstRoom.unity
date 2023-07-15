@@ -143,8 +143,16 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 226906521127371257, guid: 33cb13daf07f2664c8c3bad0aba969e0, type: 3}
+      propertyPath: startHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 226906521127371257, guid: 33cb13daf07f2664c8c3bad0aba969e0, type: 3}
       propertyPath: _currentValue
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 226906521127371257, guid: 33cb13daf07f2664c8c3bad0aba969e0, type: 3}
+      propertyPath: startMaxHealth
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 586689668137883826, guid: 33cb13daf07f2664c8c3bad0aba969e0, type: 3}
       propertyPath: bodyparts.Array.size
@@ -7314,7 +7322,7 @@ PrefabInstance:
       objectReference: {fileID: 1587177492169189223, guid: 566b8200e7b642e48bcc3319c87aab58, type: 3}
     - target: {fileID: 3063454564990722092, guid: 0202c12f1c3c1bb429291311f0f95391, type: 3}
       propertyPath: Cooldown
-      value: 12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3063454564990722092, guid: 0202c12f1c3c1bb429291311f0f95391, type: 3}
       propertyPath: _shieldDuration

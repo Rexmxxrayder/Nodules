@@ -28,10 +28,10 @@ public class EntityPhysics : EntityComponent {
     }
 
     #region EntityComponentFunctions
-    protected override void AwakeSetup() {
+    protected override void DefinitveSetup() {
         if (_rb == null) {
             if (_root.GetComponent<Rigidbody2D>() == null) {
-                _rb = _root.AddComponent<Rigidbody2D>();
+                _rb = GetRootGameObject().AddComponent<Rigidbody2D>();
             } else {
                 _rb = _root.GetComponent<Rigidbody2D>();
             }

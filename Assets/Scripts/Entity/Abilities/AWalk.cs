@@ -8,12 +8,8 @@ public class AWalk : Ability {
     [SerializeField] Force walkForce = Force.Const(Vector3.zero, 0);
     [SerializeField] Coroutine coroutine;
 
-    private void Start() {
-        GetComponentInParent<EntityBodyParts>().OnMovement += StopWalk;
-    }
-
-    protected override void LaunchAbility(EntityBrain brain) {
-        EntityPhysics ep = gameObject.Get<EntityPhysics>();
+    protected override void LaunchAbilityUp(EntityBrain brain) {
+        EntityPhysics ep = gameObject.RootGet<EntityPhysics>();
         Transform root = gameObject.GetRoot().transform;
         Vector3 goToPosition = brain.Visor;
         StopWalk();
@@ -34,7 +30,7 @@ public class AWalk : Ability {
     }
 
     public void StopWalk() {
-        gameObject.Get<EntityPhysics>().Remove(walkForce);
+        gameObject.RootGet<EntityPhysics>().Remove(walkForce);
         if (coroutine != null) {
             StopCoroutine(coroutine);
         }

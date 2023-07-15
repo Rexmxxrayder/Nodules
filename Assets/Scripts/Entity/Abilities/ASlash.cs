@@ -13,9 +13,8 @@ public class ASlash : Ability
     public float SlashSpeed;
 
 
-    protected override void LaunchAbility(EntityBrain brain) {
-        GetComponentInParent<EntityBodyParts>().onMovement?.Invoke();
-        EntityPhysics ep = gameObject.Get<EntityPhysics>();
+    protected override void LaunchAbilityUp(EntityBrain brain) {
+        EntityPhysics ep = gameObject.RootGet<EntityPhysics>();
         Vector3 startPosition = gameObject.GetRoot().GetRootPosition();
         Vector3 goToPosition = brain.Visor;
         DashTo(ep, startPosition, goToPosition);
@@ -29,10 +28,8 @@ public class ASlash : Ability
     }
 
     void DashTo(EntityPhysics ep, Vector3 startPosition, Vector3 goToPosition) {
-        GetComponentInParent<EntityBodyParts>().isDashing = true;
         ep.Remove(dashForce);
         dashForce = Force.Const(goToPosition - startPosition, Speed, Dist / Speed);
-        dashForce.OnEnd += (Force) => GetComponentInParent<EntityBodyParts>().isDashing = false;
         dashForce.OnEnd += (Force) => Slash(goToPosition + goToPosition.normalized);
         ep.Add(dashForce, EntityPhysics.PhysicPriority.DASH);
     }

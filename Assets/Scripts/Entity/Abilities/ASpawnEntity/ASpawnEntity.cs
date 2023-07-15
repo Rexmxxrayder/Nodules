@@ -6,9 +6,8 @@ public class ASpawnEntity : Ability {
     [SerializeField] string toSpawn;
     [SerializeField] float distSpawn;
 
-    protected override void LaunchAbility(EntityBrain brain) {
-        GetComponentInParent<EntityBodyParts>().onMovement?.Invoke();
-        Vector3 BodyPosition = GetComponentInParent<EntityBodyParts>().GetRoot().transform.position;
+    protected override void LaunchAbilityUp(EntityBrain brain) {
+        Vector3 BodyPosition = gameObject.GetRootPosition();
         Vector3 Visor = brain.Visor;
         SpawnEntity(BodyPosition + (Visor - BodyPosition).normalized * distSpawn);
     }

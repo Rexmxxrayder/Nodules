@@ -6,10 +6,13 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public abstract class EntityCollider2D : EntityCollider {
-    protected override void AwakeSetup() {
-        if(Get<EntityMainCollider2D>() == null) { 
-            GetRoot().AddComponent<EntityMainCollider2D>();
+    protected override void DefinitveSetup() {
+        if(RootGet<EntityMainCollider2D>() == null) {
+            GetRootGameObject().AddComponent<EntityMainCollider2D>();
         }
+    }
+
+    protected override void ResetSetup() {
         ResetListeners();
     }
 
@@ -36,18 +39,6 @@ public abstract class EntityCollider2D : EntityCollider {
         entityCollider2D.OnTriggerEnter += (x) => _onTriggerEnter?.Invoke(x);
         entityCollider2D.OnTriggerExit += (x) => _onTriggerExit?.Invoke(x);
         entityCollider2D.OnTriggerStay += (x) => _onTriggerStay?.Invoke(x);
-    }
-
-    public void GetAssign(Action<Collider2D> method) {
-        OnTriggerEnter += (x) => method(x);
-        OnTriggerExit += (x) => method(x);
-        OnTriggerStay += (x) => method(x);
-    }
-
-    public void GetAssign(Action<Collision2D> method) {
-        OnCollisionEnter += (x) => method(x);
-        OnCollisionExit += (x) => method(x);
-        OnCollisionStay += (x) => method(x);
     }
 
     public void ResetListeners() {

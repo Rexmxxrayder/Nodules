@@ -5,9 +5,9 @@ using Sloot;
 
 public class ExplosionBullet : Bullet {
     [SerializeField] string explosionType;
-    protected override void StartSetup() {
-        base.StartSetup();
-        gameObject.Get<EntityDeath>().OnDeath += YellowBoom;
+    protected override void ResetSetup() {
+        base.ResetSetup();
+        gameObject.GetRoot().OnDeath += YellowBoom;
     }
 
     void YellowBoom() {

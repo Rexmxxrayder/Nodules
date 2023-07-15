@@ -16,7 +16,7 @@ public class BasicPools : MonoBehaviour {
             Destroy(gameObject);
         }
         for (int i = 0; i < prefabs.Count; i++) {
-            GameObject storage = new GameObject(prefabs[i].gameObject.name + " Storage");
+            GameObject storage = new (prefabs[i].gameObject.name + " Storage");
             storage.transform.parent = transform;
             pools.Add(prefabs[i].GetComponent<EntityBasic>().Type, new Pool<EntityBasic>(prefabs[i], storage));
         }
@@ -25,7 +25,7 @@ public class BasicPools : MonoBehaviour {
     public EntityBasic GetInstance(string instanceName) {
         EntityBasic instance = pools[instanceName].GetInstance();
         instance.GiveType(pools[instanceName].Original.Type);
-        instance.gameObject.Get<EntityDeath>().NewDeathWay += () => LetInstance(instance);
+        instance.gameObject.GetRoot().NewDeathWay += () => LetInstance(instance);
         return instance;
     }
 
