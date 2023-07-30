@@ -18,7 +18,7 @@ public class MinionBrain : EntityBrain{
     private void Update() {
         visor = target.transform.position;
         if (follow.Available) {
-            follow.Activate(true);
+            follow.KeyEvenement(true);
         }
     }
 

@@ -31,14 +31,14 @@ public class CouardBrain : EntityBrain {
     public void ShootOnEnemy() {
         visor = target.transform.position;
         if (RootGet<EntityBodyPart>().Available) {
-            shoot.Activate(true);
+            shoot.KeyEvenement(true);
         }
     }
 
     public void NewDirection() {
         Vector3 direction = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
         visor = direction.normalized * 100 + gameObject.GetRootPosition();
-        move.Activate(true);
+        move.KeyEvenement(true);
     }
 
     public void AwakeCouard() {

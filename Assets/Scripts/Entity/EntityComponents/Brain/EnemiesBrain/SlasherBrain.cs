@@ -16,7 +16,7 @@ public class SlasherBrain : EntityBrain {
     private void Update() {
         visor = target.transform.position;
         if (slash.Available) {
-            slash.Activate(true);
+            slash.KeyEvenement(true);
         }
     }
 }

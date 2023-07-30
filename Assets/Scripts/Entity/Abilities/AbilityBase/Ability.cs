@@ -12,7 +12,7 @@ public abstract class Ability : MonoBehaviour {
     UnityEvent _onAvailable = new();
     public event UnityAction OnAvailable { add => _onAvailable.AddListener(value); remove => _onAvailable.RemoveListener(value); }
     protected List<Ability> abilities = new ();
-    public virtual void Activate(EntityBrain brain, bool isUp) {
+    public virtual void Launch(EntityBrain brain, bool isUp) {
         if (!IsAvailable) {
             return;
         }
@@ -24,7 +24,7 @@ public abstract class Ability : MonoBehaviour {
         }
 
         foreach (Ability ability in abilities) {
-            ability.Activate(brain, isUp);
+            ability.Launch(brain, isUp);
         }
 
         if (Cooldown != 0f) {

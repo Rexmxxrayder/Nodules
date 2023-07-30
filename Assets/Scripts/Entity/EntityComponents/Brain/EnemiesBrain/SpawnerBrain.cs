@@ -7,7 +7,7 @@ public class SpawnerBrain : EntityBrain {
     [SerializeField] private EntityBodyPart spawn;
     private void Update() {
         if (spawn.Available) {
-            spawn.Activate(true);
+            spawn.KeyEvenement(true);
         }
     }
 }

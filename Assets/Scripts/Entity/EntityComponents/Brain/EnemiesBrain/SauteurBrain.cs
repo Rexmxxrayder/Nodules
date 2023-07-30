@@ -17,7 +17,7 @@ public class SauteurBrain : EntityBrain {
     private void Update() {
         visor = target.transform.position;
         if (jump.Available) {
-            jump.Activate(true);
+            jump.KeyEvenement(true);
         }
     }
 }

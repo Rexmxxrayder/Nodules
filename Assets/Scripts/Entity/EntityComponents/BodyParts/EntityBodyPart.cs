@@ -24,10 +24,11 @@ public class EntityBodyPart : EntityComponent {
 
     private void Update() {
         if (Input.GetKeyDown(keyCode)) {
-            Activate(false);
+            KeyEvenement(false);
         }
+
         if (Input.GetKeyUp(keyCode)) {
-            Activate(true);
+            KeyEvenement(true);
         }
     }
     public void AddNodules(Nodule nodule) {
@@ -38,7 +39,7 @@ public class EntityBodyPart : EntityComponent {
         currentNodule = null;
     }
 
-    public void Activate(bool isUp) {
-        abilities[currentNodule == null ? 0 : currentNodule.Id].Activate(brain, isUp);
+    public void KeyEvenement(bool isUp) {
+        abilities[currentNodule == null ? 0 : currentNodule.Id].Launch(brain, isUp);
     }
 }

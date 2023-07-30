@@ -13,7 +13,7 @@ public class RhinoBrain : EntityBrain {
     private void Update() {
         visor = target.transform.position;
         if (charge.Available) {
-            charge.Activate(true);
+            charge.KeyEvenement(true);
         }
     }
 }

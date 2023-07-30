@@ -7,10 +7,9 @@ public class AbilityEmpty : Ability {
         Cooldown = 0f;
     }
 
-    public override void Activate(EntityBrain brain, bool isUp) {
-        LaunchAbilityUp(brain);
+    public override void Launch(EntityBrain brain, bool isUp) {
         foreach (Ability ability in abilities) {
-            ability.Activate(brain, isUp);
+            ability.Launch(brain, isUp);
         }
     }
 }

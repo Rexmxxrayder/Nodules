@@ -15,7 +15,7 @@ public class GunnerBrain : EntityBrain {
     private void Update() {
         visor = target.transform.position;
         if (shoot.Available) {
-            shoot.Activate(true);
+            shoot.KeyEvenement(true);
         }
     }
 }

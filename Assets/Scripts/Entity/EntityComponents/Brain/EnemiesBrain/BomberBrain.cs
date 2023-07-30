@@ -11,7 +11,7 @@ public class BomberBrain : EntityBrain {
 
     void Update() {
         visor = target.position;
-        follow.Activate(true);
+        follow.KeyEvenement(true);
         timerBeforeExplode += Time.deltaTime;
             if (timerBeforeExplode > TimeBeforeExplode) {
                 gameObject.Die();
