@@ -20,11 +20,6 @@ public class HMove : MonoBehaviour {
     private void Update() {
         Vector3 direction = Vector3.zero;
 
-        if(hPhysics.IsDashing || hPhysics.IsPushed) {
-            hPhysics.Forces["Move"] = direction;
-            return;
-        }
-
         if (Input.GetKey(KeyCode.Z)) {
             direction += camera.transform.forward;
         }
@@ -40,6 +35,8 @@ public class HMove : MonoBehaviour {
         if (Input.GetKey(KeyCode.Q)) {
             direction += -camera.transform.right;
         }
+
+        direction.y = 0;
 
         hPhysics.Forces["Move"] = direction.normalized * Speed;
     }

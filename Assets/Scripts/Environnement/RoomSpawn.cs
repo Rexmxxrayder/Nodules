@@ -9,7 +9,7 @@ public class RoomSpawn : MonoBehaviour {
     private void Start() {
         for (int i = 0; i < ennemiToSpawn.Count; i++) {
             for (int j = 0; j < numberToSpawn[i]; j++) {
-                EntityRoot ennemi = BrainPools.Gino.GetInstance(ennemiToSpawn[i]);
+                EntityBrain ennemi = BrainPools.Gino.GetInstance(ennemiToSpawn[i]);
                 int RandomPoint = Random.Range(0, SpawnPoint.Count - 1);
                 ennemi.transform.position = SpawnPoint[RandomPoint].position;
                 SpawnPoint.RemoveAt(RandomPoint);

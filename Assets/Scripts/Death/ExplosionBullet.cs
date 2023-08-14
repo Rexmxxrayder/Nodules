@@ -11,7 +11,7 @@ public class ExplosionBullet : Bullet {
     }
 
     void YellowBoom() {
-        AreaDamage ad = (AreaDamage)BasicPools.Gino.GetInstance(explosionType);
-        ad.transform.position = transform.position;
+        //AreaDamage ad = (AreaDamage)BasicPools.Gino.GetInstance(explosionType);
+        //ad.transform.position = transform.position;
     }    
 }
