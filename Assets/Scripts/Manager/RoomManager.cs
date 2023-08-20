@@ -12,7 +12,7 @@ public class RoomManager : MonoBehaviour {
     }
     private void Start() {
         currentRoom = Instantiate(firstRoom, transform);
-        HMove.instance.transform.position = currentRoom.Spawn.transform.position;
+        PlayerBrain.Transform.position = currentRoom.Spawn.transform.position;
     }
 
     public void NextRoom(Vector3 vector) {
@@ -26,6 +26,6 @@ public class RoomManager : MonoBehaviour {
         } else if (vector == Vector3.right) {
             currentRoom.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
-        HMove.instance.transform.position = currentRoom.Spawn.transform.position;
+        PlayerBrain.Transform.position = currentRoom.Spawn.transform.position;
     }
 }

@@ -32,7 +32,7 @@ public class BomberBrain : EntityBrain {
         base.LoadSetup();
         gameObject.GetRoot().OnDeath += Explode;
         RootGet<EntityCollider3D>().OnCollisionEnterDelegate += DieOnCollision;
-        selected = HMove.instance.transform;
+        selected = PlayerBrain.Transform;
         bodyPart = RootGet<EntityBodyPart>();
         bodyPart.KeyEvenement(true);
     }

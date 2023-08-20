@@ -12,6 +12,7 @@ public class AExplosiveJump : Ability {
     }
 
     IEnumerator Jump(Vector3 destination) {
+        StartCooldown();
         Vector3 position = gameObject.GetRootPosition();
         Vector3 directionJump = destination - position;
         float distJump = Mathf.Min(Vector3.Distance(destination, position), distMaxJump);
@@ -19,6 +20,7 @@ public class AExplosiveJump : Ability {
         gameObject.RootGet<EntityPhysics>().Add(Force.Const(directionJump, SpeedJump, distJump / SpeedJump), EntityPhysics.PhysicPriority.DASH);
         yield return new WaitForSeconds(distJump / SpeedJump);
         ImpactDamage();
+
     }
 
     void ImpactDamage() {

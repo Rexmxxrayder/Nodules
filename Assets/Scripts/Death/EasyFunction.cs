@@ -20,4 +20,8 @@ public class EasyFunction : MonoBehaviour {
         transform.parent.gameObject.SetActive(false);
         Destroy(transform.parent.gameObject);
     }
+
+    public void EndAnim() {
+        GetComponentInParent<AFistPunch>().EndAnim();
+    }
 }

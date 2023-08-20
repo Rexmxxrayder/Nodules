@@ -343,11 +343,8 @@ MonoBehaviour:
   - {fileID: 77943153216926800, guid: ea312c145aa11a44196ae3ada930f69e, type: 3}
   - {fileID: 7514405908397307096, guid: 86e4a481e127e424e8dd965dc11258a1, type: 3}
   - {fileID: 1443572707066865084, guid: 71fd8ad645bc8c4499896366157e5c1e, type: 3}
-  enemiesSpawnPoints:
-  - {fileID: 4317359626170263926}
-  - {fileID: 8514591150469991230}
-  - {fileID: 5090028026320414394}
-  - {fileID: 4425310670564021306}
+  currentEnemies: []
+  enemiesSpawnPoints: []
 --- !u!1 &4317359626170263926
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,20 +4,18 @@ using UnityEngine;
 using Sloot;
 
 public class AFistPunch : Ability {
-    [SerializeField] GameObject prefab;
+    [SerializeField] GameObject fist;
     [SerializeField] float fistSpeed;
     protected override void LaunchAbilityUp(EntityBrain brain) {
         Vector3 cursor = brain.Visor;
-        GameObject newFPE = Instantiate(prefab, gameObject.GetRootTransform());
-        newFPE.transform.position = gameObject.GetRootPosition();
-        newFPE.transform.rotation = Quaternion.Euler(0, 0, RotationSloot.GetDegreeBasedOfTarget(newFPE.transform.position, cursor, RotationSloot.TranslateVector3("z")));
-        newFPE.GetComponentInChildren<Animator>().SetFloat("FistSpeed", fistSpeed);
+        fist.gameObject.SetActive(true);
+        fist.transform.rotation = Quaternion.Euler(0, RotationSloot.GetDegreeBasedOfTarget(fist.transform.position, cursor, RotationSloot.TranslateVector3("y")), 0);
+        fist.GetComponentInChildren<Animator>().SetFloat("FistSpeed", fistSpeed);
+        StartCooldown();
     }
 
-    void Kill(GameObject g) {
-        if (g != null) {
-            g.SetActive(false);
-            Destroy(g);
-        }
+    public void EndAnim() {
+        fist.GetComponentInChildren<Animator>().SetFloat("FistSpeed", 0);
+        fist.gameObject.SetActive(false);
     }
 }

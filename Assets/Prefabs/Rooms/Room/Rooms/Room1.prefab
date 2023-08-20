@@ -554,11 +554,8 @@ MonoBehaviour:
   Spawn: {fileID: 7139197221751964223}
   spawnNumber: 0
   enemies: []
-  enemiesSpawnPoints:
-  - {fileID: 7882372249038656406}
-  - {fileID: 1050918402587187900}
-  - {fileID: 3312186147042854360}
-  - {fileID: 675315608456297495}
+  currentEnemies: []
+  enemiesSpawnPoints: []
 --- !u!1001 &129729015431207004
 PrefabInstance:
   m_ObjectHideFlags: 0

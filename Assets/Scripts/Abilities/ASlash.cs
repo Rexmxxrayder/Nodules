@@ -17,6 +17,7 @@ public class ASlash : Ability {
         Vector3 startPosition = gameObject.GetRoot().GetRootPosition();
         Vector3 goToPosition = brain.Visor;
         DashTo(ep, startPosition, goToPosition);
+        StartCooldown();
     }
 
     void Slash(Vector3 visor) {

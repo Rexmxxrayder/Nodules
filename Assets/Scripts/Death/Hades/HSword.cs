@@ -4,12 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class HSword : MonoBehaviour {
-    HPhysics hPhysics;
     MeshFilter m;
 
     private void Start() {
-        hPhysics = GetComponentInParent<HPhysics>();
-        hPhysics.Forces.Add("Sword", Vector3.zero);
         m = GetComponent<MeshFilter>();
         MakeHalfCircleColldier(Vector3.right, 5, 20);
     }

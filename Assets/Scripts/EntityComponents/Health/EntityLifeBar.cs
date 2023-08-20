@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class EntityLifeBar : EntityComponent {
     EntityHealth eh;
-    [SerializeField]
-    Slider slider;
+    [SerializeField] Slider slider;
     protected override void DefinitiveSetup() {
         eh = _root.RootGet<EntityHealth>();
         if (eh == null) {
@@ -23,5 +22,6 @@ public class EntityLifeBar : EntityComponent {
     private void Update() {
         slider.maxValue = eh.MaxHealth;
         slider.value = eh.Health;
+        slider.transform.parent.LookAt(slider.transform.parent.position - Camera.main.transform.forward);
     }
 }

@@ -29,7 +29,7 @@ public class Room : MonoBehaviour
 
     private void Start() {
         for (int i = 0; i < SpawnNumber; i++) {
-            currentEnemies.Add(Instantiate(Enemies[Random.Range(0, Enemies.Length - 1)], enemiesSpawnPoints[Random.Range(0, enemiesSpawnPoints.Length - 1)].transform.position, Quaternion.identity));
+            currentEnemies.Add(Instantiate(Enemies[Random.Range(0, Enemies.Length)], enemiesSpawnPoints[Random.Range(0, enemiesSpawnPoints.Length)].transform.position, Quaternion.identity));
         }
     }
 

@@ -9,7 +9,7 @@ public class JumperBrain : EntityBrain {
 
     protected override void LoadSetup() {
         base.LoadSetup();
-        selected = HMove.instance.transform;
+        selected = PlayerBrain.Transform;
     }
 
     private void Update() {

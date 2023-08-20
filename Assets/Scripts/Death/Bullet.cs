@@ -12,15 +12,16 @@ public class Bullet : EntityBasic {
         shoot = false;
     }
 
-    public void Fire(Vector2 direction) {
+    public void Fire(Vector3 direction) {
         if (shoot) {
             return;
         }
         shoot = true;
+        gameObject.SetActive(true);
         RootGet<EntityPhysics>().Add(Force.Const(direction.normalized, Speed, 100), EntityPhysics.PhysicPriority.PROJECTION);
     }
 
-    public void Fire(Vector2 direction, float speed) {
+    public void Fire(Vector3 direction, float speed) {
         Speed = speed;
         Fire(direction);
     }

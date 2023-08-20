@@ -8,29 +8,29 @@ public class AWalk : Ability {
     [SerializeField] Force walkForce = Force.Const(Vector3.zero, 0);
     EntityPhysics ep;
     Transform root;
-    Vector3 goToPosition;
 
     protected override void LaunchAbilityUp(EntityBrain brain) {
         ep = gameObject.RootGet<EntityPhysics>();
-        root = gameObject.GetRoot().transform;
-        goToPosition = brain.Visor;
+        root = gameObject.GetRootTransform();
         StopWalk();
-
-        StartCoroutine(WalkTo(ep, root, goToPosition));
+        StartCoroutine(WalkTo(ep, root, brain.Visor));
     }
 
     IEnumerator WalkTo(EntityPhysics ep, Transform root, Vector3 goToPosition) {
-        walkForce = new(Force.Const(goToPosition - root.position, Speed, 100));
+        Vector3 direction = goToPosition - root.position;
+        direction.y = 0;
+        walkForce = new(Force.Const(direction, Speed, 100));
         ep.Add(walkForce, EntityPhysics.PhysicPriority.INPUT);
         do {
             if (Vector3.Distance(goToPosition, root.position) < MinimumDistance) {
+                StopWalk();
                 yield break;
             }
-
-            walkForce.Direction = goToPosition - root.position;
+            direction = goToPosition - root.position;
+            direction.y = 0;
+            walkForce.Direction = direction;
             yield return null;
         } while (!walkForce.HasEnded);
-        StopWalk();
     }
 
     public void StopWalk() {

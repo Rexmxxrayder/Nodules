@@ -26,10 +26,6 @@ public abstract class Ability : MonoBehaviour {
         foreach (Ability ability in abilities) {
             ability.Launch(brain, isUp);
         }
-
-        if (Cooldown != 0f) {
-            StartCoroutine(CooldownManager());
-        }
     }
 
     protected void Awake() {
@@ -41,6 +37,9 @@ public abstract class Ability : MonoBehaviour {
         }
     }
 
+    protected void StartCooldown() {
+        StartCoroutine(CooldownManager());
+    }
 
     private IEnumerator CooldownManager() {
         TimeRemainingCooldown = Cooldown;
