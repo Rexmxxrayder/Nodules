@@ -37,6 +37,11 @@ public class EntityRoot : EntityComponent {
         died = false;
     }
 
+    public virtual void Spawn(Vector3 groundPosition, Quaternion rotation = default) {
+        transform.position = groundPosition;
+        transform.rotation = rotation;
+    }
+
     public override void Die() {
         if (died) {
             return;

@@ -16,5 +16,6 @@ public class AShootBullet : Ability {
         newBullet.gameObject.SetActive(false);
         newBullet.transform.position = transform.position;
         newBullet.Fire(direction);
+        StartCooldown();
     }
 }

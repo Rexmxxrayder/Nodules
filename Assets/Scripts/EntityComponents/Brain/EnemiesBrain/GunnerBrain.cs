@@ -3,17 +3,15 @@ using UnityEngine;
 using Sloot;
 
 public class GunnerBrain : EntityBrain {
-    public Transform target;
     [SerializeField] EntityBodyPart shoot;
-    protected override void ResetSetup() {
-        if (target == null) {
-            target = FindObjectOfType<PlayerBrain>().transform;
-        }
+
+    protected override void LoadSetup() {
+        base.LoadSetup();
+        selected = PlayerBrain.Transform;
     }
 
-
     private void Update() {
-        visor = target.transform.position;
+        visor = selected.transform.position;
         if (shoot.Available) {
             shoot.KeyEvenement(true);
         }

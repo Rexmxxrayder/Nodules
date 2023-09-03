@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 777205753}
   - component: {fileID: 777205754}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AExplosiveJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   m_Component:
   - component: {fileID: 832732873}
   - component: {fileID: 832732874}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BodyPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 1169886481}
   - component: {fileID: 1169886480}
   - component: {fileID: 1169886479}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5319335851129513893}
   - component: {fileID: 5316395047768815241}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 6315483401353525270}
   - component: {fileID: 6315483401353525271}
   - component: {fileID: 6315483401353525272}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Jumper
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -377,6 +377,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LifeBar
       objectReference: {fileID: 0}
+    - target: {fileID: 3120379524628034711, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3120379524709602778, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3120379524709602781, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -384,6 +392,18 @@ PrefabInstance:
     - target: {fileID: 3120379524709602781, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3120379525186676719, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3120379525249353035, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3120379525284960138, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
@@ -402,6 +422,10 @@ PrefabInstance:
     - target: {fileID: 5540420792059136650, guid: 6aac2bfbe421fcf41885853a9bb10bab, type: 3}
       propertyPath: m_Name
       value: JumpExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540420792059136650, guid: 6aac2bfbe421fcf41885853a9bb10bab, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5540420792059136650, guid: 6aac2bfbe421fcf41885853a9bb10bab, type: 3}
       propertyPath: m_IsActive
@@ -454,6 +478,42 @@ PrefabInstance:
     - target: {fileID: 5540420792059136654, guid: 6aac2bfbe421fcf41885853a9bb10bab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975122385370891508, guid: 6aac2bfbe421fcf41885853a9bb10bab, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975398013934772364, guid: 6aac2bfbe421fcf41885853a9bb10bab, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975475079265205188, guid: 6aac2bfbe421fcf41885853a9bb10bab, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975484865738154302, guid: 6aac2bfbe421fcf41885853a9bb10bab, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975562800425203076, guid: 6aac2bfbe421fcf41885853a9bb10bab, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975629061929875258, guid: 6aac2bfbe421fcf41885853a9bb10bab, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975708810173268464, guid: 6aac2bfbe421fcf41885853a9bb10bab, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975752889418581852, guid: 6aac2bfbe421fcf41885853a9bb10bab, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975868878212934520, guid: 6aac2bfbe421fcf41885853a9bb10bab, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6aac2bfbe421fcf41885853a9bb10bab, type: 3}

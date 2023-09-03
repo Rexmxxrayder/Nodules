@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EntityLifeBar : EntityComponent {
     EntityHealth eh;
     [SerializeField] Slider slider;
+    [SerializeField] TMP_Text healthText;
     protected override void DefinitiveSetup() {
         eh = _root.RootGet<EntityHealth>();
         if (eh == null) {
@@ -23,5 +25,6 @@ public class EntityLifeBar : EntityComponent {
         slider.maxValue = eh.MaxHealth;
         slider.value = eh.Health;
         slider.transform.parent.LookAt(slider.transform.parent.position - Camera.main.transform.forward);
+        healthText.text = $" {slider.value} / {slider.maxValue}";
     }
 }

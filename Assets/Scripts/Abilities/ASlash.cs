@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Sloot;
-using Unity.VisualScripting;
 
 public class ASlash : Ability {
     public GameObject slashPrefab;
@@ -16,22 +13,22 @@ public class ASlash : Ability {
         EntityPhysics ep = gameObject.RootGet<EntityPhysics>();
         Vector3 startPosition = gameObject.GetRoot().GetRootPosition();
         Vector3 goToPosition = brain.Visor;
-        DashTo(ep, startPosition, goToPosition);
+        DashTo(ep, startPosition, goToPosition, brain.Selected);
         StartCooldown();
     }
 
-    void Slash(Vector3 visor) {
+    void Slash(Transform visor) {
         GameObject slash = Instantiate(slashPrefab, transform);
         slash.SetActive(true);
         slash.transform.position = transform.position;
-        slash.transform.rotation = Quaternion.Euler(0, RotationSloot.GetDegreeBasedOfTarget(transform.position, visor, RotationSloot.TranslateVector3("y")) - 180, 0);
+        slash.transform.rotation = Quaternion.Euler(0, RotationSloot.GetDegreeBasedOfTarget(transform.position, visor.position, RotationSloot.TranslateVector3("y")) - 180, 0);
         slash.GetComponentInChildren<Animator>().SetFloat("SlashSpeed", SlashSpeed);
     }
 
-    void DashTo(EntityPhysics ep, Vector3 startPosition, Vector3 goToPosition) {
+    void DashTo(EntityPhysics ep, Vector3 startPosition, Vector3 goToPosition, Transform target) {
         ep.Remove(dashForce);
         dashForce = Force.Const(goToPosition - startPosition, Speed, Dist / Speed);
-        dashForce.OnEnd += (_) => Slash(goToPosition + goToPosition.normalized);
+        dashForce.OnEnd += (_) => Slash(target);
         ep.Add(dashForce, EntityPhysics.PhysicPriority.DASH);
     }
 }
