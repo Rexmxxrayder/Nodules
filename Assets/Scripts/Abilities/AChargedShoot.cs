@@ -43,9 +43,10 @@ public class AChargedShoot : Ability {
             slider.transform.parent.LookAt(slider.transform.parent.position - Camera.main.transform.forward);
             yield return null;
         }
+
         currentBullet.Fire(brain.Visor - GetComponentInParent<EntityBodyPart>().GetRootPosition());
         slider.gameObject.SetActive(false);
-        currentBullet.GetComponentInChildren<EntityDamageCollider3D>().damage = (int)Mathf.Lerp(damage.x, damage.y, Mathf.InverseLerp(0, maxCharge, time));
+        currentBullet.GetComponentInChildren<AreaDamage3D>().enterDamage = (int)Mathf.Lerp(damage.x, damage.y, Mathf.InverseLerp(0, maxCharge, time));
         currentBullet.transform.localScale = Vector3.one * Mathf.Lerp(size.x, size.y, Mathf.InverseLerp(0, maxCharge, time)); ;
     }
 }

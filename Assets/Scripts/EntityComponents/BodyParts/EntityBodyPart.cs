@@ -41,6 +41,10 @@ public class EntityBodyPart : EntityComponent {
     }
 
     public void KeyEvenement(bool isUp) {
+        if(!abilities.ContainsKey(currentNodule == null ? 0 : currentNodule.Id)) {
+            return;
+        }
+
         abilities[currentNodule == null ? 0 : currentNodule.Id].Launch(brain, isUp);
     }
 }

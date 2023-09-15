@@ -21,8 +21,8 @@
 
 //    public bool InUse => _inUse;
 
-//    public event UnityAction OnStart { add => _onStart += value; remove => _onStart -= value; }
-//    public event UnityAction OnEnd { add => _onEnd += value; remove => _onEnd -= value; }
+//    public event Action OnStart { add => _onStart += value; remove => _onStart -= value; }
+//    public event Action OnEnd { add => _onEnd += value; remove => _onEnd -= value; }
 
 //    private void Reset() {
 //        _entityPhysics = GetComponent<EntityPhysics>();

@@ -1,4 +1,5 @@
 using Sloot;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,15 +12,15 @@ public class RangeInt {
     public int MaxValue => _maxValue;
     public int MinValue => _minValue;
 
-    UnityEvent<int> _onIncreasing = new();
-    UnityEvent<int> _onDecreasing = new();
-    UnityEvent<int> _onOverIncreased = new();
-    UnityEvent<int> _onOverDecreased = new();
+    private Action<int> _onIncreasing;
+    private Action<int> _onDecreasing;
+    private Action<int> _onOverIncreased;
+    private Action<int> _onOverDecreased;
 
-    public event UnityAction<int> OnIncreasing  { add =>  _onIncreasing.AddListener(value);  remove => _onIncreasing.RemoveListener(value); }
-    public event UnityAction<int> OnDecreasing { add => _onDecreasing.AddListener(value); remove => _onDecreasing.RemoveListener(value); }
-    public event UnityAction<int> OnOverIncreased { add => _onOverIncreased.AddListener(value); remove => _onOverIncreased.RemoveListener(value); }
-    public event UnityAction<int> OnOverDecreased { add => _onOverDecreased.AddListener(value); remove => _onOverDecreased.RemoveListener(value); }
+    public event Action<int> OnIncreasing  { add =>  _onIncreasing += value;  remove => _onIncreasing -= value; }
+    public event Action<int> OnDecreasing { add => _onDecreasing += value; remove => _onDecreasing -= value; }
+    public event Action<int> OnOverIncreased { add => _onOverIncreased += value; remove => _onOverIncreased -= value; }
+    public event Action<int> OnOverDecreased { add => _onOverDecreased += value; remove => _onOverDecreased -= value; }
 
 
     public int IncreaseOf(int value) {
@@ -84,9 +85,9 @@ public class RangeInt {
         return (_maxValue - _minValue) * percent / 100;
     }
     public void RemoveAllListeners() {
-        _onIncreasing.RemoveAllListeners();
-        _onDecreasing.RemoveAllListeners();
-        _onOverIncreased.RemoveAllListeners();
-        _onOverDecreased.RemoveAllListeners();
+        _onIncreasing = null;
+        _onDecreasing = null;
+        _onOverIncreased = null;
+        _onOverDecreased = null;
     }
 }

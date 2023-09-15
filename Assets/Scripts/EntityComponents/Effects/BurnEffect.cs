@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BurnEffect : EntityEffect
-{
+public class BurnEffect : EntityEffect {
     public override EffectType Type => EffectType.BURN;
 
     public override int MaxStack => 1;
@@ -20,11 +19,11 @@ public class BurnEffect : EntityEffect
     }
     public override void UpdateEffect(float deltaTime) {
         lastTick += deltaTime;
-        if (lastTick/TICKBURN >= 1f ) {
+        if (lastTick / TICKBURN >= 1f) {
             entityHealth.RemoveHealth(damageEveryTick);
             lastTick %= TICKBURN;
         }
 
         base.UpdateEffect(deltaTime);
-    }    
+    }
 }

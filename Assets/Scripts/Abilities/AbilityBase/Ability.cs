@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,8 +10,8 @@ public abstract class Ability : MonoBehaviour {
     public float Cooldown = 1f;
     [HideInInspector] public float TimeRemainingCooldown = 0f;
     public bool IsAvailable => TimeRemainingCooldown == 0f;
-    UnityEvent _onAvailable = new();
-    public event UnityAction OnAvailable { add => _onAvailable.AddListener(value); remove => _onAvailable.RemoveListener(value); }
+    private Action _onAvailable;
+    public event Action OnAvailable { add => _onAvailable += value; remove => _onAvailable -= value; }
     protected List<Ability> abilities = new ();
     public virtual void Launch(EntityBrain brain, bool isUp) {
         if (!IsAvailable) {

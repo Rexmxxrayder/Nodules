@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5540420792059136655}
   - component: {fileID: 5540420792059136652}
   - component: {fileID: 5540420792059136653}
-  - component: {fileID: 5540420792059136641}
   - component: {fileID: 892291123988846589}
   m_Layer: 0
   m_Name: JumpExplosion
@@ -100,23 +99,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5540420792059136641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5540420792059136650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce5853c821b1c1141af4ab915f8ceee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
-  Damaged:
-  - Enemy
-  destroyOnCollide: 0
-  destroyOnTrigger: 0
 --- !u!114 &892291123988846589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +112,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 0.5
+  enterDamage: 1
+  stayDamage: 0
+  damageTick: 0
+  exitDamage: 0
+  damageables:
+  - Player
+  destroyOnCollision: 0
+  destroyOnTrigger: 0
 --- !u!1001 &7974561622632765720
 PrefabInstance:
   m_ObjectHideFlags: 0

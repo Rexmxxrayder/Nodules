@@ -113,9 +113,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 1
-  damage: 0
-  Damaged:
+  enterDamage: 1
+  stayDamage: 0
+  damageTick: 0
+  exitDamage: 0
+  damageables:
   - Enemy
+  destroyOnCollision: 0
+  destroyOnTrigger: 0
 --- !u!114 &8268432073648354496
 MonoBehaviour:
   m_ObjectHideFlags: 0

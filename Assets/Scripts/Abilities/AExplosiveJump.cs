@@ -5,7 +5,7 @@ using UnityEngine;
 public class AExplosiveJump : Ability {
     [SerializeField] float distMaxJump;
     [SerializeField] float SpeedJump;
-    [SerializeField] AreaDamage areaDamage;
+    [SerializeField] AreaDamage3D areaDamage;
 
     protected override void LaunchAbilityUp(EntityBrain brain) {
         StartCoroutine(Jump(brain.Visor));
@@ -24,7 +24,7 @@ public class AExplosiveJump : Ability {
     }
 
     void ImpactDamage() {
-        AreaDamage ad = Instantiate(areaDamage);
+        AreaDamage3D ad = Instantiate(areaDamage);
         ad.transform.position = gameObject.GetRootPosition();
         ad.gameObject.SetActive(true);
     }

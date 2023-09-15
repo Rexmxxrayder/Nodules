@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,25 +8,25 @@ using UnityEngine.Events;
 public class EntityEffectManager : EntityComponent {
     [SerializeField] private List<string> effectsVisualise = new();
     private List<EntityEffect> effects = new();
-    private readonly UnityEvent<EntityEffect> onEffectAdd = new();
-    private readonly UnityEvent<EntityEffect> onEffectWantAdd = new();
-    private readonly UnityEvent<EntityEffect> onEffectRemove = new();
-    private readonly UnityEvent<EntityEffect> onEffectWantRemove = new();
-    public event UnityAction<EntityEffect> OnEffectAdd { add { onEffectAdd.AddListener(value); } remove { onEffectAdd.RemoveListener(value); } }
-    public event UnityAction<EntityEffect> OnEffectWantAdd { add { onEffectWantAdd.AddListener(value); } remove { onEffectWantAdd.RemoveListener(value); } }
-    public event UnityAction<EntityEffect> OnEffectRemove { add { onEffectRemove.AddListener(value); } remove { onEffectRemove.RemoveListener(value); } }
-    public event UnityAction<EntityEffect> OnEffectWantRemove { add { onEffectWantRemove.AddListener(value); } remove { onEffectWantRemove.RemoveListener(value); } }
+    private Action<EntityEffect> onEffectAdd;
+    private Action<EntityEffect> onEffectWantAdd;
+    private Action<EntityEffect> onEffectRemove ;
+    private Action<EntityEffect> onEffectWantRemove;
+    public event Action<EntityEffect> OnEffectAdd { add { onEffectAdd += value; } remove { onEffectAdd -= value; } }
+    public event Action<EntityEffect> OnEffectWantAdd { add { onEffectWantAdd += value; } remove { onEffectWantAdd -= value; } }
+    public event Action<EntityEffect> OnEffectRemove { add { onEffectRemove += value; } remove { onEffectRemove -= value; } }
+    public event Action<EntityEffect> OnEffectWantRemove { add { onEffectWantRemove += value; } remove { onEffectWantRemove -= value; } }
     public List<EntityEffect> Effects => effects;
 
     public void AddEffect(EntityEffect effect) {
-        onEffectWantAdd.Invoke(effect);
+        onEffectWantAdd?.Invoke(effect);
         if(effect.Negate) {
             return;
         }
 
         effects.Add(effect);
         effect.SetupEffect(this);
-        onEffectAdd.Invoke(effect);
+        onEffectAdd?.Invoke(effect);
     }
 
     public void FixedUpdate() {
@@ -45,12 +46,12 @@ public class EntityEffectManager : EntityComponent {
 
     public void RemoveEffect(EntityEffect effect) {
         effect.Negate = true;
-        onEffectWantRemove.Invoke(effect);
+        onEffectWantRemove?.Invoke(effect);
         if (!effect.Negate) {
             return;
         }
 
         effects.Remove(effect);
-        onEffectRemove.Invoke(effect);
+        onEffectRemove?.Invoke(effect);
     }
 }

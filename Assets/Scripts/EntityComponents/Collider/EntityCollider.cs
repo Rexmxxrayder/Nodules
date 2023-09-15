@@ -1,3 +1,4 @@
+using System;
 using UnityEngine.Events;
 
 public abstract class EntityCollider<T,U> : EntityComponent {
@@ -14,19 +15,19 @@ public abstract class EntityCollider<T,U> : EntityComponent {
     }
 
     #region Events
-    protected UnityEvent<T> _onCollisionEnterDelegate = new();
-    protected UnityEvent<T> _onCollisionExitDelegate = new();
-    protected UnityEvent<T> _onCollisionStayDelegate = new();
-    protected UnityEvent<U> _onTriggerEnterDelegate = new();
-    protected UnityEvent<U> _onTriggerExitDelegate = new();
-    protected UnityEvent<U> _onTriggerStayDelegate = new();
+    protected Action<T> _onCollisionEnterDelegate;
+    protected Action<T> _onCollisionExitDelegate;
+    protected Action<T> _onCollisionStayDelegate;
+    protected Action<U> _onTriggerEnterDelegate;
+    protected Action<U> _onTriggerExitDelegate;
+    protected Action<U> _onTriggerStayDelegate;
 
-    public event UnityAction<T> OnCollisionEnterDelegate { add => _onCollisionEnterDelegate.AddListener(value); remove => _onCollisionEnterDelegate.RemoveListener(value); }
-    public event UnityAction<T> OnCollisionExitDelegate { add => _onCollisionExitDelegate.AddListener(value); remove => _onCollisionExitDelegate.RemoveListener(value); }
-    public event UnityAction<T> OnCollisionStayDelegate { add => _onCollisionStayDelegate.AddListener(value); remove => _onCollisionStayDelegate.RemoveListener(value); }
-    public event UnityAction<U> OnTriggerEnterDelegate { add => _onTriggerEnterDelegate.AddListener(value); remove => _onTriggerEnterDelegate.RemoveListener(value); }
-    public event UnityAction<U> OnTriggerExitDelegate { add => _onTriggerExitDelegate.AddListener(value); remove => _onTriggerExitDelegate.RemoveListener(value); }
-    public event UnityAction<U> OnTriggerStayDelegate { add => _onTriggerStayDelegate.AddListener(value); remove => _onTriggerStayDelegate.RemoveListener(value); }
+    public event Action<T> OnCollisionEnterDelegate { add => _onCollisionEnterDelegate += value; remove => _onCollisionEnterDelegate -= value; }
+    public event Action<T> OnCollisionExitDelegate { add => _onCollisionExitDelegate += value; remove => _onCollisionExitDelegate -= value; }
+    public event Action<T> OnCollisionStayDelegate { add => _onCollisionStayDelegate += value; remove => _onCollisionStayDelegate -= value; }
+    public event Action<U> OnTriggerEnterDelegate { add => _onTriggerEnterDelegate += value; remove => _onTriggerEnterDelegate -= value; }
+    public event Action<U> OnTriggerExitDelegate { add => _onTriggerExitDelegate += value; remove => _onTriggerExitDelegate -= value; }
+    public event Action<U> OnTriggerStayDelegate { add => _onTriggerStayDelegate += value; remove => _onTriggerStayDelegate -= value; }
     #endregion
 
     protected void AssignTo(EntityCollider<T,U> entityCollider) {
@@ -39,11 +40,11 @@ public abstract class EntityCollider<T,U> : EntityComponent {
     }
 
     public void ResetListeners() {
-        _onCollisionEnterDelegate.RemoveAllListeners();
-        _onCollisionExitDelegate.RemoveAllListeners();
-        _onCollisionStayDelegate.RemoveAllListeners();
-        _onTriggerEnterDelegate.RemoveAllListeners();
-        _onTriggerExitDelegate.RemoveAllListeners();
-        _onTriggerStayDelegate.RemoveAllListeners();
+        _onCollisionEnterDelegate = null;
+        _onCollisionExitDelegate = null;
+        _onCollisionStayDelegate = null;
+        _onTriggerEnterDelegate= null;
+        _onTriggerExitDelegate= null;
+        _onTriggerStayDelegate = null;
     }
 }

@@ -19,8 +19,8 @@
 //[SerializeField, HideInInspector] BetterEvent _trapped = new BetterEvent();
 //[SerializeField, HideInInspector] BetterEvent _untrapped = new BetterEvent();
 
-//public event UnityAction Trapped { add => _trapped += value; remove => _trapped -= value; }
-//public event UnityAction UnTrapped { add => _untrapped += value; remove => _untrapped -= value; }
+//public event Action Trapped { add => _trapped += value; remove => _trapped -= value; }
+//public event Action UnTrapped { add => _untrapped += value; remove => _untrapped -= value; }
 //public void InTrap() {
 //    _trapped?.Invoke();
 //}

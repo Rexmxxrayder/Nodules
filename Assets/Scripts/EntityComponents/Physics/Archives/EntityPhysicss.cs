@@ -12,7 +12,7 @@
 //    SortedDictionary<int, List<Force>> _forces = new SortedDictionary<int, List<Force>>();
 
 //    public Vector2 Velocity => _rb.velocity;
-//    public event UnityAction<Vector2> OnMove { add => _onMove += value; remove => _onMove -= value; }
+//    public event Action<Vector2> OnMove { add => _onMove += value; remove => _onMove -= value; }
 
 //    private void FixedUpdate() {
 //        Vector2 velocity = ComputeForces();

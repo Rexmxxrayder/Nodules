@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,9 +15,9 @@ public class Force {
     bool _ignored = false;
     bool _hasEnded = false;
 
-    [SerializeField] UnityEvent<Force> _onStart = new();
-    [SerializeField] UnityEvent<Force, int> _onNewCurve = new();
-    [SerializeField] UnityEvent<Force> _onEnd = new();
+    [SerializeField] private Action<Force> _onStart;
+    [SerializeField] private Action<Force, int> _onNewCurve;
+    [SerializeField] private Action<Force> _onEnd;
 
     #region Properties
 
@@ -32,9 +33,9 @@ public class Force {
 
     #region Events
 
-    public event UnityAction<Force> OnStart { add => _onStart.AddListener(value); remove => _onStart.RemoveListener(value); }
-    public event UnityAction<Force, int> OnNewCurve { add => _onNewCurve.AddListener(value); remove => _onNewCurve.RemoveListener(value); }
-    public event UnityAction<Force> OnEnd { add => _onEnd.AddListener(value); remove => _onEnd.RemoveListener(value); }
+    public event Action<Force> OnStart { add => _onStart += value; remove => _onStart -= value; }
+    public event Action<Force, int> OnNewCurve { add => _onNewCurve += value; remove => _onNewCurve -= value; }
+    public event Action<Force> OnEnd { add => _onEnd += value; remove => _onEnd -= value; }
 
     #endregion
 

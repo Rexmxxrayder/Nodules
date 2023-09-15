@@ -4,14 +4,36 @@ using UnityEngine;
 
 public static class AnimationCurveExtensions {
     public static float GetDuration(this AnimationCurve curve) {
-        return curve.keys[curve.length - 1].time - curve.keys[0].time;
+        return curve.keys[^1].time - curve.keys[0].time;
     }
 
-    public static void ChangeDuration(this AnimationCurve curve, float newSize) {
-        for (int i = 0; i < curve.length; i++) {
-            curve.keys[i].time /= GetDuration(curve);
-            curve.keys[i].time *= newSize;
+    public static int GetHigherKey(this AnimationCurve curve) {
+        int higherKey = 0;
+        for (int i = 0; i < curve.keys.Length; i++) {
+            if(curve.keys[0].value < curve.keys[i].value) {
+                higherKey = i;
+            }
         }
+
+        return higherKey;
+    }
+
+    public static void ChangeDuration(this AnimationCurve curve, float newDuration) {
+        Keyframe[] keys = curve.keys;
+        for (int i = 0; i < curve.length; i++) {
+            keys[i].time /= GetDuration(curve);
+            keys[i].time *= newDuration;
+        }
+        curve.keys = keys;
+    }
+
+    public static void ChangeHeight(AnimationCurve curve, float newHeight) {
+        Keyframe[] keys = curve.keys;
+        for (int i = 0; i < curve.length; i++) {
+            keys[i].value /= GetHigherKey(curve);
+            keys[i].time *= newHeight;
+        }
+        curve.keys = keys;
     }
 }
 

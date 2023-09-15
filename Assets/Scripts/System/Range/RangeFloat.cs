@@ -1,4 +1,5 @@
 using Sloot;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,18 +8,18 @@ public class RangeFloat {
     [SerializeField] protected float _maxValue = 1f;
     [SerializeField] protected float _currentValue = 0;
 
-    UnityEvent<float> _onIncreasing = new();
-    UnityEvent<float> _onDecreasing = new();
-    UnityEvent<float> _onOverIncreased = new();
-    UnityEvent<float> _onOverDecreased = new();
+    private Action<float> _onIncreasing;
+    private Action<float> _onDecreasing;
+    private Action<float> _onOverIncreased;
+    private Action<float> _onOverDecreased;
     public float MinValue { get => _minValue; set => NewMinValue(value); }
     public float MaxValue { get => _maxValue; set => NewMaxValue(value); }
     public float CurrentValue { get => _currentValue; set => NewCurrentValue(value); }
 
-    public event UnityAction<float> OnIncreasing { add => _onIncreasing.AddListener(value); remove => _onIncreasing.RemoveListener(value); }
-    public event UnityAction<float> OnDecreasing { add => _onDecreasing.AddListener(value); remove => _onDecreasing.RemoveListener(value); }
-    public event UnityAction<float> OnOverIncreased { add => _onOverIncreased.AddListener(value); remove => _onOverIncreased.RemoveListener(value); }
-    public event UnityAction<float> OnOverDecreased { add => _onOverDecreased.AddListener(value); remove => _onOverDecreased.RemoveListener(value); }
+    public event Action<float> OnIncreasing { add => _onIncreasing += value; remove => _onIncreasing -= value; }
+    public event Action<float> OnDecreasing { add => _onDecreasing += value; remove => _onDecreasing -= value; }
+    public event Action<float> OnOverIncreased { add => _onOverIncreased += value; remove => _onOverIncreased -= value; }
+    public event Action<float> OnOverDecreased { add => _onOverDecreased += value; remove => _onOverDecreased -= value; }
 
     public RangeFloat(float minValue, float maxValue, float currentValue) { 
         MinValue = minValue;
@@ -90,9 +91,9 @@ public class RangeFloat {
     }
 
     public void ClearEvent() {
-        _onIncreasing.RemoveAllListeners();
-        _onDecreasing.RemoveAllListeners();
-        _onOverIncreased.RemoveAllListeners();
-        _onOverDecreased.RemoveAllListeners();
+        _onIncreasing = null;
+        _onDecreasing = null;
+        _onOverIncreased = null;
+        _onOverDecreased = null;
     }
 }

@@ -14,32 +14,32 @@ public class EntityCollider3D : EntityCollider<Collision, Collider> {
     #region ColliderFunctions
     private void OnCollisionEnter(Collision collision) {
         if (!isActive) { return; }
-        _onCollisionEnterDelegate.Invoke(collision);
+        _onCollisionEnterDelegate?.Invoke(collision);
     }
 
     private void OnCollisionStay(Collision collision) {
         if (!isActive) { return; }
-        _onCollisionStayDelegate.Invoke(collision);
+        _onCollisionStayDelegate?.Invoke(collision);
     }
 
     private void OnCollisionExit(Collision collision) {
         if (!isActive) { return; }
-        _onCollisionExitDelegate.Invoke(collision);
+        _onCollisionExitDelegate?.Invoke(collision);
     }
 
     private void OnTriggerEnter(Collider collider) {
         if (!isActive) { return; }
-        _onTriggerEnterDelegate.Invoke(collider);
+        _onTriggerEnterDelegate?.Invoke(collider);
     }
 
     private void OnTriggerStay(Collider collider) {
         if (!isActive) { return; }
-        _onTriggerStayDelegate.Invoke(collider);
+        _onTriggerStayDelegate?.Invoke(collider);
     }
 
     private void OnTriggerExit(Collider collider) {
         if (!isActive) { return; }
-        _onTriggerExitDelegate.Invoke(collider);
+        _onTriggerExitDelegate?.Invoke(collider);
     }
     #endregion
 }

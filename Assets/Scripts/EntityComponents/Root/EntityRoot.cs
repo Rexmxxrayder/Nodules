@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,12 +9,12 @@ public class EntityRoot : EntityComponent {
 
     private string type;
     bool died;
-    readonly UnityEvent _onDeath = new();
-    public event UnityAction OnDeath { add => _onDeath.AddListener(value); remove => _onDeath.RemoveListener(value); }
+    private Action _onDeath;
+    public event Action OnDeath { add => _onDeath += value; remove => _onDeath -= value; }
 
     delegate void DeathWay();
     DeathWay newDeathWay;
-    public event UnityAction NewDeathWay { add => newDeathWay = new(value); remove => newDeathWay = null; }
+    public event Action NewDeathWay { add => newDeathWay = new(value); remove => newDeathWay = null; }
     public string Type => type;
     public override EntityRoot SetRoot() {
         _root = this;
@@ -30,7 +31,7 @@ public class EntityRoot : EntityComponent {
 
     protected override void DefinitiveSetup() {
         newDeathWay = null;
-        _onDeath.RemoveAllListeners();
+        _onDeath = null;
     }
 
     protected override void ResetSetup() {

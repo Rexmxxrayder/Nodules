@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AShootBullet : Ability {
     public Bullet bulletprefab;
-    public Bullet currentBullet;
+    [SerializeField] private float speed;
+    [SerializeField] private float maxDistance;
     protected override void LaunchAbilityUp(EntityBrain brain) {
         Shoot(brain.Visor - GetComponentInParent<EntityBodyPart>().GetRootPosition());
     }
@@ -15,7 +16,7 @@ public class AShootBullet : Ability {
         Bullet newBullet = Instantiate(bulletprefab, transform);
         newBullet.gameObject.SetActive(false);
         newBullet.transform.position = transform.position;
-        newBullet.Fire(direction);
+        newBullet.Fire(direction, speed , maxDistance);
         StartCooldown();
     }
 }

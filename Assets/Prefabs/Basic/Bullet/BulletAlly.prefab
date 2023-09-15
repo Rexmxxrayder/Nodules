@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 9214173973557757859}
   - component: {fileID: 1923828299265363329}
   - component: {fileID: 4019213779661223591}
-  - component: {fileID: 1874418583099591476}
   - component: {fileID: 2237476703630012599}
+  - component: {fileID: 4893082008849557631}
   m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
@@ -99,23 +99,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1874418583099591476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2546010909910959508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce5853c821b1c1141af4ab915f8ceee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
-  Damaged:
-  - Enemy
-  destroyOnCollide: 1
-  destroyOnTrigger: 1
 --- !u!54 &2237476703630012599
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,6 +115,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &4893082008849557631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2546010909910959508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 523f725089d3e7843b9bfabd2a28ba28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _duration: 1
+  enterDamage: 1
+  stayDamage: 0
+  damageTick: 0
+  exitDamage: 0
+  damageables: []
+  destroyOnCollision: 1
+  destroyOnTrigger: 0
 --- !u!1 &6956140750816823575
 GameObject:
   m_ObjectHideFlags: 0

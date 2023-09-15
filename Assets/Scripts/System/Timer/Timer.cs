@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -24,25 +25,25 @@ namespace Sloot {
         public float CurrentDuration => _currentDuration;
         public bool IsLooping => _loop;
 
-        [SerializeField] UnityEvent _onActivate = new UnityEvent();
-        [SerializeField] UnityEvent _onStart = new UnityEvent();
-        [SerializeField] UnityEvent _onEndOffset = new UnityEvent();
-        [SerializeField] UnityEvent _onPause = new UnityEvent();
-        [SerializeField] UnityEvent _onContinue = new UnityEvent();
-        [SerializeField] UnityEvent _onStop = new UnityEvent();
-        [SerializeField] UnityEvent _onEnd = new UnityEvent();
-        [SerializeField] UnityEvent _onReset = new UnityEvent();
+        [SerializeField] private Action _onActivate;
+        [SerializeField] private Action _onStart;
+        [SerializeField] private Action _onEndOffset;
+        [SerializeField] private Action _onPause;
+        [SerializeField] private Action _onContinue;
+        [SerializeField] private Action _onStop;
+        [SerializeField] private Action _onEnd;
+        [SerializeField] private Action _onReset;
 
-        public event UnityAction OnActivate { add => _onActivate.AddListener(value); remove => _onActivate.RemoveListener(value); }
-        public event UnityAction OnStart { add => _onStart.AddListener(value); remove => _onStart.RemoveListener(value); }
-        public event UnityAction OnEndOffset { add => _onEndOffset.AddListener(value); remove => _onEndOffset.RemoveListener(value); }
-        public event UnityAction OnPause { add => _onPause.AddListener(value); remove => _onPause.RemoveListener(value); }
-        public event UnityAction OnContinue { add => _onContinue.AddListener(value); remove => _onContinue.RemoveListener(value); }
-        public event UnityAction OnStop { add => _onStop.AddListener(value); remove => _onStop.RemoveListener(value); }
-        public event UnityAction OnEnd { add => _onEnd.AddListener(value); remove => _onEnd.RemoveListener(value); }
-        public event UnityAction OnReset { add => _onReset.AddListener(value); remove => _onReset.RemoveListener(value); }
+        public event Action OnActivate { add => _onActivate += value; remove => _onActivate -= value; }
+        public event Action OnStart { add => _onStart += value; remove => _onStart -= value; }
+        public event Action OnEndOffset { add => _onEndOffset += value; remove => _onEndOffset -= value; }
+        public event Action OnPause { add => _onPause += value; remove => _onPause -= value; }
+        public event Action OnContinue { add => _onContinue += value; remove => _onContinue -= value; }
+        public event Action OnStop { add => _onStop += value; remove => _onStop -= value; }
+        public event Action OnEnd { add => _onEnd += value; remove => _onEnd -= value; }
+        public event Action OnReset { add => _onReset += value; remove => _onReset -= value; }
 
-        public Timer(MonoBehaviour theManager, float duration, UnityAction onActivateFunction = null, bool loop = true) {
+        public Timer(MonoBehaviour theManager, float duration, Action onActivateFunction = null, bool loop = true) {
             manager = theManager;
             _duration = duration;
             _loop = loop;
