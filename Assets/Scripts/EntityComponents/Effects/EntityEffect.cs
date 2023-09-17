@@ -4,7 +4,10 @@ using UnityEngine;
 public abstract class EntityEffect {
     public enum EffectType {
         BURN,
-        FIRE
+        FIRE,
+        CLEANSE,
+        ICE,
+        FREEZE
     }
 
     public abstract EffectType Type {
@@ -34,7 +37,6 @@ public abstract class EntityEffect {
         entityEffectManager.OnEffectRemove += EffectRemove;
         entityEffectManager.OnEffectWantAdd += EffectTryingAdd;
         entityEffectManager.OnEffectWantRemove += EffectTryingRemove;
-        return;
     }
 
     public virtual void UpdateEffect(float deltaTime) {

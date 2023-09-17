@@ -2,11 +2,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EntityBodyPart : EntityComponent {
+    public enum NoduleType {
+        UNCOLOR = 0,
+        RED = 1,
+        BLUE = 2,
+        GREEN = 3,
+        YELLOW = 4,
+        PURPLE = 5,
+        WHITE = 6
+    }
+
     [SerializeField] KeyCode keyCode;
-    [SerializeField] protected Nodule currentNodule;
+    /*[SerializeField]*/
+    protected Nodule currentNodule;
+    [SerializeField] protected NoduleType noduleType = NoduleType.UNCOLOR;
     private EntityBrain brain;
     Dictionary<int, Ability> abilities = new();
-    public bool Available => abilities[currentNodule == null ? 0 : currentNodule.Id].IsAvailable;
+    public bool Available => abilities[(int)noduleType].IsAvailable;
 
     protected Sprite sprite;
 
@@ -41,10 +53,10 @@ public class EntityBodyPart : EntityComponent {
     }
 
     public void KeyEvenement(bool isUp) {
-        if(!abilities.ContainsKey(currentNodule == null ? 0 : currentNodule.Id)) {
+        if (!abilities.ContainsKey((int)noduleType)) {
             return;
         }
 
-        abilities[currentNodule == null ? 0 : currentNodule.Id].Launch(brain, isUp);
+        abilities[(int)noduleType].Launch(brain, isUp);
     }
 }

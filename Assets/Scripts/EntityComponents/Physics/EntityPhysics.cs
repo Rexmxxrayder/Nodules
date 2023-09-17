@@ -20,6 +20,7 @@ public class EntityPhysics : EntityComponent {
     SortedDictionary<int, List<Force>> _forces = new ();
 
     public Vector3 Velocity => _velocity;
+    public Vector3 Direction => _velocity.normalized;
 
 
     private void FixedUpdate() {

@@ -42,6 +42,7 @@ public class EntityEffectManager : EntityComponent {
         foreach (var effect in effects) {
             effectsVisualise.Add($"{effect.Type} {effect.Stack}");
         }
+        Debug.Log(effectsVisualise.Count);
     }
 
     public void RemoveEffect(EntityEffect effect) {
