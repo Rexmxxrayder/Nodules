@@ -7,8 +7,7 @@ public interface IValueModifier<T>
 {
     public int Priority { get; }
 
-    public abstract T Modify(T value);
-
+    public abstract T Modify(T value, string type);
 }
 
 public interface IHealthModifier : IValueModifier<int> {

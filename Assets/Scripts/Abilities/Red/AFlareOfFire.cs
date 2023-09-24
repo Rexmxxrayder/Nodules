@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class AFlareOfFire : Ability
-{
+public class AFlareOfFire : Ability {
     [Header("FirstDash")]
     [SerializeField] private float firstDashSpeed;
     [SerializeField] private float firstDashDist;
@@ -17,12 +16,12 @@ public class AFlareOfFire : Ability
     [SerializeField] private float maxWaitBeforeSecondDash;
 
     private bool isDashing = false;
-    private bool secondDashing;
+    private bool secondDashing = true;
     private Force dashForce;
     private EntityMainCollider3D mainCollider;
     InvulnerabilityModifier modifier;
     protected override void LaunchAbilityUp(EntityBrain brain) {
-        if(isDashing) {
+        if (isDashing) {
             return;
         }
 
@@ -38,7 +37,7 @@ public class AFlareOfFire : Ability
         isDashing = true;
         dashForce = Force.Const(goToPosition - startPosition, firstDashSpeed, firstDashDist / firstDashSpeed);
         dashForce.OnEnd += (_) => EndDash();
-        
+
         mainCollider.GetRoot().GetComponentInChildren<Collider>().isTrigger = true;
         mainCollider.OnTriggerEnterDelegate += FireBodyDamage;
         modifier = new InvulnerabilityModifier();
@@ -51,23 +50,35 @@ public class AFlareOfFire : Ability
         modifier = null;
         mainCollider.GetRoot().GetComponentInChildren<Collider>().isTrigger = false;
         mainCollider.OnTriggerEnterDelegate -= FireBodyDamage;
-        if(!secondDashing) {
+        if (!secondDashing) {
             StartCoroutine(SecondDashWait());
         } else {
             StartCooldown();
         }
+
         isDashing = false;
     }
 
     private void FireBodyDamage(Collider collider) {
         if (collider.gameObject.GetRoot().CompareTag("Enemy")) {
-            collider.gameObject.RootGet<EntityHealth>().RemoveHealth(!secondDashing? firstDashDamage : secondDashDamage);
+            collider.gameObject.RootGet<EntityHealth>().RemoveHealth(!secondDashing ? firstDashDamage : secondDashDamage);
         }
     }
 
     private IEnumerator SecondDashWait() {
         yield return new WaitForSeconds(maxWaitBeforeSecondDash);
         if (!secondDashing) {
+            StartCooldown();
+            secondDashing = true;
+        }
+    }
+
+    public override void Cancel() {
+        StopAllCoroutines();
+        if (isDashing) {
+            secondDashing = true;
+            EndDash();
+        } else if (!secondDashing) {
             StartCooldown();
             secondDashing = true;
         }

@@ -18,4 +18,8 @@ public class AFistPunch : Ability {
         fist.GetComponentInChildren<Animator>().SetFloat("FistSpeed", 0);
         fist.gameObject.SetActive(false);
     }
+
+    public override void Cancel() {
+        EndAnim();
+    }
 }

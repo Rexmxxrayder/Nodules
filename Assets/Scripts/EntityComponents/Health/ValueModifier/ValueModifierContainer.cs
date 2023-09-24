@@ -21,15 +21,14 @@ public class ValueModifierContainer<T, U> where T : IValueModifier<U> {
         return -first.Priority.CompareTo(second.Priority);
     }
 
-    public static implicit operator Func<U, U>(ValueModifierContainer<T,U> vmc) {
-        return new Func<U, U>((U arg) => vmc.Modify(arg));
+    public static implicit operator Func<U, string, U>(ValueModifierContainer<T, U> vmc) {
+        return new Func<U, string, U>((U arg, string argTwo) => vmc.Modify(arg, argTwo));
     }
 
-    public U Modify(U value) {
+    public U Modify(U value, string type) {
         for (int i = 0; i < valueModifiers.Count; i++) {
-            value = valueModifiers[i].Modify(value);
+            value = valueModifiers[i].Modify(value, type);
         }
         return value;
     }
-
 }

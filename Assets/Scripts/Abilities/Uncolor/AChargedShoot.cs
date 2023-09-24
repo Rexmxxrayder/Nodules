@@ -48,5 +48,13 @@ public class AChargedShoot : Ability {
         slider.gameObject.SetActive(false);
         currentBullet.GetComponentInChildren<AreaDamage3D>().enterDamage = (int)Mathf.Lerp(damage.x, damage.y, Mathf.InverseLerp(0, maxCharge, time));
         currentBullet.transform.localScale = Vector3.one * Mathf.Lerp(size.x, size.y, Mathf.InverseLerp(0, maxCharge, time)); ;
+        currentBullet = null;
+    }
+    public override void Cancel() {
+        if(currentBullet != null) {
+            Destroy(currentBullet);
+        }
+
+        StopAllCoroutines();
     }
 }

@@ -31,4 +31,12 @@ public class AIcicleCanon : Ability {
         StartCooldown();
         coroutine = null;
     }
+
+    public override void Cancel() {
+        if(coroutine != null) {
+            StopCoroutine(coroutine);
+            coroutine = null;
+            StartCooldown();
+        }
+    }
 }

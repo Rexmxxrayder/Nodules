@@ -8,6 +8,18 @@ public class BomberBrain : EntityBrain {
     float timerBeforeExplode = 0;
     EntityBodyPart bodyPart;
 
+    protected override void LoadSetup() {
+        base.LoadSetup();
+        gameObject.GetRoot().OnDeath += Explode;
+        RootGet<EntityCollider3D>().OnCollisionEnterDelegate += DieOnCollision;
+        selected = PlayerBrain.Transform;
+        bodyPart = RootGet<EntityBodyPart>();
+        bodyPart.KeyEvenement(true);
+        OnCanActAgain += () => {
+            bodyPart.KeyEvenement(true);
+        };
+    }
+
     void Update() {
         Debug.DrawLine(transform.position, visor, Color.red);
 
@@ -28,12 +40,4 @@ public class BomberBrain : EntityBrain {
         explosion.gameObject.SetActive(true);
     }
 
-    protected override void LoadSetup() {
-        base.LoadSetup();
-        gameObject.GetRoot().OnDeath += Explode;
-        RootGet<EntityCollider3D>().OnCollisionEnterDelegate += DieOnCollision;
-        selected = PlayerBrain.Transform;
-        bodyPart = RootGet<EntityBodyPart>();
-        bodyPart.KeyEvenement(true);
-    }
 }

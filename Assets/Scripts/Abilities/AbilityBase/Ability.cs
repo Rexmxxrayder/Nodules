@@ -38,7 +38,7 @@ public abstract class Ability : MonoBehaviour {
         }
     }
 
-    protected void StartCooldown() {
+    public void StartCooldown() {
         StartCoroutine(CooldownManager());
     }
 
@@ -54,4 +54,9 @@ public abstract class Ability : MonoBehaviour {
     }
     protected virtual void LaunchAbilityUp(EntityBrain brain) { }
     protected virtual void LaunchAbilityDown(EntityBrain brain) { }
+
+    public virtual void Cancel() {
+        StopAllCoroutines();
+        StartCooldown();
+    }
 }

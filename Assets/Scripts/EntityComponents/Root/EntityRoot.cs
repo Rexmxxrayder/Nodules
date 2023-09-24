@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class EntityRoot : EntityComponent {
-
     private string type;
     bool died;
     private Action _onDeath;

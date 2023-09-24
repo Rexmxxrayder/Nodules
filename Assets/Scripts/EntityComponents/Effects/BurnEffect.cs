@@ -7,6 +7,8 @@ public class BurnEffect : EntityEffect {
 
     public override int MaxStack => 1;
 
+    public override float StartDuration => 6f;
+
     private const float TICKBURN = 1f;
     private const int damageEveryTick = 1;
     private float lastTick = 0f;
@@ -20,7 +22,7 @@ public class BurnEffect : EntityEffect {
     public override void UpdateEffect(float deltaTime) {
         lastTick += deltaTime;
         if (lastTick / TICKBURN >= 1f) {
-            entityHealth.RemoveHealth(damageEveryTick);
+            entityHealth.RemoveHealth(damageEveryTick, "Burn");
             lastTick %= TICKBURN;
         }
 

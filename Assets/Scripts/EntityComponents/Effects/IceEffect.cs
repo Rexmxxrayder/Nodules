@@ -7,6 +7,8 @@ public class IceEffect : EntityEffect {
 
     public override int MaxStack => 5;
 
+    public override float StartDuration => 5f;
+
     public override void SetupEffect(EntityEffectManager effectManager) {
         base.SetupEffect(effectManager);
         duration = 10f;
@@ -23,25 +25,13 @@ public class IceEffect : EntityEffect {
         }
     }
 
-    public void AddStack(int stackNumber) {
-        stackNumber = Mathf.Clamp(stackNumber, 0, MaxStack);
-        stack += stackNumber;
-        if (stack > MaxStack) {
-            stack = MaxStack;
-        }
+    public override void AddStack(int stackNumber) {
+        base.AddStack(stackNumber);
 
         if (stack == MaxStack) {
-            IceEffect burn = new();
-            entityEffectManager.AddEffect(burn);
+            FreezeEffect freezeEffect = new();
+            entityEffectManager.AddEffect(freezeEffect);
             EndEffect();
-        }
-    }
-
-    public void RemoveStack(int stackNumber) {
-        stackNumber = Mathf.Clamp(stackNumber, 0, MaxStack);
-        stack += stackNumber;
-        if (stack <= 0) {
-            stack = MaxStack;
         }
     }
 }

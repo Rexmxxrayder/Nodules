@@ -113,14 +113,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 1
-  enterDamage: 1
+  enterDamage: 20
   stayDamage: 0
-  damageTick: 0
+  damageTick: 1
   exitDamage: 0
+  damageType: SnapExplosion
   damageables:
   - Enemy
   destroyOnCollision: 0
   destroyOnTrigger: 0
+  entitiesInsideVisual: []
 --- !u!114 &8268432073648354496
 MonoBehaviour:
   m_ObjectHideFlags: 0

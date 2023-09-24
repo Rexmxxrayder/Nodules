@@ -15,7 +15,7 @@ public class CouardBrain : EntityBrain {
             target = FindObjectOfType<PlayerBrain>().transform;
         }
         newDirection = new Timer(this, timeNewDirection, NewDirection);
-        RootGet<EntityHealth>().OnDamaged += (x) => AwakeCouard();
+        RootGet<EntityHealth>().OnDamaged += (_,_) => AwakeCouard();
     }
 
 

@@ -13,6 +13,7 @@ public class AreaDamage3D : EntityBasic {
     [SerializeField] public int stayDamage;
     [SerializeField] public float damageTick = 1f;
     [SerializeField] public int exitDamage;
+    [SerializeField] public string damageType = "";
     [Header("Damageables")]
     [SerializeField] List<string> damageables = new();
     [Header("Destroy")]
@@ -43,8 +44,10 @@ public class AreaDamage3D : EntityBasic {
         if (health != null && !entitiesInside.ContainsKey(health) && damageables.Contains(health.GetRoot().tag)) {
             entitiesInside.Add(health, 0f);
             if (enterDamage != 0) {
-                health.RemoveHealth(enterDamage);
+                health.RemoveHealth(enterDamage, damageType);
             }
+
+            health.GetRoot().OnDeath += () => entitiesInside.Remove(health);
             onEnter?.Invoke(health);
         }
 
@@ -67,8 +70,8 @@ public class AreaDamage3D : EntityBasic {
         }
 
         entitiesInside.Remove(health);
-        if (enterDamage != 0) {
-            health.RemoveHealth(exitDamage);
+        if (exitDamage != 0) {
+            health.RemoveHealth(exitDamage, damageType);
         }
 
         onExit?.Invoke(health);
@@ -80,7 +83,7 @@ public class AreaDamage3D : EntityBasic {
                 float time = health.Value;
                 time += Time.fixedDeltaTime;
                 if (time >= damageTick) {
-                    health.Key.RemoveHealth(stayDamage);
+                    health.Key.RemoveHealth(stayDamage, damageType);
                     time -= damageTick;
                     onStayDamage?.Invoke(health.Key);
                 }
@@ -90,9 +93,15 @@ public class AreaDamage3D : EntityBasic {
         }
 
         entitiesInsideVisual.Clear();
-        entitiesInsideVisual.AddRange(entitiesInside.Keys.Select(item => item.name).ToList());
+        entitiesInsideVisual.AddRange(entitiesInside.Keys.Where(item => item != null).Select(item => item.name).ToList());
     }
 
+    protected override void ResetSetup() {
+        base.ResetSetup();
+        if(RootGet<EntityMainCollider3D>() == null) { 
+            GetRoot().AddComponent<EntityMainCollider3D>();
+        }
+    }
 
     protected override void LoadSetup() {
         base.LoadSetup();

@@ -39,4 +39,8 @@ public class AFollow : Ability {
         ep.Remove(FollowForce);
         StopAllCoroutines();
     }
+
+    public override void Cancel() {
+        StopFollow();
+    }
 }

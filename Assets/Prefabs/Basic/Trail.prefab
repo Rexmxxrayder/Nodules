@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4757295347677669026}
   - component: {fileID: 3469126957920281997}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60aebbfc846a9064dac57ed3ccb8eb93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 4
+  _duration: 60
 --- !u!1 &6907783391777848023
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +57,8 @@ GameObject:
   - component: {fileID: 3878666802227802018}
   - component: {fileID: 355943939989464913}
   - component: {fileID: 1145429697221744518}
-  m_Layer: 0
+  - component: {fileID: 4322009987673597565}
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,3 +130,16 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6907783391777848023}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &4322009987673597565
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907783391777848023}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
+  m_Center: {x: 0, y: 0, z: 0}

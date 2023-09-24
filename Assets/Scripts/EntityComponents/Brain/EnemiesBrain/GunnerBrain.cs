@@ -12,7 +12,7 @@ public class GunnerBrain : EntityBrain {
 
     private void Update() {
         visor = selected.transform.position;
-        if (shoot.Available) {
+        if (shoot.Available && CanAct) {
             shoot.KeyEvenement(true);
         }
     }

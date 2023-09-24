@@ -31,6 +31,11 @@ public class EntityBodyPart : EntityComponent {
             abilities.Add(i, transform.GetChild(i).GetComponent<Ability>());
         }
     }
+
+    protected override void LoadSetup() {
+        RootGet<EntityBrain>().OnCannotAct += CancelAbility;
+    }
+
     public void AssignBrain(EntityBrain newBrain) {
         brain = newBrain;
     }
@@ -58,5 +63,9 @@ public class EntityBodyPart : EntityComponent {
         }
 
         abilities[(int)noduleType].Launch(brain, isUp);
+    }
+
+    public void CancelAbility() {
+        abilities[(int)noduleType].Cancel();
     }
 }

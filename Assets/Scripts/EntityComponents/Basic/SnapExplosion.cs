@@ -5,16 +5,17 @@ using UnityEngine;
 public class SnapExplosion : AreaDamage3D {
 
     protected override void ResetSetup() {
-        OnEnter += ApplyFire;
+        OnEnter += ApplyEffect;
     }
 
-    private void ApplyFire(EntityHealth health) {
+    private void ApplyEffect(EntityHealth health) {
         EntityEffectManager effectManager = health.RootGet<EntityEffectManager>();
         if (effectManager != null) {
             FireEffect fireEffect = new();
             fireEffect.AddStack(1);
-            fireEffect.Duration = 6;
             effectManager.AddEffect(fireEffect);
+            FocusEffect focusEffect = new();
+            effectManager.AddEffect(focusEffect);
         }
     }
 }

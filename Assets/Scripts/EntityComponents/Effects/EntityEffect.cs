@@ -7,7 +7,8 @@ public abstract class EntityEffect {
         FIRE,
         CLEANSE,
         ICE,
-        FREEZE
+        FREEZE,
+        FOCUS
     }
 
     public abstract EffectType Type {
@@ -24,6 +25,10 @@ public abstract class EntityEffect {
     public abstract int MaxStack {
         get;
     }
+    public abstract float StartDuration {
+        get;
+    }
+
     public int Stack => stack;
     public float Duration { get => duration; set => duration = value; }
     public float ElapsedTime => elapsedTime;
@@ -32,6 +37,7 @@ public abstract class EntityEffect {
     public bool Negate { get => negate; set => negate = value; }
 
     public virtual void SetupEffect(EntityEffectManager effectManager) {
+        duration = StartDuration;
         entityEffectManager = effectManager;
         entityEffectManager.OnEffectAdd += EffectAdd;
         entityEffectManager.OnEffectRemove += EffectRemove;
@@ -69,6 +75,11 @@ public abstract class EntityEffect {
         if (newEffect == this) {
             return;
         }
+
+        if (newEffect.GetType() == GetType()) {
+            AddStack(newEffect.Stack);
+            newEffect.Negate = true;
+        }
     }
 
     protected virtual void EffectRemove(EntityEffect effect) {
@@ -80,6 +91,22 @@ public abstract class EntityEffect {
     protected virtual void EffectTryingRemove(EntityEffect newEffect) {
         if (newEffect == this) {
             return;
+        }
+    }
+
+    public virtual void AddStack(int stackNumber) {
+        stackNumber = Mathf.Clamp(stackNumber, 0, MaxStack);
+        stack += stackNumber;
+        if (stack > MaxStack) {
+            stack = MaxStack;
+        }
+    }
+
+    public virtual void RemoveStack(int stackNumber) {
+        stackNumber = Mathf.Clamp(stackNumber, 0, MaxStack);
+        stack += stackNumber;
+        if (stack <= 0) {
+            stack = MaxStack;
         }
     }
 }

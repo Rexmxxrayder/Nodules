@@ -7,10 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 782703459682769208, guid: 414798416f396de4cb4565d0a31d6832, type: 3}
+      propertyPath: _rb
+      value: 
+      objectReference: {fileID: 4321083697209336226}
     - target: {fileID: 1923828299265363329, guid: 414798416f396de4cb4565d0a31d6832, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d5722aa3048213d4fb845e3d7f354228, type: 2}
+    - target: {fileID: 2546010909910959508, guid: 414798416f396de4cb4565d0a31d6832, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5588603144485917908, guid: 414798416f396de4cb4565d0a31d6832, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -59,5 +67,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BulletEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6956140750816823575, guid: 414798416f396de4cb4565d0a31d6832, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 414798416f396de4cb4565d0a31d6832, type: 3}
+--- !u!54 &4321083697209336226 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 2018813534120082417, guid: 414798416f396de4cb4565d0a31d6832, type: 3}
+  m_PrefabInstance: {fileID: 2878880483874085459}
+  m_PrefabAsset: {fileID: 0}

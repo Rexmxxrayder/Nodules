@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FreezeEffect : EntityEffect
-{
-    public override EffectType Type => EffectType.ICE;
+public class FreezeEffect : EntityEffect {
+    public override EffectType Type => EffectType.FREEZE;
 
     public override int MaxStack => 1;
 
-    private const float freezeDuration = 1f;
+    public override float StartDuration => 2f;
+
+    private EntityPhysics ep;
+    private Force freezeForce;
+    private EntityBrain eb;
 
     protected override void EffectTryingAdd(EntityEffect newEffect) {
         if (newEffect == this) {
@@ -22,7 +25,21 @@ public class FreezeEffect : EntityEffect
 
     public override void SetupEffect(EntityEffectManager effectManager) {
         base.SetupEffect(effectManager);
-        EntityPhysics ep = effectManager.RootGet<EntityPhysics>();
-        ep.Add(Force.Const(Vector3.zero, 1, freezeDuration), EntityPhysics.PhysicPriority.BLOCK);
+        ep = effectManager.RootGet<EntityPhysics>();
+        eb = effectManager.RootGet<EntityBrain>();
+        freezeForce = Force.Const(Vector3.zero, 1, StartDuration);
+        ep.Add(freezeForce, EntityPhysics.PhysicPriority.BLOCK);
+        if (eb != null) {
+            eb.CanAct = false;
+        }
+    }
+
+    public override void EndEffect() {
+        base.EndEffect();
+        if (eb != null) {
+            eb.CanAct = true;
+        }
+
+        ep.Remove(freezeForce);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AIceTrail : Ability {
+    [SerializeField] private Transform parent;
     [SerializeField] private EntityRoot prefab;
     [SerializeField] private float duration;
     [SerializeField] private float trailSize;
@@ -13,19 +14,19 @@ public class AIceTrail : Ability {
     }
 
     private void Spawn(Vector3 position) {
-        EntityRoot newInstance = Instantiate(prefab);
+        EntityRoot newInstance = Instantiate(prefab, parent);
         newInstance.transform.localScale = Vector3.one * trailSize;
         newInstance.Spawn(position);
     }
 
     private IEnumerator IceTrail() {
-       // gameObject.RootGet<EntityEffectManager>().AddEffect(new CleanseEffect());
+        gameObject.RootGet<EntityEffectManager>().AddEffect(new CleanseEffect());
         float timer = 0f;
         float tick = 0f;
         while (timer < duration) {
             timer += Time.deltaTime;
             tick += Time.deltaTime;
-            if(tick >= spawnTick) {
+            if (tick >= spawnTick) {
                 tick -= spawnTick;
                 Spawn(gameObject.GetRootPosition());
             }
@@ -35,5 +36,9 @@ public class AIceTrail : Ability {
 
         StartCooldown();
         coroutine = null;
+    }
+
+    public override void Cancel() {
+        StopAllCoroutines();
     }
 }

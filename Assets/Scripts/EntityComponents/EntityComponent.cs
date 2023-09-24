@@ -90,7 +90,6 @@ public abstract class EntityComponent : MonoBehaviour, IEntity, IReset {
     }
 }
 public static class ExtensionEntityComponent {
-
     public static EntityRoot GetRoot(this GameObject gO) {
         if (gO.GetComponentInParent<EntityRoot>(true) == null) {
             return null;

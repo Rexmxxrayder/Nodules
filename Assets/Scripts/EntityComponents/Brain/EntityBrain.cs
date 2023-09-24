@@ -1,4 +1,5 @@
 using Sloot;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,11 +9,27 @@ using UnityEngine.Events;
 public abstract class EntityBrain : EntityComponent {
     [SerializeField] protected Vector3 visor;
     [SerializeField] protected Transform selected;
+    private Token actionsBlocked = new();
 
     #region Properties
     public Vector3 Visor { get { return visor; } }
     public Transform Selected { get { return selected; } }
+    public bool CanAct {
+        get => actionsBlocked.Current == 0; 
+        set {
+            if (value) {
+                actionsBlocked.RemoveToken();
+            } else {
+                actionsBlocked.AddToken();
+            }
+        }
+    }
     #endregion
+
+    private Action onCanActAgain;
+    private Action onCannotAct;
+    public event Action OnCanActAgain { add { onCanActAgain += value; } remove { onCanActAgain -= value; } }
+    public event Action OnCannotAct { add { onCannotAct += value; } remove { onCannotAct -= value; } }
 
     public override EntityRoot SetRoot() {
         if (_root == null) {
@@ -24,6 +41,11 @@ public abstract class EntityBrain : EntityComponent {
         }
 
         return _root;
+    }
+
+    protected override void DefinitiveSetup() {
+        actionsBlocked.OnZeroToken += () => onCanActAgain?.Invoke();
+        actionsBlocked.OnNotZeroToken += () => onCannotAct?.Invoke();
     }
 
     protected override void LoadSetup() {
