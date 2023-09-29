@@ -17,6 +17,10 @@ public abstract class EntityComponent : MonoBehaviour, IEntity, IReset {
         InstanceLoad();
     }
 
+    private void OnDestroy() {
+        DestroySetup();
+    }
+
     protected virtual void DefinitiveSetup() { }
 
     protected virtual void ResetSetup() { }

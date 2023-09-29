@@ -9,7 +9,7 @@ public class FocusEffect : EntityEffect {
 
     public override int MaxStack => 1;
 
-    public override float StartDuration => 5f;
+    public override float StartDuration => 20f;
 
     EntityHealthModfier ehm;
     IHealthModifier modifier;

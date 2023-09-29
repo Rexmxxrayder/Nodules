@@ -24,4 +24,8 @@ public class EasyFunction : MonoBehaviour {
     public void EndAnim() {
         GetComponentInParent<AFistPunch>().EndAnim();
     }
+
+    public void EndDemonicAnim() {
+        GetComponentInParent<DemonicMark>().EndAnim();
+    }
 }
