@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stack: 2
+  onlyOneHit: 0
 --- !u!54 &257435074
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -365,6 +366,10 @@ PrefabInstance:
       propertyPath: stack
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 410311203, guid: 73c251fa7e98d3840b383fb663dd260a, type: 3}
+      propertyPath: onlyOneHit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1439564032, guid: 73c251fa7e98d3840b383fb663dd260a, type: 3}
       propertyPath: parent
       value: 
@@ -387,7 +392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6985750988454467402, guid: 73c251fa7e98d3840b383fb663dd260a, type: 3}
       propertyPath: noduleType
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8365285019979176274, guid: 73c251fa7e98d3840b383fb663dd260a, type: 3}
       propertyPath: m_Name
@@ -1445,6 +1450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stack: 2
+  onlyOneHit: 0
 --- !u!54 &1360805705
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1832,6 +1838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stack: 2
+  onlyOneHit: 0
 --- !u!54 &1500400107
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2023,6 +2030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stack: 1
+  onlyOneHit: 0
 --- !u!1 &1583711799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2653,7 +2661,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7123353712698309678, guid: db271f7f5b46495468809a14e16b0832, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: db271f7f5b46495468809a14e16b0832, type: 3}
 --- !u!1 &2054560083 stripped
 GameObject:

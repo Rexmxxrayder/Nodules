@@ -18,7 +18,7 @@ public class FreezeEffect : EntityEffect {
             return;
         }
 
-        if (newEffect.GetType() == typeof(FreezeEffect)) {
+        if (newEffect.GetType() == typeof(FreezeEffect) || newEffect.GetType() == typeof(IceEffect)) {
             newEffect.Negate = true;
         }
     }
