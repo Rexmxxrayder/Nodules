@@ -34,7 +34,7 @@ namespace Sloot {
                     final += kvp.Value * Regex.Matches(axis, kvp.Key).Count;
             }
             if (final == Vector3.zero) {
-                Debug.LogError("Unrecognized vector\n" + "Vector3.forward Used");
+                Debug.LogError("Unrecognized vector\n" + "Vector3.forward InUse");
                 final = Vector3.forward;
             }
             return final.normalized;

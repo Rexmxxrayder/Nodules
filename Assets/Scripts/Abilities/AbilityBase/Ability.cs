@@ -9,7 +9,9 @@ public abstract class Ability : MonoBehaviour {
 
     public float Cooldown = 1f;
     [HideInInspector] public float TimeRemainingCooldown = 0f;
+    [HideInInspector] public bool inUse = false;
     public bool IsAvailable => TimeRemainingCooldown == 0f;
+    public bool InUse => inUse;
     private Action _onAvailable;
     public event Action OnAvailable { add => _onAvailable += value; remove => _onAvailable -= value; }
     protected List<Ability> abilities = new ();
@@ -29,7 +31,7 @@ public abstract class Ability : MonoBehaviour {
         }
     }
 
-    protected void Awake() {
+    protected virtual void Awake() {
         for (int i = 0; i < transform.childCount; i++) {
             Ability childAbility = transform.GetChild(i).GetComponent<Ability>();
             if (childAbility != null) {
@@ -43,6 +45,7 @@ public abstract class Ability : MonoBehaviour {
     }
 
     private IEnumerator CooldownManager() {
+        inUse = false;
         TimeRemainingCooldown = Cooldown;
         while (TimeRemainingCooldown > 0f) {
             yield return null;
