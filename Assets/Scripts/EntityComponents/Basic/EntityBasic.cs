@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 public class EntityBasic : EntityRoot {
-    [SerializeField] float _duration = 1;
+    [SerializeField] private float _duration = 1;
     public float Duration { get { return _duration; } set { _duration = value; } }
     protected override void LoadSetup() {
         StartCoroutine(LifeCooldown());

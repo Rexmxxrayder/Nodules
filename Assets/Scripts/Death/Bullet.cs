@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : AreaDamage3D {
-    public float Speed;
-    public float distanceLife = -1;
+    [SerializeField] private float speed;
+    [SerializeField] private float distanceLife = -1;
     private bool shoot;
 
     protected override void ResetSetup() {
@@ -19,12 +19,12 @@ public class Bullet : AreaDamage3D {
         }
         shoot = true;
         gameObject.SetActive(true);
-        RootGet<EntityPhysics>().Add(Force.Const(direction.normalized, Speed, 100), EntityPhysics.PhysicPriority.PROJECTION);
+        RootGet<EntityPhysics>().Add(Force.Const(direction.normalized, speed, Duration), EntityPhysics.PhysicPriority.PROJECTION);
         StartCoroutine(DistanceLifeReach());
     }
 
     public void Fire(Vector3 direction, float speed) {
-        Speed = speed;
+        this.speed = speed;
         Fire(direction);
     }
 
@@ -40,7 +40,7 @@ public class Bullet : AreaDamage3D {
 
         float distance = 0;
         while (distance < distanceLife) {
-            distance += Time.deltaTime * Speed;
+            distance += Time.deltaTime * speed;
             yield return null;
         }
 

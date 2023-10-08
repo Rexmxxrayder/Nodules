@@ -3,12 +3,15 @@ using UnityEngine;
 [System.Serializable]
 public abstract class EntityEffect {
     public enum EffectType {
+        ICE,
         BURN,
         FIRE,
         CLEANSE,
-        ICE,
         FREEZE,
-        FOCUS
+        FOCUS,
+        INSANITY,
+        MADNESS,
+        EMERALD
     }
 
     public abstract EffectType Type {
@@ -76,7 +79,7 @@ public abstract class EntityEffect {
             return;
         }
 
-        if (newEffect.GetType() == GetType()) {
+        if (newEffect.Type == Type) {
             AddStack(newEffect.Stack);
             newEffect.Negate = true;
         }

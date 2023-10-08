@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 834918300}
   - component: {fileID: 834918299}
   - component: {fileID: 834918298}
+  - component: {fileID: 7281537888145910528}
   m_Layer: 6
   m_Name: Fist
   m_TagString: Untagged
@@ -205,6 +206,21 @@ MonoBehaviour:
   destroyOnCollision: 0
   destroyOnTrigger: 0
   entitiesInsideVisual: []
+--- !u!114 &7281537888145910528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834918296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67e4d5d2838eac40b5ba00443f639c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectType: 6
+  stack: 1
+  onlyOneHit: 1
 --- !u!1 &2077691383
 GameObject:
   m_ObjectHideFlags: 0
