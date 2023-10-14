@@ -1,17 +1,18 @@
+using System;
 using UnityEngine;
 
 [System.Serializable]
 public abstract class EntityEffect {
     public enum EffectType {
         ICE,
-        BURN,
-        FIRE,
+        POWDER,
         CLEANSE,
         FREEZE,
         FOCUS,
+        EMERALD,
         INSANITY,
         MADNESS,
-        EMERALD
+        NONE
     }
 
     public abstract EffectType Type {
@@ -19,7 +20,7 @@ public abstract class EntityEffect {
     }
 
     protected EntityEffectManager entityEffectManager;
-    protected float duration = 0;
+    protected float Currentduration = - 1;
     protected float elapsedTime = 0;
     protected bool end = false;
     protected bool cancel = false;
@@ -28,19 +29,24 @@ public abstract class EntityEffect {
     public abstract int MaxStack {
         get;
     }
-    public abstract float StartDuration {
+    public abstract float OfficialDuration {
         get;
     }
 
     public int Stack => stack;
-    public float Duration { get => duration; set => duration = value; }
+    public float CurrentDuration { get => Currentduration; set => Currentduration = value; }
     public float ElapsedTime => elapsedTime;
-    public float TimeRemaining => duration - elapsedTime;
-    public bool IsEnd => end || cancel;
+    public float TimeRemaining => Currentduration - elapsedTime;
+    public bool IsEnd => end;
     public bool Negate { get => negate; set => negate = value; }
 
+    private Action<EntityEffect> onEndEffect;
+    public event Action<EntityEffect> OnEndEffect { add { onEndEffect += value; } remove { onEndEffect -= value; } }
+
     public virtual void SetupEffect(EntityEffectManager effectManager) {
-        duration = StartDuration;
+        if (Currentduration == -1) {
+            Currentduration = OfficialDuration;
+        }
         entityEffectManager = effectManager;
         entityEffectManager.OnEffectAdd += EffectAdd;
         entityEffectManager.OnEffectRemove += EffectRemove;
@@ -50,20 +56,30 @@ public abstract class EntityEffect {
 
     public virtual void UpdateEffect(float deltaTime) {
         elapsedTime += deltaTime;
-        if (elapsedTime >= duration) {
+        if (elapsedTime >= Currentduration) {
             EndEffect();
         }
     }
 
-    public virtual void EndEffect() {
+    public virtual bool EndEffect() {
+        if (end) {
+            return false;
+        }
+
         end = true;
         entityEffectManager.OnEffectAdd -= EffectAdd;
         entityEffectManager.OnEffectRemove -= EffectRemove;
         entityEffectManager.OnEffectWantAdd -= EffectTryingAdd;
         entityEffectManager.OnEffectWantRemove -= EffectTryingRemove;
+        onEndEffect?.Invoke(this);
+        return !cancel;
     }
 
     public virtual void CancelEffect() {
+        if(cancel) {
+            return;
+        }
+
         cancel = true;
         EndEffect();
     }

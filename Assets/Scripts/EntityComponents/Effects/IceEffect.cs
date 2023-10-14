@@ -7,11 +7,11 @@ public class IceEffect : EntityEffect {
 
     public override int MaxStack => 5;
 
-    public override float StartDuration => 5f;
+    public override float OfficialDuration => 5f;
 
     public override void SetupEffect(EntityEffectManager effectManager) {
         base.SetupEffect(effectManager);
-        duration = 10f;
+        Currentduration = 10f;
     }
 
     protected override void EffectTryingAdd(EntityEffect newEffect) {

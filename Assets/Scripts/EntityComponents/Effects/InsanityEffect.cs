@@ -8,7 +8,7 @@ public class InsanityEffect : EntityEffect
 
     public override int MaxStack => 5;
 
-    public override float StartDuration => 9999;
+    public override float OfficialDuration => 9999;
 
     protected override void EffectTryingAdd(EntityEffect newEffect) {
 
@@ -17,9 +17,8 @@ public class InsanityEffect : EntityEffect
                 AddStack(newEffect.Stack);
                 newEffect.Negate = true;
                 break;
-            case EffectType.BURN:
-            case EffectType.FIRE:
             case EffectType.ICE:
+            case EffectType.POWDER:
             case EffectType.FREEZE:
                 MadnessEffect madness = new ();
                 madness.AddStack(Stack - 1);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using static EntityEffect;
 
 public class EntityEffectManager : EntityComponent {
     [SerializeField] private List<string> effectsVisualise = new();
@@ -25,33 +26,75 @@ public class EntityEffectManager : EntityComponent {
         }
 
         effects.Add(effect);
+        effect.OnEndEffect += OnEndEffect;
         effect.SetupEffect(this);
         onEffectAdd?.Invoke(effect);
     }
 
     public void FixedUpdate() {
-        for (int i = 0; i < effects.Count; i++) {
+        List<EntityEffect> temporaryEffects = effects;
+        for (int i = 0; i < temporaryEffects.Count; i++) {
             effects[i].UpdateEffect(Time.fixedDeltaTime);
-            if(effects[i].IsEnd) {
-                RemoveEffect(effects[i]);
-                i--;
-            }
         }
 
         effectsVisualise.Clear();
         foreach (var effect in effects) {
-            effectsVisualise.Add($"{effect.Type} {effect.Stack}");
+            effectsVisualise.Add($"{effect.Type} {effect.Stack} {effect.TimeRemaining} {effect.CurrentDuration}");
         }
+    }
+    
+
+    private void OnEndEffect(EntityEffect effect) {
+        effects.Remove(effect);
+        onEffectRemove?.Invoke(effect);
     }
 
     public void RemoveEffect(EntityEffect effect) {
+        if (effect.Negate) {
+            return;
+        }
+
         effect.Negate = true;
         onEffectWantRemove?.Invoke(effect);
         if (!effect.Negate) {
             return;
         }
 
-        effects.Remove(effect);
-        onEffectRemove?.Invoke(effect);
+        effect.CancelEffect();
+    }
+
+
+    public void RemoveEffect(EffectType type) {
+        EntityEffect entityEffect = null;
+        foreach(var effect in effects) {
+            if(effect.Type == type) {
+                entityEffect = effect;
+                break;
+            }
+        }
+
+        if (entityEffect != null) {
+            RemoveEffect(entityEffect);
+        }
+    }
+
+    public bool Contains(EffectType type) {
+        foreach (var effect in effects) {
+            if (effect.Type == type) {
+               return true;
+            }
+        }
+
+        return false;
+    }
+
+    public EntityEffect Get(EffectType type) {
+        foreach (var effect in effects) {
+            if (effect.Type == type) {
+                return effect;
+            }
+        }
+
+        return null;
     }
 }

@@ -40,12 +40,6 @@ public class EffectApply : MonoBehaviour {
     private void AddEffect(EntityEffectManager eem) {
         EntityEffect effect;
         switch (effectType) {
-            case EffectType.BURN:
-                effect = new BurnEffect();
-                break;
-            case EffectType.FIRE:
-                effect = new FireEffect();
-                break;
             case EffectType.CLEANSE:
                 effect = new CleanseEffect();
                 break;
@@ -63,6 +57,9 @@ public class EffectApply : MonoBehaviour {
                 break;
             case EffectType.MADNESS:
                 effect = new MadnessEffect();
+                break;
+            case EffectType.POWDER:
+                effect = new PowderEffect();
                 break;
             default:
             case EffectType.EMERALD:

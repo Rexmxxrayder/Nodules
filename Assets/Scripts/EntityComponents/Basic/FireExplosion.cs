@@ -21,7 +21,7 @@ public class FireExplosion : AreaDamage3D
         if (effectManager != null) {
             FireEffect fireEffect = new();
             fireEffect.AddStack(1);
-            fireEffect.Duration = 6;
+            fireEffect.CurrentDuration = 6;
             effectManager.AddEffect(fireEffect);
         }
     }

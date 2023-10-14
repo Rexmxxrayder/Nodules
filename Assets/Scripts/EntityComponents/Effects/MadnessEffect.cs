@@ -8,7 +8,7 @@ public class MadnessEffect : EntityEffect
 
     public override int MaxStack => 5;
 
-    public override float StartDuration => 1f;
+    public override float OfficialDuration => 1f;
 
     public static AnimationCurve damagesCurve;
 
