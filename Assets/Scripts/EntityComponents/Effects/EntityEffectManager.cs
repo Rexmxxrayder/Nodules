@@ -7,7 +7,7 @@ using UnityEngine.Events;
 using static EntityEffect;
 
 public class EntityEffectManager : EntityComponent {
-    [SerializeField] private List<string> effectsVisualise = new();
+    [SerializeField] public List<string> effectsVisualise = new();
     private List<EntityEffect> effects = new();
     private Action<EntityEffect> onEffectAdd;
     private Action<EntityEffect> onEffectWantAdd;
