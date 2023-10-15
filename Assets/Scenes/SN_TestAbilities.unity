@@ -261,6 +261,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1951862709, guid: 73c251fa7e98d3840b383fb663dd260a, type: 3}
+      propertyPath: bulletNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6985750988454467402, guid: 73c251fa7e98d3840b383fb663dd260a, type: 3}
+      propertyPath: noduleType
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8365285019979176274, guid: 73c251fa7e98d3840b383fb663dd260a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -875,28 +883,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slasher
       objectReference: {fileID: 0}
-    - target: {fileID: 1443572707066865084, guid: 71fd8ad645bc8c4499896366157e5c1e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1736554924793594289, guid: 71fd8ad645bc8c4499896366157e5c1e, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1736554924793594289, guid: 71fd8ad645bc8c4499896366157e5c1e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2609152266039892240, guid: 71fd8ad645bc8c4499896366157e5c1e, type: 3}
-      propertyPath: startHealth
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2609152266039892240, guid: 71fd8ad645bc8c4499896366157e5c1e, type: 3}
-      propertyPath: startMaxHealth
-      value: 1000
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4289845064392072469, guid: 71fd8ad645bc8c4499896366157e5c1e, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71fd8ad645bc8c4499896366157e5c1e, type: 3}
 --- !u!1001 &1257321704
 PrefabInstance:
@@ -1659,24 +1646,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 149964172275025955, guid: e331b2bef96bae241bdb8d6cc4284517, type: 3}
   m_PrefabInstance: {fileID: 1842078505}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1912481514 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1443572707066865084, guid: 71fd8ad645bc8c4499896366157e5c1e, type: 3}
-  m_PrefabInstance: {fileID: 1142437014}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1912481519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912481514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73343fba995db1443ac4b8a02daf5417, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectsVisualise: []
 --- !u!1001 &1954380254
 PrefabInstance:
   m_ObjectHideFlags: 0

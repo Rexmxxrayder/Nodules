@@ -5,35 +5,34 @@ using System.Collections.Generic;
 
 public class DemonicMark : EntityBasic
 {
-    public static Action<Vector3> AtkToward;
-    public static int MaxMark;
     [SerializeField] private GameObject punch;
-    [SerializeField] private float fistSpeed;
     [SerializeField] private int currentMark = 0;
+    Animator animator;
     protected override void ResetSetup() {
         base.ResetSetup();
-        AtkToward += Punch;
+        ADemonicPunch.AttackToward += Punch;
+        animator = punch.GetComponentInChildren<Animator>(true);
     }
 
     protected override void DestroySetup() {
         base.DestroySetup();
-        AtkToward -= Punch;
+        ADemonicPunch.AttackToward -= Punch;
     }
 
-    public void Punch(Vector3 toward) {
-        if (currentMark == MaxMark) {
+    public void Punch(Vector3 toward, float duration) {
+        if (currentMark == ADemonicPunch.MaxMark) {
             Die();
+            return;
         }
-        currentMark++;
 
+        currentMark++;
         punch.gameObject.SetActive(true);
         punch.transform.rotation = Quaternion.Euler(0, RotationSloot.GetDegreeBasedOfTarget(punch.transform.position, toward, RotationSloot.TranslateVector3("y")), 0);
-        punch.GetComponentInChildren<Animator>().SetFloat("FistSpeed", fistSpeed);
+        animator.SetFloat("FistDuration", 1 / duration);
     }
 
     public void EndAnim() {
-        punch.GetComponentInChildren<Animator>().SetFloat("FistSpeed", 0);
-        punch.gameObject.SetActive(false);
-
+        animator.SetFloat("FistDuration", 0);
+        punch.SetActive(false);
     }
 }

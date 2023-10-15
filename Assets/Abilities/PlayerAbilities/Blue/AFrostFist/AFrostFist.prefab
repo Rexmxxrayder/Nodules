@@ -166,7 +166,7 @@ MonoBehaviour:
   TimeRemainingCooldown: 0
   inUse: 0
   fist: {fileID: 4215396585860394648}
-  fistSpeed: 10
+  fistDuration: 1
 --- !u!1 &4215396585860394648
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,12 +176,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4215396585860394651}
-  - component: {fileID: 4215396585860394663}
+  - component: {fileID: 4950642091395140806}
   - component: {fileID: 4215396585860394650}
   - component: {fileID: 4215396585860394661}
   - component: {fileID: 4215396585860394662}
   m_Layer: 6
-  m_Name: Fist
+  m_Name: FrostFist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,7 +204,7 @@ Transform:
   m_Father: {fileID: 4215396585272819909}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4215396585860394663
+--- !u!114 &4950642091395140806
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4215396585860394648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 523f725089d3e7843b9bfabd2a28ba28, type: 3}
+  m_Script: {fileID: 11500000, guid: c3de310e082814f4aa35f4b2feec02d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 1
@@ -227,6 +227,7 @@ MonoBehaviour:
   destroyOnCollision: 0
   destroyOnTrigger: 0
   entitiesInsideVisual: []
+  damageMultiplierIfStatus: 3
 --- !u!114 &4215396585860394650
 MonoBehaviour:
   m_ObjectHideFlags: 0

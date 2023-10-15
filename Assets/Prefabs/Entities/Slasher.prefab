@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 6455799162818121533}
   - component: {fileID: 3162946783915026812}
   - component: {fileID: 3162946783915026803}
+  - component: {fileID: 1912481519}
   m_Layer: 9
   m_Name: Slasher
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &930023508328870292
 Transform:
   m_ObjectHideFlags: 0
@@ -82,6 +83,19 @@ MonoBehaviour:
   _velocity: {x: 0, y: 0, z: 0}
   _forcesDisplay: []
   _debug: 0
+--- !u!114 &1912481519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443572707066865084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73343fba995db1443ac4b8a02daf5417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectsVisualise: []
 --- !u!1 &2555243527318537762
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,8 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0af63e311753b045838fa71a58aa997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMaxHealth: 10
-  startHealth: 10
+  startMaxHealth: 1000
+  startHealth: 1000
 --- !u!1 &8953175741396049001
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyCode: 0
-  currentNodule: {fileID: 0}
+  noduleType: 0
 --- !u!1 &8953175742886602396
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,6 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cooldown: 3
   TimeRemainingCooldown: 0
+  inUse: 0
   slashPrefab: {fileID: 3642100505305065841}
   Speed: 5
   Dist: 5
@@ -394,7 +409,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2270205363891112203, guid: 04015b022e6aa1548a04811a8228afc7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 04015b022e6aa1548a04811a8228afc7, type: 3}
 --- !u!1 &3642100505305065841 stripped
 GameObject:
@@ -406,6 +422,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1622038618096631148, guid: 04015b022e6aa1548a04811a8228afc7, type: 3}
   m_PrefabInstance: {fileID: 2596875609353737246}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4289845064392072478 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2270205363891112192, guid: 04015b022e6aa1548a04811a8228afc7, type: 3}
+  m_PrefabInstance: {fileID: 2596875609353737246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5534506214768578053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4289845064392072478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 523f725089d3e7843b9bfabd2a28ba28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _duration: 1
+  enterDamage: 10
+  stayDamage: 0
+  damageTick: 1
+  exitDamage: 0
+  damageType: 
+  damageables: []
+  destroyOnCollision: 0
+  destroyOnTrigger: 0
+  entitiesInsideVisual: []
 --- !u!1001 &3698769372868826220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -471,11 +514,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3120379524709602781, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3120379524709602781, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3120379525186676719, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
       propertyPath: m_Layer

@@ -15,17 +15,17 @@ public class AreaDamage3D : EntityBasic {
     [SerializeField] public int exitDamage;
     [SerializeField] public string damageType = "";
     [Header("Damageables")]
-    [SerializeField] List<string> damageables = new();
+    [SerializeField] protected List<string> damageables = new();
     [Header("Destroy")]
-    [SerializeField] bool destroyOnCollision;
-    [SerializeField] bool destroyOnTrigger;
-    [SerializeField] private List<string> entitiesInsideVisual = new();
-    private Dictionary<EntityHealth, float> entitiesInside = new();
-    private Action<EntityHealth> onEnter;
+    [SerializeField] protected bool destroyOnCollision;
+    [SerializeField] protected bool destroyOnTrigger;
+    [SerializeField] protected List<string> entitiesInsideVisual = new();
+    protected Dictionary<EntityHealth, float> entitiesInside = new();
+    protected Action<EntityHealth> onEnter;
     public event Action<EntityHealth> OnEnter { add { onEnter += value; } remove { onEnter -= value; } }
-    private Action<EntityHealth> onStayDamage;
+    protected Action<EntityHealth> onStayDamage;
     public event Action<EntityHealth> OnStayDamage { add { onStayDamage += value; } remove { onStayDamage -= value; } }
-    private Action<EntityHealth> onExit;
+    protected Action<EntityHealth> onExit;
     public event Action<EntityHealth> OnExit { add { onExit += value; } remove { onExit -= value; } }
 
     private void OnEnable() {
@@ -40,7 +40,7 @@ public class AreaDamage3D : EntityBasic {
         AddEntityHealth(collision.gameObject.RootGet<EntityHealth>(), false);
     }
 
-    private void AddEntityHealth(EntityHealth health, bool Collision) {
+    protected virtual void AddEntityHealth(EntityHealth health, bool Collision) {
         if (health != null && !entitiesInside.ContainsKey(health) && damageables.Contains(health.GetRoot().tag)) {
             entitiesInside.Add(health, 0f);
             if (enterDamage != 0) {

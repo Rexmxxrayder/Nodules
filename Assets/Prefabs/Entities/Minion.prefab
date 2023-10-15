@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1169886481}
   - component: {fileID: 1169886480}
   - component: {fileID: 1169886479}
-  - component: {fileID: 7123353712698309678}
   m_Layer: 9
   m_Name: Visual
   m_TagString: Untagged
@@ -99,23 +98,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7123353712698309678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1169886477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce5853c821b1c1141af4ab915f8ceee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
-  Damaged:
-  - Player
-  destroyOnCollide: 0
-  destroyOnTrigger: 0
 --- !u!1 &340378474494356693
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyCode: 0
-  currentNodule: {fileID: 0}
+  noduleType: 0
 --- !u!1 &7514405908397307096
 GameObject:
   m_ObjectHideFlags: 0

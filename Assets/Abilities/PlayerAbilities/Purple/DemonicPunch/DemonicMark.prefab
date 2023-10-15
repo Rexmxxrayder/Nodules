@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &834918297
 Transform:
   m_ObjectHideFlags: 0
@@ -314,7 +314,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _duration: 1000
   punch: {fileID: 834918296}
-  fistSpeed: 2
   currentMark: 0
 --- !u!1 &6907783391777848023
 GameObject:
@@ -328,7 +327,7 @@ GameObject:
   - component: {fileID: 355943939989464913}
   - component: {fileID: 1145429697221744518}
   m_Layer: 6
-  m_Name: GameObject
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

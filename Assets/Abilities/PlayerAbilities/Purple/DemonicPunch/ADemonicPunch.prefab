@@ -49,3 +49,4 @@ MonoBehaviour:
   inUse: 0
   demonicMark: {fileID: 4224812577650236490, guid: 097d3a340419aa24faf41d0ab111afe6, type: 3}
   maxMark: 3
+  fistDuration: 1

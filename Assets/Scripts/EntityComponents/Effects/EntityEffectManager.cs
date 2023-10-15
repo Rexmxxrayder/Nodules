@@ -88,6 +88,16 @@ public class EntityEffectManager : EntityComponent {
         return false;
     }
 
+    public bool Contains(List<EffectType> type) {
+        foreach (var effect in effects) {
+            if (type.Contains(effect.Type)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public EntityEffect Get(EffectType type) {
         foreach (var effect in effects) {
             if (effect.Type == type) {

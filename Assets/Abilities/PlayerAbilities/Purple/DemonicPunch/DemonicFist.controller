@@ -9,12 +9,12 @@ AnimatorController:
   m_Name: DemonicFist
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: FistSpeed
+  - m_Name: FistDuration
     m_Type: 1
     m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -37,7 +37,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: FistSpeed
+    m_ConditionEvent: FistDuration
     m_EventTreshold: 0.0001
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3877983262750824396}
@@ -76,7 +76,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: e84def5b55718cb488845224e84a6066, type: 2}
   m_Tag: 
-  m_SpeedParameter: FistSpeed
+  m_SpeedParameter: FistDuration
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -89,7 +89,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: FistSpeed
+    m_ConditionEvent: FistDuration
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 701550976251062124}
