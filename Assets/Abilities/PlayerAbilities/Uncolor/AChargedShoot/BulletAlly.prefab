@@ -149,12 +149,13 @@ MonoBehaviour:
   stayDamage: 0
   damageTick: 1
   exitDamage: 0
+  damageType: 
   damageables:
   - Enemy
   destroyOnCollision: 1
   destroyOnTrigger: 0
   entitiesInsideVisual: []
-  Speed: 50
+  speed: 25
   distanceLife: -1
 --- !u!114 &782703459682769208
 MonoBehaviour:

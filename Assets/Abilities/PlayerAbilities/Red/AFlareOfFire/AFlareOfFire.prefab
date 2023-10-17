@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa635a8649f4314a8fd1d04ee1f8e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 6
+  Cooldown: 5
   TimeRemainingCooldown: 0
   inUse: 0
   firstDashSpeed: 100

@@ -128,8 +128,9 @@ MonoBehaviour:
   _duration: 5
   enterDamage: 0
   stayDamage: 1
-  damageTick: 0.5
+  damageTick: 1
   exitDamage: 0
+  damageType: 
   damageables:
   - Enemy
   destroyOnCollision: 0
