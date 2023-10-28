@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class StartGame : MonoBehaviour
 {
-    [SerializeField] private StaticValuesEffectSO staticValuesEffectSO;
-    [SerializeField] private StaticInstanceSO staticInstanceSO;
+    [SerializeField] private StaticEffectsValuesSO staticEffectsValuesSO;
+    [SerializeField] private StaticInstancesSO staticInstancesSO;
 
     private void Awake() {
-        staticValuesEffectSO.StartGame();
-        staticInstanceSO.StartGame();
+        staticEffectsValuesSO.StartGame();
+        staticInstancesSO.StartGame();
     }
 }
