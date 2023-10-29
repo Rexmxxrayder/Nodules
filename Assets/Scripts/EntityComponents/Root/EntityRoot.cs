@@ -58,4 +58,8 @@ public class EntityRoot : EntityComponent {
             Destroy(gameObject);
         }
     }
+
+    public void OnDestroy() {
+        Die();
+    }
 }
