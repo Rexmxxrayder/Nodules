@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 10
-  enterDamage: 10
+  enterDamage: 4
   stayDamage: 0
   damageTick: 1
   exitDamage: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   destroyOnCollision: 1
   destroyOnTrigger: 0
   entitiesInsideVisual: []
-  Speed: 50
+  speed: 30
   distanceLife: -1
 --- !u!114 &782703459682769208
 MonoBehaviour:
@@ -216,4 +216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d67e4d5d2838eac40b5ba00443f639c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectType: 0
   stack: 1
+  onlyOneHit: 0

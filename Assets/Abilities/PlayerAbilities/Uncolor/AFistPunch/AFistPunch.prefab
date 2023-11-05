@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd82afeeb1b4aad45bb2f8daa658b71c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 0.5
+  Cooldown: 0.1
   TimeRemainingCooldown: 0
   inUse: 0
   fist: {fileID: 6952948947408091227}
-  fistSpeed: 10
+  fistDuration: 0.25
 --- !u!1 &6952948947408091227
 GameObject:
   m_ObjectHideFlags: 0

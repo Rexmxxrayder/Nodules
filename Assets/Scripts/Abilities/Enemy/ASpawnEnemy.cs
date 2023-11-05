@@ -1,10 +1,17 @@
 using UnityEngine;
 using Sloot;
+using System.Collections.Generic;
 
 public class ASpawnEnemy : Ability {
-    public string ennemiType;
+    public List<EntityRoot> ennemiesPrefabs;
+    private EntityRoot prefabChosen;
     public float distSpawn;
     public int NumberSpawn;
+
+    protected override void Awake() {
+        base.Awake();
+        prefabChosen = ennemiesPrefabs[Random.Range(0, ennemiesPrefabs.Count)];
+    }
 
     protected override void LaunchAbilityUp(EntityBrain brain) {
         Vector3 BodyPosition = gameObject.GetRootPosition();
@@ -13,10 +20,12 @@ public class ASpawnEnemy : Ability {
             Vector3 ennemiPosition = BodyPosition + direction * distSpawn;
             Spawn(ennemiPosition);
         }
+
+        StartCooldown();
     }
 
     public void Spawn(Vector3 position) {
-        EntityBrain ennemi = BrainPools.Gino.GetInstance(ennemiType);
+        EntityRoot ennemi = Instantiate(prefabChosen);
         ennemi.transform.position = position;
     }
 }

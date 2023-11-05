@@ -126,10 +126,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 1
-  enterDamage: 10
+  enterDamage: 3
   stayDamage: 0
   damageTick: 0
   exitDamage: 0
+  damageType: 
   damageables:
   - Enemy
   destroyOnCollision: 0

@@ -44,10 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2b0e5195309eb448929389dfc09ca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 1
+  Cooldown: 3
   TimeRemainingCooldown: 0
   inUse: 0
   bulletprefab: {fileID: 6826006571255521432, guid: a406b0d669dcd4848b1a0d6b5f718ace, type: 3}
-  speed: 5
-  maxDistance: 5
+  speed: 18
+  maxDistance: 100
   freeChild: 0
+  bulletNumber: 1
+  timeForShoot: 5
