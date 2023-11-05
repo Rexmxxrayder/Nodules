@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Sloot;
 
 public class MinionBrain : EntityBrain {
     public float projectionStrenght, projectionDist;
+    public int damagesHit;
     [SerializeField] private EntityBodyPart follow;
 
     protected override void LoadSetup() {
@@ -22,8 +20,13 @@ public class MinionBrain : EntityBrain {
 
     void Hit(Collision c) {
         EntityPhysics ep = c.gameObject.RootGet<EntityPhysics>();
+        EntityHealth eh = c.gameObject.RootGet<EntityHealth>();
         if (ep != null) {
             ep.Add(Force.Const(c.transform.position - transform.position, projectionStrenght, projectionDist / projectionStrenght), EntityPhysics.PhysicPriority.PROJECTION);
+        }
+
+        if (eh != null) {
+            eh.RemoveHealth(damagesHit);
         }
     }
 }

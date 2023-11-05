@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cooldown: 5
   TimeRemainingCooldown: 0
+  inUse: 0
   distMaxJump: 10
   SpeedJump: 5
   areaDamage: {fileID: 6613277383654351651}
@@ -95,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyCode: 0
-  currentNodule: {fileID: 0}
+  noduleType: 0
 --- !u!1 &1169886477
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,8 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0af63e311753b045838fa71a58aa997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMaxHealth: 10
-  startHealth: 10
+  startMaxHealth: 1000
+  startHealth: 1000
 --- !u!1 &7514405908397307096
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,13 +253,14 @@ GameObject:
   - component: {fileID: 6315483401353525270}
   - component: {fileID: 6315483401353525271}
   - component: {fileID: 6315483401353525272}
+  - component: {fileID: 410773189}
   m_Layer: 9
   m_Name: Jumper
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8117749954115608816
 Transform:
   m_ObjectHideFlags: 0
@@ -322,6 +324,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa61126a4ef294ea0a7a1ef40637cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &410773189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7514405908397307096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73343fba995db1443ac4b8a02daf5417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectsVisualise: []
 --- !u!1001 &1660922538249741146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -339,7 +354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3120379524628034710, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3120379524628034710, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -387,11 +402,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3120379524709602781, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3120379524709602781, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3120379525186676719, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
       propertyPath: m_Layer
