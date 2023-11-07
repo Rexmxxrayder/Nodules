@@ -212,7 +212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8117749954115608816
 Transform:
   m_ObjectHideFlags: 0
@@ -247,8 +247,8 @@ MonoBehaviour:
   visor: {x: 0, y: 0, z: 0}
   selected: {fileID: 0}
   projectionStrenght: 100
-  projectionDist: 20
-  damagesHit: 10
+  projectionDist: 5
+  damagesHit: 2
   follow: {fileID: 3362477438883846255}
 --- !u!114 &6315483401353525271
 MonoBehaviour:
