@@ -17,10 +17,12 @@ MonoBehaviour:
   ApparitionRoom: {fileID: 7395148388138887027, guid: 01fed02414c52b74f969ab35896410e6, type: 3}
   BossRoom: {fileID: 7395148388138887027, guid: 01fed02414c52b74f969ab35896410e6, type: 3}
   Rooms:
+  - {fileID: 6871059590638408880, guid: 8c20deebafaf84f40b13f67f38853b94, type: 3}
+  - {fileID: 7395148388138887027, guid: 01fed02414c52b74f969ab35896410e6, type: 3}
   - {fileID: 5588917865656471502, guid: 54f365f1dd210a8489cc5bcd00ad6260, type: 3}
   - {fileID: 6247073596933500703, guid: f94ffe0c97dc5d844bb5a6b6541e4f95, type: 3}
-  - {fileID: 2730312015343717249, guid: 383c0e4d5aaa6bf41adfdafbbc8ceab1, type: 3}
-  - {fileID: 6871059590638408880, guid: 8c20deebafaf84f40b13f67f38853b94, type: 3}
+  - {fileID: 2730312015343717249, guid: bb2ab2e9ef65aaa43b58e720abff4e08, type: 3}
+  - {fileID: 2730312015343717249, guid: 8c05faac4d11ffb499b3f05d086e864a, type: 3}
   - {fileID: 7395148388138887027, guid: 01fed02414c52b74f969ab35896410e6, type: 3}
   EnnemiesToSpawn:
   - {fileID: 1885023575884785009, guid: ea312c145aa11a44196ae3ada930f69e, type: 3}
