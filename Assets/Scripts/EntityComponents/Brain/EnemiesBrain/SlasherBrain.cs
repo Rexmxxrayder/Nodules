@@ -6,7 +6,7 @@ public class SlasherBrain : EntityBrain {
 
     protected override void ResetSetup() {
         base.ResetSetup();
-        slash.GetComponentInChildren<EntityBodyPart>();
+        slash = GetComponentInChildren<EntityBodyPart>();
         slasherData.SetupData(this);
     }
 

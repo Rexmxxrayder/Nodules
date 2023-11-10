@@ -19,7 +19,7 @@ public class DungeonSO : ScriptableObject {
     public List<Room> Rooms => rooms;
     public List<EntityRoot> EnnemiesToSpawn => ennemiesToSpawn;
     public List<EntityRoot> EpicEnnemiesToSpawn => epicEnnemiesToSpawn;
-    public Room ApparitionRoom => ApparitionRoom;
+    public Room ApparitionRoom => apparitionRoom;
     public Room BossRoom => bossRoom;
     public EntityRoot Boss => boss;
     private void OnValidate() {
