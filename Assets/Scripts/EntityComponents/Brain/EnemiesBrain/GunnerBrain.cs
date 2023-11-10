@@ -1,9 +1,14 @@
-using System.Collections;
 using UnityEngine;
-using Sloot;
 
 public class GunnerBrain : EntityBrain {
-    [SerializeField] EntityBodyPart shoot;
+    [SerializeField] private GunnerData GunnerData;
+    private EntityBodyPart shoot;
+
+    protected override void ResetSetup() {
+        base.ResetSetup();
+        shoot = GetComponentInChildren<EntityBodyPart>();
+        GunnerData.SetupData(this);
+    }
 
     protected override void LoadSetup() {
         base.LoadSetup();

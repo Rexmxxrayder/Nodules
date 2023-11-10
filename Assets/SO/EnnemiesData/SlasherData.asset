@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc193e5786ea96b49a1b6a96d5f5a23e, type: 3}
+  m_Name: SlasherData
+  m_EditorClassIdentifier: 
+  cooldown: 4
+  slashPrefab: {fileID: 1622038618096631151, guid: 04015b022e6aa1548a04811a8228afc7, type: 3}
+  speed: 2
+  dist: 2
+  slashSpeed: 2
+  distMinTotarget: 2

@@ -3,17 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AShootBullet : Ability {
-    public Bullet bulletprefab;
+    [SerializeField] private Bullet bulletprefab;
     [SerializeField] private float speed;
     [SerializeField] private float maxDistance;
-    [SerializeField] private bool freeChild;
     [SerializeField] private float bulletNumber = 1f;
     [SerializeField] private float timeForShoot = 5f;
+    [SerializeField] private bool freeChild;
     private Coroutine coroutine;
     private int numberShot = 0;
     protected override void LaunchAbilityUp(EntityBrain brain) {
         coroutine ??= StartCoroutine(ShootTime());
         Shoot(brain.Visor - GetComponentInParent<EntityBodyPart>().GetRootPosition());
+    }
+
+    public void SetupData(Bullet bulletprefab, float cooldown, float speed, float maxDistance, float bulletNumber, float timeForShoot, bool freeChild) {
+        this.bulletprefab = bulletprefab;
+        this.cooldown = cooldown;
+        this.speed = speed;
+        this.maxDistance = maxDistance;
+        this.bulletNumber = bulletNumber;
+        this.timeForShoot = timeForShoot;
+        this.freeChild = freeChild;
     }
 
     void Shoot(Vector3 direction) {

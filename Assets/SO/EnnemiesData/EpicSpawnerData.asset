@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f3f642d4fb2e74f9d03d067a6d894f, type: 3}
+  m_Name: EpicSpawnerData
+  m_EditorClassIdentifier: 
+  cooldown: 15
+  ennemiesPrefabs:
+  - {fileID: 1885023575884785009, guid: a6eb5cdc9ec974d4cb3e85f498420ef2, type: 3}
+  - {fileID: 3162946783915026812, guid: 4f0f06560b8d17549b3061617a77c84e, type: 3}
+  - {fileID: 3162946783915026812, guid: 5d478bda93fd2e0498d1104052eeea9e, type: 3}
+  - {fileID: 6315483401353525272, guid: 77d60c9a7e3dcca4a8711ea66e32cb9f, type: 3}
+  - {fileID: 6315483401353525272, guid: 047fb88b1e1192a4d83c17d097bcd73d, type: 3}
+  maxSpawnDist: 2
+  ennemiesSpawnByUse: 2

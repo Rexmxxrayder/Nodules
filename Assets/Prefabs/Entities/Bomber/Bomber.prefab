@@ -56,8 +56,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visor: {x: 0, y: 0, z: 0}
   selected: {fileID: 0}
+  BomberData: {fileID: 11400000, guid: 78ffa3c2855a5a648bd69ef3c9c10f0a, type: 2}
   explosion: {fileID: 970216679869453147}
-  TimeBeforeExplode: 10
+  timeBeforeExplode: 0
 --- !u!114 &77943153216926796
 MonoBehaviour:
   m_ObjectHideFlags: 0

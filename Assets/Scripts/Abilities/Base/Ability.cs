@@ -7,10 +7,10 @@ using UnityEngine.Events;
 
 public abstract class Ability : MonoBehaviour {
 
-    public float Cooldown = 1f;
-    [HideInInspector] public float TimeRemainingCooldown = 0f;
-    [HideInInspector] public bool inUse = false;
-    public bool IsAvailable => TimeRemainingCooldown == 0f;
+    [SerializeField] protected float cooldown = 1f;
+    protected float timeRemainingCooldown = 0f;
+    protected bool inUse = false;
+    public bool IsAvailable => timeRemainingCooldown == 0f;
     public bool InUse => inUse;
     private Action _onAvailable;
     public event Action OnAvailable { add => _onAvailable += value; remove => _onAvailable -= value; }
@@ -46,13 +46,13 @@ public abstract class Ability : MonoBehaviour {
 
     private IEnumerator CooldownManager() {
         inUse = false;
-        TimeRemainingCooldown = Cooldown;
-        while (TimeRemainingCooldown > 0f) {
+        timeRemainingCooldown = cooldown;
+        while (timeRemainingCooldown > 0f) {
             yield return null;
-            TimeRemainingCooldown -= Time.deltaTime;
+            timeRemainingCooldown -= Time.deltaTime;
         }
 
-        TimeRemainingCooldown = 0f;
+        timeRemainingCooldown = 0f;
         _onAvailable?.Invoke();
     }
     protected virtual void LaunchAbilityUp(EntityBrain brain) { }

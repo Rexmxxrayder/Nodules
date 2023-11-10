@@ -1,10 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Sloot;
 
 public class SlasherBrain : EntityBrain {
-    [SerializeField] private EntityBodyPart slash;
+    [SerializeField] private SlasherData slasherData;
+    private EntityBodyPart slash;
+
+    protected override void ResetSetup() {
+        base.ResetSetup();
+        slash.GetComponentInChildren<EntityBodyPart>();
+        slasherData.SetupData(this);
+    }
 
     protected override void LoadSetup() {
         base.LoadSetup();

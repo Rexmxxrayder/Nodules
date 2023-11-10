@@ -1,9 +1,21 @@
 using UnityEngine;
 
 public class MinionBrain : EntityBrain {
-    public float projectionStrenght, projectionDist;
-    public int damagesHit;
-    [SerializeField] private EntityBodyPart follow;
+    [SerializeField] private MinionData minionData;
+    [SerializeField] private float projectionStrenght, projectionDist;
+    [SerializeField] private int damagesHit;
+    private EntityBodyPart follow;
+    protected override void ResetSetup() {
+        base.ResetSetup();
+        follow = GetComponentInChildren<EntityBodyPart>();
+        minionData.SetupData(this);
+    }
+
+    public void SetupData(float projectionStrenght, float projectionDist, int damagesHit) {
+        this.projectionDist = projectionDist;          
+        this.projectionStrenght = projectionStrenght;          
+        this.damagesHit = damagesHit;          
+    }
 
     protected override void LoadSetup() {
         base.LoadSetup();

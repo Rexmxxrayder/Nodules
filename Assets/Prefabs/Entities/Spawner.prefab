@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visor: {x: 0, y: 0, z: 0}
   selected: {fileID: 0}
-  spawn: {fileID: 0}
+  spawnerData: {fileID: 11400000, guid: 942e381a5e07fc345a47b7e524db5330, type: 2}
 --- !u!114 &3162946783915026812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 5068283940124129419}
   - component: {fileID: 5190089925718219792}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ASpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,17 +203,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7e3696df9cbca4ea4062e96fc0b3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 1
-  TimeRemainingCooldown: 0
-  inUse: 0
-  ennemiesPrefabs:
-  - {fileID: 3162946783915026812, guid: 71fd8ad645bc8c4499896366157e5c1e, type: 3}
-  - {fileID: 6315483401353525272, guid: db271f7f5b46495468809a14e16b0832, type: 3}
-  - {fileID: 6315483401353525272, guid: 86e4a481e127e424e8dd965dc11258a1, type: 3}
-  - {fileID: 3162946783915026812, guid: 3f9a56c17e2d9124fb7350572469089a, type: 3}
-  - {fileID: 1885023575884785009, guid: ea312c145aa11a44196ae3ada930f69e, type: 3}
-  distSpawn: 0
-  NumberSpawn: 0
+  cooldown: 1
+  ennemiesPrefabs: []
+  maxSpawnDist: 0
+  ennemiesSpawnByUse: 0
 --- !u!1 &2555243527318537762
 GameObject:
   m_ObjectHideFlags: 0

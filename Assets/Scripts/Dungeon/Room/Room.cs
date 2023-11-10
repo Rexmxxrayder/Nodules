@@ -15,7 +15,6 @@ public class Room : MonoBehaviour {
     private List<EntityRoot> currentEnemies = new();
     private List<Door> doors = new();
     public int entrance = 0;
-    private int roomPower = 0;
     private int ennemiesAlive = 0;
     private DungeonManager.RoomData[] nextRooms;
     public List<Door> Doors => doors;
@@ -31,9 +30,8 @@ public class Room : MonoBehaviour {
         }
     }
 
-    public void Setup(int entrance, int roomPower, EntityRoot[] ennemies, DungeonManager.RoomData[] nextRooms) {
+    public void Setup(int entrance, EntityRoot[] ennemies, DungeonManager.RoomData[] nextRooms) {
         this.entrance = entrance;
-        this.roomPower = roomPower;
         this.ennemies = ennemies == null ? new() : ennemies.ToList();
         this.nextRooms = nextRooms;
         SpawnEnemies();
@@ -49,7 +47,6 @@ public class Room : MonoBehaviour {
         List<Transform> spawnPoints = spawnPointsEnnemies.ToList();
         for (int i = 0; i < ennemies.Count; i++) {
             EntityRoot root = Instantiate(ennemies[i]);
-            root.transform.localScale = root.transform.localScale * roomPower;
             currentEnemies.Add(root);
             ennemiesAlive++;
             root.OnDeath += () => {

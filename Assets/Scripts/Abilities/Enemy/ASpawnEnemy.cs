@@ -1,24 +1,28 @@
 using UnityEngine;
-using Sloot;
 using System.Collections.Generic;
 
 public class ASpawnEnemy : Ability {
-    public List<EntityRoot> ennemiesPrefabs;
     private EntityRoot prefabChosen;
-    public float distSpawn;
-    public int NumberSpawn;
+    [SerializeField] private List<EntityRoot> ennemiesPrefabs;
+    [SerializeField] private float maxSpawnDist;
+    [SerializeField] private int ennemiesSpawnByUse;
 
-    protected override void Awake() {
-        base.Awake();
-        prefabChosen = ennemiesPrefabs[Random.Range(0, ennemiesPrefabs.Count)];
+    public void SetupData(float cooldown, List<EntityRoot> ennemiesPrefabs, float maxSpawnDist, int ennemiesSpawnByUse) {
+        this.cooldown = cooldown;
+        this.ennemiesPrefabs = ennemiesPrefabs;
+        this.maxSpawnDist = maxSpawnDist;
+        this.ennemiesSpawnByUse = ennemiesSpawnByUse;
     }
 
     protected override void LaunchAbilityUp(EntityBrain brain) {
-        Vector3 BodyPosition = gameObject.GetRootPosition();
+        if(prefabChosen == null) {
+            prefabChosen = ennemiesPrefabs[Random.Range(0, ennemiesPrefabs.Count)];
+        }
+   
         int spawnDone = 0;
         int security = 0;
-        while (spawnDone < NumberSpawn && security < 30) {
-            if (Spawn(brain.transform.position + Random.insideUnitSphere.normalized * distSpawn)) {
+        while (spawnDone < ennemiesSpawnByUse && security < 30) {
+            if (Spawn(gameObject.GetRootPosition() + Random.insideUnitSphere.normalized * maxSpawnDist)) {
                 spawnDone++;
             }
 

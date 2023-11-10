@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visor: {x: 0, y: 0, z: 0}
   selected: {fileID: 0}
-  shoot: {fileID: 8953175742671695790}
+  GunnerData: {fileID: 11400000, guid: 47644ef21269ce448a2a296bc04ff520, type: 2}
 --- !u!114 &3162946783915026812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,15 +330,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2b0e5195309eb448929389dfc09ca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 1
-  TimeRemainingCooldown: 0
-  inUse: 0
+  cooldown: 1
   bulletprefab: {fileID: 8739532234999233227, guid: 59d7b0b8eafc2514e9631647fb030a9e, type: 3}
   speed: 10
   maxDistance: 10
-  freeChild: 0
   bulletNumber: 1
   timeForShoot: 5
+  freeChild: 0
 --- !u!1001 &3698769372868826220
 PrefabInstance:
   m_ObjectHideFlags: 0

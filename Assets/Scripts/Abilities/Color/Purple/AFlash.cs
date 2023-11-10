@@ -9,7 +9,7 @@ public class AFlash : Ability {
     private Transform toComeback;
 
     protected override void LaunchAbilityUp(EntityBrain brain) {
-        if(inUse) {
+        if(InUse) {
             return;
         }
 

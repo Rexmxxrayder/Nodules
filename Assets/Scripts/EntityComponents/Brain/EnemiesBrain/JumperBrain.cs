@@ -1,11 +1,14 @@
-using Sloot;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class JumperBrain : EntityBrain {
-    [SerializeField] EntityBodyPart jump;
+    [SerializeField] private JumperData jumperData;
+    private EntityBodyPart jump;
+
+    protected override void ResetSetup() {
+        base.ResetSetup();
+        jump = GetComponentInChildren<EntityBodyPart>();
+        jumperData.SetupData(this);
+    }
 
     protected override void LoadSetup() {
         base.LoadSetup();

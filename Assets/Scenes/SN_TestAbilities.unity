@@ -901,7 +901,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5190089925718219792, guid: 8fc1b0633fb871647a27988760dcaf38, type: 3}
       propertyPath: Cooldown
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5190089925718219792, guid: 8fc1b0633fb871647a27988760dcaf38, type: 3}
       propertyPath: distSpawn
@@ -910,6 +910,10 @@ PrefabInstance:
     - target: {fileID: 5190089925718219792, guid: 8fc1b0633fb871647a27988760dcaf38, type: 3}
       propertyPath: NumberSpawn
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190089925718219792, guid: 8fc1b0633fb871647a27988760dcaf38, type: 3}
+      propertyPath: ennemiesPrefabs.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6342745529419287287, guid: 8fc1b0633fb871647a27988760dcaf38, type: 3}
       propertyPath: m_AnchorMax.y

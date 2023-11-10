@@ -1,15 +1,20 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AFollow : Ability {
-    public float Speed;
-    public float Time;
-    public float MinimunDistance = 0.05f;
-    [SerializeField] Force FollowForce = Force.Const(Vector3.zero, 0);
-    EntityPhysics ep;
-    Transform root;
-    Transform toFollow;
+    [SerializeField] private float speed;
+    [SerializeField] private float time;
+    [SerializeField] private float minimunDistance = 0.05f;
+    [SerializeField] private Force FollowForce = Force.Const(Vector3.zero, 0);
+    private EntityPhysics ep;
+    private Transform root;
+    private Transform toFollow;
+
+    public void SetupData(float speed, float time, float minimunDistance) {
+        this.speed = speed;
+        this.time = time;
+        this.minimunDistance = minimunDistance;
+    }
 
     protected override void LaunchAbilityUp(EntityBrain brain) {
         ep = gameObject.RootGet<EntityPhysics>();
@@ -20,10 +25,10 @@ public class AFollow : Ability {
     }
 
     IEnumerator Follow(EntityPhysics ep, Transform root, Transform goToPosition) {
-        FollowForce = new(Force.Const(goToPosition.position - root.position, Speed, Time));
+        FollowForce = new(Force.Const(goToPosition.position - root.position, speed, time));
         ep.Add(FollowForce, EntityPhysics.PhysicPriority.INPUT);
         do {
-            if(Vector3.Distance(goToPosition.position.PlanXZ(), root.position.PlanXZ()) <= MinimunDistance) {
+            if(Vector3.Distance(goToPosition.position.PlanXZ(), root.position.PlanXZ()) <= minimunDistance) {
                 FollowForce.Direction = Vector3.zero;
             } else {
                 Vector3 direction = goToPosition.position - root.position;

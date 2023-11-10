@@ -1,12 +1,18 @@
-using Sloot;
-using System.Collections;
 using UnityEngine;
 
 public class BomberBrain : EntityBrain {
+    [SerializeField] private BomberData BomberData;
     [SerializeField] private EntityBasic explosion;
-    public float TimeBeforeExplode;
-    float timerBeforeExplode = 0;
-    EntityBodyPart bodyPart;
+    [SerializeField] private float timeBeforeExplode;
+    private float timerBeforeExplode = 0;
+    private EntityBodyPart bodyPart;
+
+    protected override void ResetSetup() {
+        base.ResetSetup();
+    }
+    public void SetupData(float timeBeforeExplode) {
+        this.timeBeforeExplode = timeBeforeExplode;
+    }
 
     protected override void LoadSetup() {
         base.LoadSetup();
@@ -24,7 +30,7 @@ public class BomberBrain : EntityBrain {
         Debug.DrawLine(transform.position, visor, Color.red);
 
         timerBeforeExplode += Time.deltaTime;
-        if (timerBeforeExplode > TimeBeforeExplode) {
+        if (timerBeforeExplode > timeBeforeExplode) {
             Die();
         }
     }

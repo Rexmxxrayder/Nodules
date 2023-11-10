@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visor: {x: 0, y: 0, z: 0}
   selected: {fileID: 0}
-  slash: {fileID: 8953175742671695790}
+  slasherData: {fileID: 11400000, guid: c7d98c5acf7491b4ab9a9a8315e37326, type: 2}
 --- !u!114 &3162946783915026812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,13 +330,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e16511ce2212f41a416cfd8220a990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 3
-  TimeRemainingCooldown: 0
-  inUse: 0
+  cooldown: 1
   slashPrefab: {fileID: 1622038618096631151, guid: 04015b022e6aa1548a04811a8228afc7, type: 3}
-  Speed: 5
-  Dist: 5
-  SlashSpeed: 5
+  speed: 0
+  dist: 0
+  slashSpeed: 0
   distMinTotarget: 0
 --- !u!1001 &3698769372868826220
 PrefabInstance:

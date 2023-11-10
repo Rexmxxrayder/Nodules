@@ -27,7 +27,7 @@ public class DungeonManager : MonoBehaviour {
     private int currentRoomId = -1;
     private Room currentRoom;
     private void Start() {
-        floor = new RoomData[dungeon.Size()][];
+        floor = new RoomData[dungeon.GetSize()][];
         for (int i = 0; i < floor.Length; i++) {
             floor[i] = new RoomData[4];
         }
@@ -40,17 +40,17 @@ public class DungeonManager : MonoBehaviour {
         for (int i = 0; i < dungeon.RoomsBetweensElite.Count; i++) {
             for (int j = 0; j < dungeon.RoomsBetweensElite[i]; j++) {
                 for (int k = 0; k < 4; k++) {
-                    floor[roomsNumber + j][k] = new RoomData(false, dungeon.GetRandomRoom(), dungeon.GetEnemies());
+                    floor[roomsNumber + j][k] = new RoomData(false, dungeon.GetRandomRoom(), dungeon.GetEnemies(false));
                 }
             }
 
-
             roomsNumber += dungeon.RoomsBetweensElite[i];
-            if (roomsNumber == dungeon.Size() - 1) {
+            if (roomsNumber == dungeon.GetSize() - 1) {
                 continue;
             }
+
             for (int k = 0; k < 4; k++) {
-                floor[roomsNumber][k] = new RoomData(true, dungeon.GetRandomRoom(), dungeon.GetEnemies());
+                floor[roomsNumber][k] = new RoomData(true, dungeon.GetRandomRoom(), dungeon.GetEnemies(true));
             }
 
             roomsNumber++;
@@ -76,8 +76,7 @@ public class DungeonManager : MonoBehaviour {
             NextRoom(door);
         };
 
-        int roomPower = currentRoomId == floor.GetLength(0) - 1 ? 4 : floor[currentRoomId][inverseDoor].isEpic ? 2 : 1;
         PlayerBrain.Transform.position = currentRoom.Doors[inverseDoor].transform.position;
-        currentRoom.Setup(inverseDoor, roomPower, floor[currentRoomId][inverseDoor].ennemies, floor.Length <= currentRoomId + 1 ? null : floor[currentRoomId +1]);
+        currentRoom.Setup(inverseDoor, floor[currentRoomId][inverseDoor].ennemies, floor.Length <= currentRoomId + 1 ? null : floor[currentRoomId +1]);
     }
 }
