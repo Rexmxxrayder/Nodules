@@ -241,7 +241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6937549262246888591, guid: 73c251fa7e98d3840b383fb663dd260a, type: 3}
       propertyPath: Speed
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8365285019979176274, guid: 73c251fa7e98d3840b383fb663dd260a, type: 3}
       propertyPath: m_Name
@@ -293,7 +293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8365285020110109061, guid: 73c251fa7e98d3840b383fb663dd260a, type: 3}
       propertyPath: orthographic size
-      value: 20
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73c251fa7e98d3840b383fb663dd260a, type: 3}
