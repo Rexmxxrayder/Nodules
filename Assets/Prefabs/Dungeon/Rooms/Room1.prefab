@@ -548,6 +548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorsParent: {fileID: 7253328560728364356}
   spawnPointsParent: {fileID: 7139197221751964219}
+  entrance: 0
 --- !u!1 &8811672738849720455
 GameObject:
   m_ObjectHideFlags: 0

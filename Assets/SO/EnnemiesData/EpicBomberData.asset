@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24d45a332566864daab920f253acb94, type: 3}
   m_Name: EpicBomberData
   m_EditorClassIdentifier: 
+  explosion: {fileID: 892291123988846589, guid: cfe10b0f76ec0004ab5b2119f186ab73, type: 3}
   timeBeforeExplode: 10
   speed: 10
   time: 10
