@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EntityBodyPart : EntityComponent {
     public enum NoduleType {
+        NONE = -1,
         UNCOLOR = 0,
         RED = 1,
         BLUE = 2,
@@ -12,9 +13,30 @@ public class EntityBodyPart : EntityComponent {
         WHITE = 6
     }
 
+    public static Color NoduleColor(NoduleType type) {
+        switch (type) {
+            case NoduleType.UNCOLOR:
+                return new Color(0.5f, 0.5f, 0.5f, 1);
+            case NoduleType.RED:
+                return Color.red;
+            case NoduleType.BLUE:
+                return Color.blue;
+            case NoduleType.GREEN:
+                return Color.green;
+            case NoduleType.YELLOW:
+                return Color.yellow;
+            case NoduleType.PURPLE:
+                return new Color(1, 0, 1, 1);
+            case NoduleType.WHITE:
+                return Color.white;
+            case NoduleType.NONE:
+            default:
+                return Color.clear;
+        }
+    }
+
     [SerializeField] KeyCode keyCode;
     /*[SerializeField]*/
-    protected Nodule currentNodule;
     [SerializeField] protected NoduleType noduleType = NoduleType.UNCOLOR;
     private EntityBrain brain;
     Dictionary<int, Ability> abilities = new();
@@ -23,8 +45,7 @@ public class EntityBodyPart : EntityComponent {
     protected Sprite sprite;
 
     public Sprite Sprite => sprite;
-    public Nodule Nodule => currentNodule;
-
+    public NoduleType Nodule => noduleType;
 
     protected override void ResetSetup() {
         for (int i = 0; i < transform.childCount; i++) {
@@ -49,12 +70,12 @@ public class EntityBodyPart : EntityComponent {
             KeyEvenement(true);
         }
     }
-    public void AddNodules(Nodule nodule) {
-        currentNodule = nodule;
+    public void AddNodules(NoduleType nodule) {
+        noduleType = nodule;
     }
 
     public void RemoveNodules() {
-        currentNodule = null;
+        noduleType = NoduleType.UNCOLOR;
     }
 
     public void KeyEvenement(bool isUp) {

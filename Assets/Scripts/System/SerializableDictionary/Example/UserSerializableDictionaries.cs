@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using static EntityBodyPart;
 
 [Serializable]
 public class StringStringDictionary : SerializableDictionary<string, string> {}
@@ -27,4 +28,4 @@ public class QuaternionMyClassDictionary : SerializableDictionary<Quaternion, My
 
 [Serializable]
 
-public class NoduleAbilityDictionary : SerializableDictionary<Nodule, Ability> { }
+public class NoduleAbilityDictionary : SerializableDictionary<NoduleType, Ability> { }

@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static EntityBodyPart;
 
 public abstract class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public static ItemUI LastItemSelected;
@@ -28,9 +26,7 @@ public abstract class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     protected abstract void VisualUpdate();
 
-    public virtual Nodule GetNodule() {
-        return null;
-    }
+    public abstract NoduleType GetNodule();
     public void OnPointerEnter(PointerEventData eventData) {
         mouseOver = true;
         HoverItemSelected = this;

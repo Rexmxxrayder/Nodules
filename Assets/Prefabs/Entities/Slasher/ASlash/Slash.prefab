@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 2270205363891112198}
   - component: {fileID: 6845729370022335604}
   - component: {fileID: 6845729370022335605}
+  - component: {fileID: 6882573954759227147}
   m_Layer: 0
   m_Name: Damages
   m_TagString: Untagged
@@ -208,3 +209,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481fb7a6be6f1364cbf387e76a5fb52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6882573954759227147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2270205363891112192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 523f725089d3e7843b9bfabd2a28ba28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _duration: 1
+  enterDamage: 10
+  stayDamage: 0
+  damageTick: 1
+  exitDamage: 0
+  damageType: 
+  damageables:
+  - Player
+  destroyOnCollision: 0
+  destroyOnTrigger: 0
+  entitiesInsideVisual: []

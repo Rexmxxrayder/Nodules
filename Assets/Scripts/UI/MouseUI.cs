@@ -1,11 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.UI;
 
 public class MouseUI : ItemUI {
     RectTransform rectTransform;
+
+    public override EntityBodyPart.NoduleType GetNodule() {
+        if (LastItemSelected != null) {
+            return LastItemSelected.GetNodule();
+        } else {
+            return EntityBodyPart.NoduleType.NONE;
+        }
+    }
 
     protected override void ItemStart() {
         rectTransform = GetComponent<RectTransform>();
@@ -14,7 +18,7 @@ public class MouseUI : ItemUI {
         rectTransform.position = Input.mousePosition;
         if (Input.GetMouseButtonUp(0)) {
             if (HoverItemSelected != LastItemSelected) {
-                if (HoverItemSelected is EntityBodyPartUI isBodyPart && LastItemSelected.GetNodule() != null) {
+                if (HoverItemSelected is EntityBodyPartUI isBodyPart) {
                     isBodyPart.EntityBodyPart.AddNodules(LastItemSelected.GetNodule());
                     if (LastItemSelected is EntityBodyPartUI isBodyPartTwo)
                         isBodyPartTwo.EntityBodyPart.RemoveNodules();
@@ -26,12 +30,10 @@ public class MouseUI : ItemUI {
     }
 
     protected override void VisualUpdate() {
-        if (LastItemSelected != null && LastItemSelected.GetNodule() != null) {
-            image.sprite = LastItemSelected.GetNodule().Sprite;
-            image.color = Color.white;
+        if (LastItemSelected != null) {
+            image.color = EntityBodyPart.NoduleColor(LastItemSelected.GetNodule());
         } else {
-            image.sprite = null;
-            image.color = new Color(0, 0, 0, 0);
+            image.color = EntityBodyPart.NoduleColor(EntityBodyPart.NoduleType.NONE);
         }
     }
 }

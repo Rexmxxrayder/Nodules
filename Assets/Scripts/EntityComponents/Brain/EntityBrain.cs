@@ -1,10 +1,5 @@
-using Sloot;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
 public abstract class EntityBrain : EntityComponent {
     [SerializeField] protected Vector3 visor;

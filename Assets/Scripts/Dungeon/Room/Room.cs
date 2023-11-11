@@ -88,7 +88,7 @@ public class Room : MonoBehaviour {
             Doors[i].Close();
             int a = i;
             Doors[a].OnEnter += (collider) => {
-                if (collider.GetComponentInParent<PlayerBrain>() == null) {
+                if (collider.GetComponentInParent<PlayerBrain>() == null || !collider.CompareTag("Player")) {
                     return;
                 }
 

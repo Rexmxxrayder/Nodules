@@ -274,9 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b16cd506f3dfd4fa59117e93384969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 0
-  TimeRemainingCooldown: 0
-  inUse: 0
+  cooldown: 1
   Speed: 10
   MinimumDistance: 0.5
   walkForce:
@@ -813,7 +811,7 @@ Camera:
   far clip plane: 1000
   field of view: 64.7
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1451,7 +1449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3120379524628034710, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3120379524628034710, guid: 314eb702eda10a6458e65454d36e449e, type: 3}
       propertyPath: m_LocalPosition.z

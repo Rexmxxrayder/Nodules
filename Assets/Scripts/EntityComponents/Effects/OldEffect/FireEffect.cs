@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FireEffect : EntityEffect {
@@ -17,8 +15,8 @@ public class FireEffect : EntityEffect {
             stack = MaxStack;
         }
 
-        if(stack == MaxStack) {
-            BurnEffect burn = new ();
+        if (stack == MaxStack) {
+            BurnEffect burn = new();
             entityEffectManager.AddEffect(burn);
             EndEffect();
         }

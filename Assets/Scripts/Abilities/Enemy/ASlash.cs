@@ -29,9 +29,8 @@ public class ASlash : Ability {
     void Slash(Transform visor) {
         GameObject slash = Instantiate(slashPrefab, transform);
         slash.SetActive(true);
-        slash.transform.position = transform.position;
-        slash.transform.rotation = Quaternion.Euler(0, RotationSloot.GetDegreeBasedOfTarget(transform.position, visor.position, RotationSloot.TranslateVector3("y")) - 180, 0);
-        slash.GetComponentInChildren<Animator>().SetFloat("slashSpeed", slashSpeed);
+        slash.transform.SetPositionAndRotation(transform.position, Quaternion.Euler(0, RotationSloot.GetDegreeBasedOfTarget(transform.position, visor.position, RotationSloot.TranslateVector3("y")) - 180, 0));
+        slash.GetComponentInChildren<Animator>().SetFloat("SlashSpeed", slashSpeed);
     }
 
     void DashTo(EntityPhysics ep, Transform target) {

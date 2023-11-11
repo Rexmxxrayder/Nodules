@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using Unity.VisualScripting;
+using static EntityBodyPart;
 
 public class EntityBodyPartUI : ItemUI {
-    [SerializeField] Image nodulePartImage;
     [SerializeField] EntityBodyPart bodyPart;
     public EntityBodyPart EntityBodyPart { get { return bodyPart; } }
 
@@ -20,17 +15,7 @@ public class EntityBodyPartUI : ItemUI {
         VisualUpdate();
     }
     protected override void VisualUpdate() {
-        if (bodyPart == null) {
-            image.sprite = null;
-            nodulePartImage.sprite = null;
-        } else {
-            image.sprite = bodyPart.Sprite;
-            if (bodyPart.Nodule == null) {
-                nodulePartImage.sprite = null;
-            } else {
-                nodulePartImage.sprite = bodyPart.Nodule.Sprite;
-            }
-        }
+       image.color = NoduleColor(GetNodule());
     }
 
     public void AssignBodyPart(EntityBodyPart newBodyPart) {
@@ -43,7 +28,7 @@ public class EntityBodyPartUI : ItemUI {
         VisualUpdate();
     }
 
-    public override Nodule GetNodule() {
-        return bodyPart.Nodule;
+    public override NoduleType GetNodule() {
+        return EntityBodyPart.Nodule;
     }
 }

@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class BomberBrain : EntityBrain {
     [SerializeField] private BomberData BomberData;
-    [SerializeField] private EntityBasic explosion;
     [SerializeField] private float timeBeforeExplode;
+    [SerializeField] private EntityBasic explosion;
     private float timerBeforeExplode = 0;
     private EntityBodyPart bodyPart;
 
     protected override void ResetSetup() {
         base.ResetSetup();
+        BomberData.SetupData(this);
     }
-    public void SetupData(float timeBeforeExplode) {
+    public void SetupData(EntityBasic explosion, float timeBeforeExplode) {
+        this.explosion = explosion;
         this.timeBeforeExplode = timeBeforeExplode;
     }
 
@@ -42,8 +44,7 @@ public class BomberBrain : EntityBrain {
     }
 
     protected void Explode() {
-        explosion.transform.parent = null;
-        explosion.gameObject.SetActive(true);
+        EntityBasic newExplosion = Instantiate(explosion, transform.position, transform.rotation); 
     }
 
 }

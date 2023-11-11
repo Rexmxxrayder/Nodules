@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBrain : EntityBrain {
     public static Transform Transform;
@@ -10,6 +8,7 @@ public class PlayerBrain : EntityBrain {
     protected override void DefinitiveSetup() {
         base.DefinitiveSetup();
         Transform = GetRootTransform();
+        GetRoot().OnDeath += () => SceneManager.LoadScene(0);
     }
     private void Update() {
         RaycastHit hit;
@@ -21,5 +20,10 @@ public class PlayerBrain : EntityBrain {
         if (Input.GetMouseButtonDown(1)) {
             move.KeyEvenement(true);
         }
+    }
+
+    protected override void DestroySetup() {
+        base.DestroySetup();
+        SceneManager.LoadScene(0);
     }
 }
