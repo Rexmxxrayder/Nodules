@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 5068283940124129419}
   - component: {fileID: 5190089925718219792}
   m_Layer: 0
-  m_Name: ASpawn
+  m_Name: Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,8 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0af63e311753b045838fa71a58aa997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMaxHealth: 2000
-  startHealth: 2000
+  startMaxHealth: 30
+  startHealth: 30
 --- !u!114 &1954380256
 MonoBehaviour:
   m_ObjectHideFlags: 0
