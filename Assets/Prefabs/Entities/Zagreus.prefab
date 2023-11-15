@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyCode: 122
-  noduleType: 5
+  noduleType: 0
 --- !u!1 &59158068829246372
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyCode: 97
-  noduleType: 5
+  noduleType: 0
 --- !u!1 &261013178655429993
 GameObject:
   m_ObjectHideFlags: 0

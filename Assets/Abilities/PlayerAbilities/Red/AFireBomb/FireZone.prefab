@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 5
-  enterDamage: 0
+  enterDamage: 1
   stayDamage: 1
   damageTick: 1
   exitDamage: 0

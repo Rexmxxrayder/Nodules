@@ -333,7 +333,7 @@ MonoBehaviour:
   cooldown: 1
   bulletprefab: {fileID: 8739532234999233227, guid: 59d7b0b8eafc2514e9631647fb030a9e, type: 3}
   speed: 10
-  maxDistance: 10
+  maxDistance: 50
   bulletNumber: 1
   timeForShoot: 5
   freeChild: 0
