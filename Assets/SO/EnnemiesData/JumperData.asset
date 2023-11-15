@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: JumperData
   m_EditorClassIdentifier: 
   areaDamage: {fileID: 892291123988846589, guid: 6aac2bfbe421fcf41885853a9bb10bab, type: 3}
-  cooldown: 2
-  distMaxJump: 2
-  speedJump: 2
+  distMaxJump: 10
+  cooldown: 5
+  speedJump: 4

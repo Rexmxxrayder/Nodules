@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 892291123988846589, guid: c0870862732186c4ea794277f0d50fd2, type: 3}
   timeBeforeExplode: 10
-  speed: 10
+  speed: 12
   time: 10
   minimunDistance: 0.05
