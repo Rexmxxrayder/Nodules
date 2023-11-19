@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 029d562c0c4b016409de48f151c6ab49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeon: {fileID: 11400000, guid: 7a49d2c68b6671243b938e9f4f1e0f70, type: 2}
+  dungeonSO: {fileID: 11400000, guid: 7a49d2c68b6671243b938e9f4f1e0f70, type: 2}
 --- !u!4 &52083192
 Transform:
   m_ObjectHideFlags: 0

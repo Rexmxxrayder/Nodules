@@ -12,8 +12,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d733fa31af37d434e963af5cd260630d, type: 3}
   m_Name: BasicDungeon
   m_EditorClassIdentifier: 
-  size: 12
-  roomsBetweensElite: 020000000300000003000000
+  size: 13
+  floorsRoomsNumber: 030000000300000003000000
+  floorsDifficulty:
+  - serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.333
+      outSlope: 0.333
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.333
+      inSlope: 0.333
+      outSlope: 0.333
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  - serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0.19999999
+      outSlope: 0.19999999
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.7
+      inSlope: 0.19999999
+      outSlope: 0.19999999
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  - serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.9
+      inSlope: 0.100000024
+      outSlope: 0.100000024
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.100000024
+      outSlope: 0.100000024
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   rooms:
   - {fileID: 6871059590638408880, guid: 8c20deebafaf84f40b13f67f38853b94, type: 3}
   - {fileID: 5588917865656471502, guid: 54f365f1dd210a8489cc5bcd00ad6260, type: 3}

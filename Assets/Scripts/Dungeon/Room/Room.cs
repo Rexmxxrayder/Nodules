@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,19 +6,21 @@ using Random = UnityEngine.Random;
 
 public class Room : MonoBehaviour {
     public const int openRoomChance = 50;
+    public const float ennemiesSizePercentRandom = 0.2f;
 
     [SerializeField] private Transform doorsParent;
     [SerializeField] private Transform spawnPointsParent;
+    [SerializeField] private Vector2Int ennemiesNumberDependingOnDifficulty = new(1, 6);
     private List<Transform> spawnPointsEnnemies = new();
-    private List<EntityRoot> ennemies = new();
+    private List<EntityRoot> enemiesToSpawn = new();
     private List<EntityRoot> currentEnemies = new();
     private List<Door> doors = new();
-    public int entrance = 0;
+    private int entrance = 0;
     private int ennemiesAlive = 0;
     private DungeonManager.RoomData[] nextRooms;
     public List<Door> Doors => doors;
     public Action<int> EnterDoor;
-    public List<EntityRoot> Ennemies => ennemies;
+    public List<EntityRoot> EnemiesToSpawn => enemiesToSpawn;
     private void Awake() {
         foreach (Transform child in spawnPointsParent) {
             spawnPointsEnnemies.Add(child);
@@ -30,9 +31,9 @@ public class Room : MonoBehaviour {
         }
     }
 
-    public void Setup(int entrance, EntityRoot[] ennemies, DungeonManager.RoomData[] nextRooms) {
+    public void Setup(int entrance, List<EntityRoot> enemiesToSpawn, DungeonManager.RoomData[] nextRooms) {
         this.entrance = entrance;
-        this.ennemies = ennemies == null ? new() : ennemies.ToList();
+        this.enemiesToSpawn = enemiesToSpawn == null ? new() : enemiesToSpawn;
         this.nextRooms = nextRooms;
         SpawnEnemies();
         SetupDoor();
@@ -40,24 +41,44 @@ public class Room : MonoBehaviour {
     }
 
     public void SpawnEnemies() {
-        if (ennemies == null) {
-            return;
+        for (int i = 0; i < enemiesToSpawn.Count; i++) {
+            SpawnEnemy(enemiesToSpawn[i]);
+        }
+    }
+
+    public List<EntityRoot> GetEnemies(List<EntityRoot> enemiesType, float difficulty) {
+        float enemiesRandom = Mathf.Abs(ennemiesNumberDependingOnDifficulty.x - ennemiesNumberDependingOnDifficulty.y) * ennemiesSizePercentRandom;
+        int enemiesNumber = Mathf.Clamp((int)(Mathf.Lerp(ennemiesNumberDependingOnDifficulty.x, ennemiesNumberDependingOnDifficulty.y, difficulty) + Random.Range(-enemiesRandom, enemiesRandom)), ennemiesNumberDependingOnDifficulty.x,ennemiesNumberDependingOnDifficulty.y);
+        int firstNumber = Random.Range(0, enemiesNumber + 1);
+        EntityRoot firstEnemy = enemiesType[Random.Range(0, enemiesType.Count)];
+        EntityRoot secondEnemy;
+        int security = 0;
+        do {
+            secondEnemy = enemiesType[Random.Range(0, enemiesType.Count)];
+            security++;
+        } while (firstEnemy == secondEnemy && security < 10);
+
+        List<EntityRoot> list = new List<EntityRoot>();
+
+        for (int i = 0; i < enemiesNumber; i++) {
+            list.Add(i < firstNumber ? firstEnemy : secondEnemy);
         }
 
-        List<Transform> spawnPoints = spawnPointsEnnemies.ToList();
-        for (int i = 0; i < ennemies.Count; i++) {
-            EntityRoot root = Instantiate(ennemies[i]);
-            currentEnemies.Add(root);
-            ennemiesAlive++;
-            root.OnDeath += () => {
-                --ennemiesAlive;
-                OpenDoors();
-            };
+        return list;
+    }
 
-            int randomSpawn = Random.Range(0, spawnPoints.Count);
-            root.transform.position = spawnPoints[randomSpawn].position;
-            spawnPoints.RemoveAt(randomSpawn);
-        }
+    private void SpawnEnemy(EntityRoot toSpawn) {
+        EntityRoot root = Instantiate(toSpawn);
+        currentEnemies.Add(root);
+        ennemiesAlive++;
+        root.OnDeath += () => {
+            --ennemiesAlive;
+            OpenDoors();
+        };
+
+        int randomSpawn = Random.Range(0, spawnPointsEnnemies.Count);
+        root.transform.position = spawnPointsEnnemies[randomSpawn].position;
+        spawnPointsEnnemies.RemoveAt(randomSpawn);
     }
 
     private void OpenDoors() {
