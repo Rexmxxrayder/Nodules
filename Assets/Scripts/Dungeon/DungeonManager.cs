@@ -43,7 +43,7 @@ public class DungeonManager : MonoBehaviour {
             for (int j = 0; j < dungeonSO.FloorsRoomsNumber[i]; j++) {
                 for (int k = 0; k < 4; k++) {
                     Room room = dungeonSO.GetRandomRoom();
-                    float difficulty = dungeonSO.FloorsDifficulty[i].Evaluate(Mathf.InverseLerp(i == 0 ? 0 : dungeonSO.FloorsRoomsNumber[i - 1], dungeonSO.FloorsRoomsNumber[i], currentRoomId));
+                    float difficulty = dungeonSO.FloorsDifficulty[i].Evaluate(Mathf.InverseLerp(i == 0 ? 0 : roomsNumber - 1, roomsNumber + dungeonSO.FloorsRoomsNumber[i], roomsNumber - 1 + j));
                     dungeon[roomsNumber + j][k] = new RoomData(false, room, room.GetEnemies(dungeonSO.GetEnemies(false), difficulty).ToArray());
                 }
             }
@@ -55,7 +55,7 @@ public class DungeonManager : MonoBehaviour {
 
             for (int k = 0; k < 4; k++) {
                 Room room = dungeonSO.GetRandomRoom();
-                float difficulty = dungeonSO.FloorsDifficulty[i].Evaluate(Mathf.InverseLerp(i == 0 ? 0 : dungeonSO.FloorsRoomsNumber[i - 1], dungeonSO.FloorsRoomsNumber[i], currentRoomId));
+                float difficulty = dungeonSO.FloorsDifficulty[i].Evaluate(1);
                 dungeon[roomsNumber][k] = new RoomData(false, room, room.GetEnemies(dungeonSO.GetEnemies(true), difficulty).ToArray());
             }
 
