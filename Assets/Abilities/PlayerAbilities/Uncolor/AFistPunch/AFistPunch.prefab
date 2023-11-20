@@ -45,9 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd82afeeb1b4aad45bb2f8daa658b71c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 0.1
-  TimeRemainingCooldown: 0
-  inUse: 0
+  cooldown: 1
   fist: {fileID: 6952948947408091227}
   fistDuration: 0.25
 --- !u!1 &6952948947408091227
@@ -128,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 1
-  enterDamage: 10
+  enterDamage: 8
   stayDamage: 0
   damageTick: 1
   exitDamage: 0

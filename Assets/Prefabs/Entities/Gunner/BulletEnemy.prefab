@@ -64,6 +64,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6826006571255521432, guid: 414798416f396de4cb4565d0a31d6832, type: 3}
+      propertyPath: enterDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826006571255521432, guid: 414798416f396de4cb4565d0a31d6832, type: 3}
       propertyPath: damageables.Array.data[0]
       value: Player
       objectReference: {fileID: 0}

@@ -56,8 +56,8 @@ MonoBehaviour:
   visor: {x: 0, y: 0, z: 0}
   selected: {fileID: 0}
   BomberData: {fileID: 11400000, guid: 78ffa3c2855a5a648bd69ef3c9c10f0a, type: 2}
-  explosion: {fileID: 892291123988846589, guid: c0870862732186c4ea794277f0d50fd2, type: 3}
   timeBeforeExplode: 0
+  explosion: {fileID: 892291123988846589, guid: c0870862732186c4ea794277f0d50fd2, type: 3}
 --- !u!114 &77943153216926796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,8 +331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0af63e311753b045838fa71a58aa997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMaxHealth: 15
-  startHealth: 15
+  startMaxHealth: 5
+  startHealth: 5
 --- !u!1001 &5691782237733852513
 PrefabInstance:
   m_ObjectHideFlags: 0

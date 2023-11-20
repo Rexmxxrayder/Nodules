@@ -346,14 +346,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f3a99676089fb4799e54a3f2614faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 100
-  TimeRemainingCooldown: 0
-  inUse: 0
+  cooldown: 1
   bulletprefab: {fileID: 6826006571255521432, guid: 414798416f396de4cb4565d0a31d6832, type: 3}
   currentBullet: {fileID: 0}
   shoot: 0
   maxCharge: 3
   maxDamage: 10
   slider: {fileID: 1313189774658235334}
-  damage: {x: 1, y: 40}
+  damage: {x: 1, y: 15}
   size: {x: 0.5, y: 5}

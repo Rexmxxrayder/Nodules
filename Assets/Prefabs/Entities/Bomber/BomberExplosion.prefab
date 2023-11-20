@@ -112,14 +112,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 1
-  enterDamage: 1
+  enterDamage: 10
   stayDamage: 0
   damageTick: 0
   exitDamage: 0
+  damageType: 
   damageables:
   - Player
   destroyOnCollision: 0
   destroyOnTrigger: 0
+  entitiesInsideVisual: []
 --- !u!1001 &334471442980116086
 PrefabInstance:
   m_ObjectHideFlags: 0

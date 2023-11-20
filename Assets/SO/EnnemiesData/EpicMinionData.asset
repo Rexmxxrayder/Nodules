@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: EpicMinionData
   m_EditorClassIdentifier: 
   damagesHit: 10
-  projectionStrenght: 10
-  projectionDist: 10
+  projectionStrenght: 20
+  projectionDist: 20
   cooldown: 0.5
-  speed: 5
+  speed: 10
   time: 5
   minimunDistance: 0.05

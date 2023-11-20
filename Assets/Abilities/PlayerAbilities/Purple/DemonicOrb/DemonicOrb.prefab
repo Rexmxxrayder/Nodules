@@ -157,7 +157,7 @@ MonoBehaviour:
   destroyOnCollision: 0
   destroyOnTrigger: 0
   entitiesInsideVisual: []
-  speed: 18
+  speed: 25
   distanceLife: -1
   maxBounce: 2
   rebounce: 0.2
