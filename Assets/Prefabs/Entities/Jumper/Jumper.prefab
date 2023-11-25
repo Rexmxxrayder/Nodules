@@ -48,6 +48,8 @@ MonoBehaviour:
   distMaxJump: 10
   speedJump: 0
   areaDamage: {fileID: 0}
+  percentReduction: 90
+  flatReduction: 0
 --- !u!1 &832732872
 GameObject:
   m_ObjectHideFlags: 0

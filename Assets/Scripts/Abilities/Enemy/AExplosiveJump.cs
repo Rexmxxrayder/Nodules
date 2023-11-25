@@ -5,8 +5,12 @@ using UnityEngine;
 public class AExplosiveJump : Ability {
     [SerializeField] private float distMaxJump, speedJump;
     [SerializeField] private AreaDamage3D areaDamage;
+    [SerializeField] private float percentReduction;
+    [SerializeField] private float flatReduction;
+    private DamageReductionModifier dashResistance;
 
     protected override void LaunchAbilityUp(EntityBrain brain) {
+        dashResistance ??= dashResistance = new(percentReduction, flatReduction);
         StartCoroutine(Jump(brain.Visor));
     }
 
@@ -18,15 +22,18 @@ public class AExplosiveJump : Ability {
     }
 
     IEnumerator Jump(Vector3 destination) {
+        EntityPhysics ep = gameObject.RootGet<EntityPhysics>();
+        ep.RootGet<EntityHealthModfier>().RemoveModifier(dashResistance);
         StartCooldown();
         Vector3 position = gameObject.GetRootPosition();
         Vector3 directionJump = destination - position;
         float distJump = Mathf.Min(Vector3.Distance(destination, position), distMaxJump);
         ImpactDamage();
-        gameObject.RootGet<EntityPhysics>().Add(Force.Const(directionJump, speedJump, distJump / speedJump), EntityPhysics.PhysicPriority.DASH);
+        Force jumpForce = Force.Const(directionJump, speedJump, distJump / speedJump);
+        ep.Add(jumpForce, EntityPhysics.PhysicPriority.DASH);
         yield return new WaitForSeconds(distJump / speedJump);
+        ep.RootGet<EntityHealthModfier>().AddModifier(dashResistance);
         ImpactDamage();
-
     }
 
     void ImpactDamage() {
