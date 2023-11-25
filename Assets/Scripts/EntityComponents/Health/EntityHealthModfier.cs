@@ -13,9 +13,7 @@ public class EntityHealthModfier : EntityComponent
             entityHealth.DamageModifier += damageModifier;
             entityHealth.HealModifier += healModifier;
         }
-    }
-
-    
+    }    
 
     public void AddModifier(IHealthModifier modifier) {
         if(modifier is IDamageModifier) {

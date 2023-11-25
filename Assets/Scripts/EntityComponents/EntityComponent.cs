@@ -65,6 +65,10 @@ public abstract class EntityComponent : MonoBehaviour, IEntity, IReset {
         }
     }
 
+    public bool StillRoot() {
+        return _root != null;
+    }
+
     public GameObject GetRootGameObject() {
         return GetRoot().gameObject;
     }
