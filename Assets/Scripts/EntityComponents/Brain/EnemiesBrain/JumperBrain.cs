@@ -1,8 +1,11 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.WSA;
 
 public class JumperBrain : EntityBrain {
     [SerializeField] private JumperData jumperData;
     private EntityBodyPart jump;
+    private bool launch;
 
     protected override void ResetSetup() {
         base.ResetSetup();
@@ -18,7 +21,19 @@ public class JumperBrain : EntityBrain {
     private void Update() {
         visor = selected.transform.position;
         if (jump.Available) {
-            jump.KeyEvenement(true);
+            StartCoroutine(LaunchAbility());
         }
+    }
+
+    private IEnumerator LaunchAbility() {
+        if(launch) {
+            yield break;
+        } else {
+            launch = true;
+        }
+
+        yield return new WaitForSeconds(Random.Range(0, 5f));
+        jump.KeyEvenement(true);
+        launch = false;
     }
 }
