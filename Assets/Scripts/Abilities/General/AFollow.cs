@@ -34,7 +34,6 @@ public class AFollow : Ability {
                 Vector3 direction = goToPosition.position - root.position;
                 FollowForce.Direction = direction.PlanXZ();
             }
-
             yield return null;
         } while (!FollowForce.HasEnded);
         StopFollow();
@@ -43,6 +42,11 @@ public class AFollow : Ability {
     public void StopFollow() {
         ep.Remove(FollowForce);
         StopAllCoroutines();
+    }
+
+    public void GoForward() {
+        StopAllCoroutines();
+        FollowForce = new(Force.Const(FollowForce.Direction, speed, 10f));
     }
 
     public override void Cancel() {
