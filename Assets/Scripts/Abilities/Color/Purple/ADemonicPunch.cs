@@ -10,7 +10,7 @@ public class ADemonicPunch : Ability {
     public static int MaxMark;
     protected override void LaunchAbilityUp(EntityBrain brain) {
         MaxMark = maxMark;
-        brain.RootGet<EntityPhysics>().Add(Force.Const(Vector3.zero, 1, fistDuration), EntityPhysics.PhysicPriority.BLOCK);
+        brain.GetRootComponent<EntityPhysics>().Add(Force.Const(Vector3.zero, 1, fistDuration), EntityPhysics.PhysicPriority.BLOCK);
         Spawn(brain.GetRootPosition());
         AttackToward?.Invoke(brain.Visor, fistDuration);
     }

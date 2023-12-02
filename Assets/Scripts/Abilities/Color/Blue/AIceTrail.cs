@@ -20,7 +20,7 @@ public class AIceTrail : Ability {
     }
 
     private IEnumerator IceTrail() {
-        gameObject.RootGet<EntityEffectManager>().AddEffect(new CleanseEffect());
+        gameObject.GetRootComponent<EntityEffectManager>().AddEffect(new CleanseEffect());
         float timer = 0f;
         float tick = 0f;
         while (timer < duration) {

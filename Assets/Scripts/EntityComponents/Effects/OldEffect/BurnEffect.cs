@@ -16,7 +16,7 @@ public class BurnEffect : EntityEffect {
 
     public override void SetupEffect(EntityEffectManager effectManager) {
         base.SetupEffect(effectManager);
-        entityHealth = effectManager.RootGet<EntityHealth>();
+        entityHealth = effectManager.GetRootComponent<EntityHealth>();
         Currentduration = 6.01f;
     }
     public override void UpdateEffect(float deltaTime) {

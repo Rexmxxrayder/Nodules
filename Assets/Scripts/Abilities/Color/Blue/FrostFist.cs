@@ -10,7 +10,7 @@ public class FrostFist : AreaDamage3D
         if (health != null && !entitiesInside.ContainsKey(health) && damageables.Contains(health.GetRoot().tag)) {
             entitiesInside.Add(health, 0f);
             if (enterDamage != 0) {
-                EntityEffectManager eem = health.RootGet<EntityEffectManager>();
+                EntityEffectManager eem = health.GetRootComponent<EntityEffectManager>();
                 int damages = enterDamage;
                 if (eem != null) {
                     if (eem.Contains(new List<EffectType> { EffectType.ICE, EffectType.POWDER, EffectType.FREEZE, EffectType.FOCUS, EffectType.EMERALD, EffectType.INSANITY , EffectType.MADNESS})) {

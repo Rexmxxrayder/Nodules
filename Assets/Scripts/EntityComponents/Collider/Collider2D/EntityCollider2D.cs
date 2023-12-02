@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class EntityCollider2D : EntityCollider<Collision2D,Collider2D> {
     #region Setup
     protected override void DefinitiveSetup() {
-        if (RootGet<EntityMainCollider2D>() == null) {
+        if (GetRootComponent<EntityMainCollider2D>() == null) {
             GetRootGameObject().AddComponent<EntityMainCollider2D>();
         }
     }

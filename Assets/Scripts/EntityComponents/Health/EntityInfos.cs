@@ -11,19 +11,18 @@ public class EntityInfos : EntityComponent {
     [SerializeField] private TMP_Text effectsText;
     private EntityHealth eh;
     private EntityEffectManager eem;
-    protected override void DefinitiveSetup() {
-        eh = _root.RootGet<EntityHealth>();
+
+    protected override void LoadSetup() {
+        eh = GetRootComponent<EntityHealth>();
         if (eh == null) {
             Destroy(gameObject);
         }
 
-        eem = _root.RootGet<EntityEffectManager>();
+        eem = GetRootComponent<EntityEffectManager>();
         if (eem == null) {
             Destroy(gameObject);
         }
-    }
 
-    protected override void LoadSetup() {
         slider.minValue = 0;
         slider.maxValue = eh.MaxHealth;
         slider.value = eh.Health;

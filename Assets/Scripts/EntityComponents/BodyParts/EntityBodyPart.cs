@@ -54,7 +54,7 @@ public class EntityBodyPart : EntityComponent {
     }
 
     protected override void LoadSetup() {
-        RootGet<EntityBrain>().OnCannotAct += CancelAbility;
+        GetRootComponent<EntityBrain>().OnCannotAct += CancelAbility;
     }
 
     public void AssignBrain(EntityBrain newBrain) {

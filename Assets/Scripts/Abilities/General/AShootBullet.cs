@@ -13,7 +13,7 @@ public class AShootBullet : Ability {
     private int numberShot = 0;
     protected override void LaunchAbilityUp(EntityBrain brain) {
         coroutine ??= StartCoroutine(ShootTime());
-        Shoot(brain.Visor - GetComponentInParent<EntityBodyPart>().GetRootPosition());
+        Shoot(brain.Visor - gameObject.GetRootPosition());
     }
 
     public void SetupData(Bullet bulletprefab, float cooldown, float speed, float maxDistance, float bulletNumber, float timeForShoot, bool freeChild) {

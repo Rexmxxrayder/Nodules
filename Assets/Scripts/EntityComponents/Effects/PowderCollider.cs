@@ -24,12 +24,12 @@ public class PowderCollider : MonoBehaviour {
         } else {
             Debug.Log(other.name + " / " + other.CompareTag("Enemy") + " / " + (other.gameObject.GetRoot() != null)+  " / " + (!colliders.Contains(other)));
             if (other.CompareTag("Enemy") && other.gameObject.GetRoot() != null && !colliders.Contains(other))  {
-                EntityEffectManager eem = other.gameObject.RootGet<EntityEffectManager>();
+                EntityEffectManager eem = other.gameObject.GetRootComponent<EntityEffectManager>();
                 if (eem != null && !eem.Contains(EffectType.POWDER)) {
                     PowderEffect powderEffect = new();
-                    powderEffect.CurrentDuration = ((PowderEffect)gameObject.RootGet<EntityEffectManager>().Get(EffectType.POWDER)).TimeRemaining;
+                    powderEffect.CurrentDuration = ((PowderEffect)gameObject.GetRootComponent<EntityEffectManager>().Get(EffectType.POWDER)).TimeRemaining;
                     eem.AddEffect(powderEffect);
-                    gameObject.RootGet<EntityEffectManager>().RemoveEffect(EffectType.POWDER);
+                    gameObject.GetRootComponent<EntityEffectManager>().RemoveEffect(EffectType.POWDER);
                     Destroy(gameObject);
                 }
             }

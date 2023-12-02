@@ -18,8 +18,8 @@ public class DemonicOrbs : Bullet {
 
     protected override void LoadSetup() {
         base.LoadSetup();
-        RootGet<EntityMainCollider3D>().OnTriggerEnterDelegate += Bounce;
-        ep = RootGet<EntityPhysics>();
+        GetRootComponent<EntityMainCollider3D>().OnTriggerEnterDelegate += Bounce;
+        ep = GetRootComponent<EntityPhysics>();
     }
 
     private void Bounce(Collider collider) {
@@ -42,6 +42,6 @@ public class DemonicOrbs : Bullet {
 
     protected override void DestroySetup() {
         base.DestroySetup();
-        RootGet<EntityMainCollider3D>().OnTriggerEnterDelegate -= Bounce;
+        GetRootComponent<EntityMainCollider3D>().OnTriggerEnterDelegate -= Bounce;
     }
 }

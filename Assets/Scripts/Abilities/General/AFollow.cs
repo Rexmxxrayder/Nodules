@@ -17,7 +17,7 @@ public class AFollow : Ability {
     }
 
     protected override void LaunchAbilityUp(EntityBrain brain) {
-        ep = gameObject.RootGet<EntityPhysics>();
+        ep = gameObject.GetRootComponent<EntityPhysics>();
         root = gameObject.GetRoot().transform;
         toFollow = brain.Selected;
         StopFollow();

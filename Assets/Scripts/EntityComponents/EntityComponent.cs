@@ -1,11 +1,9 @@
 using Sloot;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class EntityComponent : MonoBehaviour, IEntity, IReset {
-    protected EntityRoot _root = null;
+    protected EntityRoot root = null;
 
     private void Awake() {
         SetRoot();
@@ -18,6 +16,7 @@ public abstract class EntityComponent : MonoBehaviour, IEntity, IReset {
     }
 
     private void OnDestroy() {
+        root.RemoveComponent(this);
         DestroySetup();
     }
 
@@ -37,36 +36,38 @@ public abstract class EntityComponent : MonoBehaviour, IEntity, IReset {
         LoadSetup();
     }
 
-    public virtual EntityRoot SetRoot() {
-        if (_root == null) {
-            if (gameObject.GetComponent<EntityRoot>() != null) {
-                _root = gameObject.GetComponent<EntityRoot>();
-                return _root;
-            } else if (transform.parent == null) {
-                GameObject newParent = new() {
-                    name = "Root"
-                };
+    protected virtual EntityRoot SetRoot() {
+        if (root == null) {
+            if (gameObject.TryGetComponent(out EntityRoot entityRoot)) {
+                root = entityRoot;
+            } else {
+                if (transform.parent == null) {
+                    GameObject newParent = new() {
+                        name = "Root"
+                    };
 
-                transform.parent = newParent.transform;
+                    transform.parent = newParent.transform;
+                }
+
+                EntityComponent parentComponent = transform.parent.GetComponent<EntityComponent>();
+                root = parentComponent == null ? transform.parent.AddComponent<EntityRoot>().GetRoot() : parentComponent.GetRoot();
             }
-
-            EntityComponent parentComponent = transform.parent.GetComponent<EntityComponent>();
-            _root = parentComponent == null ? transform.parent.AddComponent<EntityRoot>().GetRoot() : parentComponent.GetRoot();
         }
 
-        return _root;
+        root.AddComponent(this);
+        return root;
     }
 
     public virtual EntityRoot GetRoot() {
-        if (_root == null) {
+        if (root == null) {
             return SetRoot();
         } else {
-            return _root;
+            return root;
         }
     }
 
     public bool StillRoot() {
-        return _root != null;
+        return root != null;
     }
 
     public GameObject GetRootGameObject() {
@@ -89,8 +90,8 @@ public abstract class EntityComponent : MonoBehaviour, IEntity, IReset {
         return GetRoot().transform.localScale;
     }
 
-    public T RootGet<T>() where T : MonoBehaviour, IEntity {
-        return GetRootGameObject().GetComponentInChildren<T>();
+    public virtual T GetRootComponent<T>() where T : EntityComponent, IEntity {
+        return GetRoot().GetRootComponent<T>();
     }
 
     public virtual void Die() {
@@ -130,12 +131,12 @@ public static class ExtensionEntityComponent {
         return gO.GetRoot().transform.localScale;
     }
 
-    public static T RootGet<T>(this GameObject gO) where T : MonoBehaviour, IEntity {
+    public static T GetRootComponent<T>(this GameObject gO) where T : EntityComponent, IEntity {
         if (gO.GetRoot() == null) {
             return null;
         }
 
-        return gO.GetRoot().GetComponentInChildren<T>();
+        return gO.GetRoot().GetRootComponent<T>();
     }
 
     public static void Die(this GameObject gO) {

@@ -20,7 +20,7 @@ public class MinionBrain : EntityBrain {
     protected override void LoadSetup() {
         base.LoadSetup();
         selected = PlayerBrain.Transform;
-        RootGet<EntityCollider3D>().OnCollisionEnterDelegate += Hit;
+        GetRootComponent<EntityCollider3D>().OnCollisionEnterDelegate += Hit;
     }
 
     private void Update() {
@@ -31,8 +31,8 @@ public class MinionBrain : EntityBrain {
     }
 
     void Hit(Collision c) {
-        EntityPhysics ep = c.gameObject.RootGet<EntityPhysics>();
-        EntityHealth eh = c.gameObject.RootGet<EntityHealth>();
+        EntityPhysics ep = c.gameObject.GetRootComponent<EntityPhysics>();
+        EntityHealth eh = c.gameObject.GetRootComponent<EntityHealth>();
         if (ep != null) {
             ep.Add(Force.Const(c.transform.position - transform.position, projectionStrenght, projectionDist / projectionStrenght), EntityPhysics.PhysicPriority.PROJECTION);
         }

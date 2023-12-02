@@ -21,7 +21,7 @@ public class ASlash : Ability {
     }
 
     protected override void LaunchAbilityUp(EntityBrain brain) {
-        EntityPhysics ep = gameObject.RootGet<EntityPhysics>();
+        EntityPhysics ep = gameObject.GetRootComponent<EntityPhysics>();
         DashTo(ep, brain.Selected);
         StartCooldown();
     }
@@ -36,7 +36,7 @@ public class ASlash : Ability {
     void DashTo(EntityPhysics ep, Transform target) {
         ep.Remove(dashForce);
         DamageReductionModifier dashResistance = new(percentReduction, flatReduction);
-        ep.RootGet<EntityHealthModfier>().AddModifier(dashResistance);
+        ep.GetRootComponent<EntityHealthModfier>().AddModifier(dashResistance);
         Vector3 position = ep.GetRootPosition();
         float distToTarget = Vector3.Distance(position, target.position);
         float distToDash = distToTarget > dist + distMinTotarget ? dist : distToTarget - distMinTotarget;
@@ -47,7 +47,7 @@ public class ASlash : Ability {
 
         dashForce = Force.Const(target.position - position, speed, distToDash / speed);
         dashForce.OnEnd += (_) => Slash(target);
-        dashForce.OnEnd += (_) => ep.RootGet<EntityHealthModfier>().RemoveModifier(dashResistance);
+        dashForce.OnEnd += (_) => ep.GetRootComponent<EntityHealthModfier>().RemoveModifier(dashResistance);
         ep.Add(dashForce, EntityPhysics.PhysicPriority.DASH);
     }
 }

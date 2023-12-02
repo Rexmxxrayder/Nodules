@@ -7,7 +7,7 @@ public class EntityEffectsBar : EntityComponent {
     private EntityEffectManager eem;
 
     protected override void DefinitiveSetup() {
-        eem = _root.RootGet<EntityEffectManager>();
+        eem = root.GetRootComponent<EntityEffectManager>();
         if (eem == null) {
             Destroy(gameObject);
         }

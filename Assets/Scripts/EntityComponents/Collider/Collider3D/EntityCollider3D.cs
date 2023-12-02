@@ -5,7 +5,7 @@ public class EntityCollider3D : EntityCollider<Collision, Collider> {
 
     #region Setup
     protected override void DefinitiveSetup() {
-        if (RootGet<EntityMainCollider3D>() == null) {
+        if (GetRootComponent<EntityMainCollider3D>() == null) {
             GetRootGameObject().AddComponent<EntityMainCollider3D>();
         }
     }

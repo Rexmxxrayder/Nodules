@@ -26,16 +26,17 @@ public abstract class EntityBrain : EntityComponent {
     public event Action OnCanActAgain { add { onCanActAgain += value; } remove { onCanActAgain -= value; } }
     public event Action OnCannotAct { add { onCannotAct += value; } remove { onCannotAct -= value; } }
 
-    public override EntityRoot SetRoot() {
-        if (_root == null) {
+    protected override EntityRoot SetRoot() {
+        if (root == null) {
             if (TryGetComponent(out EntityRoot root)) {
-                _root = root;
+                base.root = root;
             } else {
-                _root = gameObject.AddComponent<EntityRoot>().GetRoot();
+                base.root = gameObject.AddComponent<EntityRoot>().GetRoot();
             }
         }
 
-        return _root;
+        root.AddComponent(this);
+        return root;
     }
 
     protected override void DefinitiveSetup() {

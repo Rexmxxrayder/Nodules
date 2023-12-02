@@ -19,7 +19,7 @@ public class Bullet : AreaDamage3D {
         }
         shoot = true;
         gameObject.SetActive(true);
-        RootGet<EntityPhysics>().Add(Force.Const(direction.normalized, speed, Duration), EntityPhysics.PhysicPriority.PROJECTION);
+        GetRootComponent<EntityPhysics>().Add(Force.Const(direction.normalized, speed, Duration), EntityPhysics.PhysicPriority.PROJECTION);
         StartCoroutine(DistanceLifeReach());
     }
 

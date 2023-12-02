@@ -5,7 +5,7 @@ public class AFistPunch : Ability {
     [SerializeField] private GameObject fist;
     [SerializeField] private float fistDuration = 1f;
     protected override void LaunchAbilityUp(EntityBrain brain) {
-        brain.RootGet<EntityPhysics>().Add(Force.Const(Vector3.zero, 1, fistDuration), EntityPhysics.PhysicPriority.BLOCK);
+        brain.GetRootComponent<EntityPhysics>().Add(Force.Const(Vector3.zero, 1, fistDuration), EntityPhysics.PhysicPriority.BLOCK);
         Punch(brain.Visor);
     }
 

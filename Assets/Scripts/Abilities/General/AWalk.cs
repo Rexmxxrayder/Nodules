@@ -10,7 +10,7 @@ public class AWalk : Ability {
     Transform root;
 
     protected override void LaunchAbilityUp(EntityBrain brain) {
-        ep = gameObject.RootGet<EntityPhysics>();
+        ep = gameObject.GetRootComponent<EntityPhysics>();
         root = gameObject.GetRootTransform();
         StopWalk();
         StartCoroutine(WalkTo(ep, root, brain.Visor));

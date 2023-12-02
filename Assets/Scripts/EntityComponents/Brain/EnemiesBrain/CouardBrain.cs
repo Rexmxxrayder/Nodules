@@ -15,7 +15,7 @@ public class CouardBrain : EntityBrain {
             target = FindObjectOfType<PlayerBrain>().transform;
         }
         newDirection = new Timer(this, timeNewDirection, NewDirection);
-        RootGet<EntityHealth>().OnDamaged += (_,_) => AwakeCouard();
+        GetRootComponent<EntityHealth>().OnDamaged += (_,_) => AwakeCouard();
     }
 
 
@@ -30,7 +30,7 @@ public class CouardBrain : EntityBrain {
 
     public void ShootOnEnemy() {
         visor = target.transform.position;
-        if (RootGet<EntityBodyPart>().Available) {
+        if (GetRootComponent<EntityBodyPart>().Available) {
             shoot.KeyEvenement(true);
         }
     }

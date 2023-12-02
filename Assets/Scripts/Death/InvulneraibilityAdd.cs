@@ -12,12 +12,12 @@ public class InvulneraibilityAdd : MonoBehaviour
         if(add) {
             add = false;
             modifier = new InvulnerabilityModifier();
-            gameObject.RootGet<EntityHealthModfier>().AddModifier(modifier);
+            gameObject.GetRootComponent<EntityHealthModfier>().AddModifier(modifier);
         }
 
         if (remove) {
             remove = false;
-            gameObject.RootGet<EntityHealthModfier>().RemoveModifier(modifier);
+            gameObject.GetRootComponent<EntityHealthModfier>().RemoveModifier(modifier);
             modifier = null;
         }
     }

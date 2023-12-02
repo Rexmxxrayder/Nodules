@@ -14,7 +14,7 @@ public class MadnessEffect : EntityEffect
 
     public override void SetupEffect(EntityEffectManager effectManager) {
         base.SetupEffect(effectManager);
-        entityEffectManager.RootGet<EntityHealth>().RemoveHealth((int)damagesCurve.Evaluate(stack));
+        entityEffectManager.GetRootComponent<EntityHealth>().RemoveHealth((int)damagesCurve.Evaluate(stack));
         EndEffect();
     }
 }

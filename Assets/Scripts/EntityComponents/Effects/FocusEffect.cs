@@ -17,9 +17,9 @@ public class FocusEffect : EntityEffect {
     public override void SetupEffect(EntityEffectManager effectManager) {
         base.SetupEffect(effectManager);
         modifier = new DoubleDamageModifer();
-        ehm = effectManager.RootGet<EntityHealthModfier>();
+        ehm = effectManager.GetRootComponent<EntityHealthModfier>();
         ehm.AddModifier(modifier);
-        eh = effectManager.RootGet<EntityHealth>();
+        eh = effectManager.GetRootComponent<EntityHealth>();
         eh.OnDamaged += RemoveModifier;
     }
 

@@ -9,7 +9,7 @@ public class ADash : Ability {
     private Force dashForce;
 
     protected override void LaunchAbilityUp(EntityBrain brain) {
-        EntityPhysics ep = gameObject.RootGet<EntityPhysics>();
+        EntityPhysics ep = gameObject.GetRootComponent<EntityPhysics>();
         Vector3 startPosition = gameObject.GetRootPosition();
         Vector3 goToPosition = brain.Visor;
         DashTo(ep, startPosition, goToPosition);

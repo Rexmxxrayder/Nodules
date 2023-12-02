@@ -20,10 +20,10 @@ public class BomberBrain : EntityBrain {
     protected override void LoadSetup() {
         base.LoadSetup();
         gameObject.GetRoot().OnDeath += Fall;
-        RootGet<EntityCollider3D>().OnCollisionEnterDelegate += DieOnCollision;
+        GetRootComponent<EntityCollider3D>().OnCollisionEnterDelegate += DieOnCollision;
         selected = PlayerBrain.Transform;
-        bodyPart = RootGet<EntityBodyPart>();
-        entityPhysics = RootGet<EntityPhysics>();
+        bodyPart = GetRootComponent<EntityBodyPart>();
+        entityPhysics = GetRootComponent<EntityPhysics>();
         bodyPart.KeyEvenement(true);
         OnCanActAgain += () => {
             bodyPart.KeyEvenement(true);

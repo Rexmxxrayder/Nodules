@@ -20,7 +20,7 @@ public class AIcicleCanon : Ability {
     }
 
     IEnumerator StopPlayer() {
-        EntityPhysics ep = gameObject.RootGet<EntityPhysics>();
+        EntityPhysics ep = gameObject.GetRootComponent<EntityPhysics>();
         Force rootForce = Force.Const(Vector3.zero, 1, timeForShoot);
         ep.Add(rootForce, EntityPhysics.PhysicPriority.INPUT);
         float timer = 0f;

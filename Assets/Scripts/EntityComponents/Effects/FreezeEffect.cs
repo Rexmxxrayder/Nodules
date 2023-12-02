@@ -25,8 +25,8 @@ public class FreezeEffect : EntityEffect {
 
     public override void SetupEffect(EntityEffectManager effectManager) {
         base.SetupEffect(effectManager);
-        ep = effectManager.RootGet<EntityPhysics>();
-        eb = effectManager.RootGet<EntityBrain>();
+        ep = effectManager.GetRootComponent<EntityPhysics>();
+        eb = effectManager.GetRootComponent<EntityBrain>();
         freezeForce = Force.Const(Vector3.zero, 1, OfficialDuration);
         ep.Add(freezeForce, EntityPhysics.PhysicPriority.BLOCK);
         if (eb != null) {

@@ -14,7 +14,7 @@ public class EntityDamageCollider2D : EntityColliderDelegate2D {
     }
 
     void DoDamageCollider(Collider2D game) {
-        EntityHealth health = game.gameObject.RootGet<EntityHealth>();
+        EntityHealth health = game.gameObject.GetRootComponent<EntityHealth>();
         if (health != null && Damaged.Contains(health.GetRoot().tag)) {
                 health.RemoveHealth(damage);
         }
@@ -26,7 +26,7 @@ public class EntityDamageCollider2D : EntityColliderDelegate2D {
 
 
     void DoDamageCollision(Collision2D game) {
-        EntityHealth health = game.gameObject.RootGet<EntityHealth>();
+        EntityHealth health = game.gameObject.GetRootComponent<EntityHealth>();
         if (health != null && Damaged.Contains(health.GetRoot().tag)) {
             health.RemoveHealth(damage);
         }

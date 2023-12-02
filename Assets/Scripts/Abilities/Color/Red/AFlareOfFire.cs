@@ -26,10 +26,10 @@ public class AFlareOfFire : Ability {
         }
 
         secondDashing = !secondDashing;
-        EntityPhysics ep = gameObject.RootGet<EntityPhysics>();
+        EntityPhysics ep = gameObject.GetRootComponent<EntityPhysics>();
         Vector3 startPosition = gameObject.GetRootPosition();
         Vector3 goToPosition = brain.Visor;
-        mainCollider = gameObject.RootGet<EntityMainCollider3D>();
+        mainCollider = gameObject.GetRootComponent<EntityMainCollider3D>();
         DashTo(ep, startPosition, goToPosition);
     }
 
@@ -41,12 +41,12 @@ public class AFlareOfFire : Ability {
         mainCollider.GetRoot().GetComponentInChildren<Collider>().isTrigger = true;
         mainCollider.OnTriggerEnterDelegate += FireBodyDamage;
         modifier = new InvulnerabilityModifier();
-        gameObject.RootGet<EntityHealthModfier>().AddModifier(modifier);
+        gameObject.GetRootComponent<EntityHealthModfier>().AddModifier(modifier);
         ep.Add(dashForce, EntityPhysics.PhysicPriority.DASH);
     }
 
     private void EndDash() {
-        gameObject.RootGet<EntityHealthModfier>().RemoveModifier(modifier);
+        gameObject.GetRootComponent<EntityHealthModfier>().RemoveModifier(modifier);
         modifier = null;
         mainCollider.GetRoot().GetComponentInChildren<Collider>().isTrigger = false;
         mainCollider.OnTriggerEnterDelegate -= FireBodyDamage;
@@ -61,7 +61,7 @@ public class AFlareOfFire : Ability {
 
     private void FireBodyDamage(Collider collider) {
         if (collider.gameObject.GetRoot().CompareTag("Enemy")) {
-            collider.gameObject.RootGet<EntityHealth>().RemoveHealth(!secondDashing ? firstDashDamage : secondDashDamage);
+            collider.gameObject.GetRootComponent<EntityHealth>().RemoveHealth(!secondDashing ? firstDashDamage : secondDashDamage);
         }
     }
 

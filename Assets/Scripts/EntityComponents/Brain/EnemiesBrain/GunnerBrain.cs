@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.WSA;
 
 public class GunnerBrain : EntityBrain {
     [SerializeField] private GunnerData GunnerData;

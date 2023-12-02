@@ -22,8 +22,8 @@ public class AExplosiveJump : Ability {
     }
 
     IEnumerator Jump(Vector3 destination) {
-        EntityPhysics ep = gameObject.RootGet<EntityPhysics>();
-        ep.RootGet<EntityHealthModfier>().RemoveModifier(dashResistance);
+        EntityPhysics ep = gameObject.GetRootComponent<EntityPhysics>();
+        ep.GetRootComponent<EntityHealthModfier>().RemoveModifier(dashResistance);
         StartCooldown();
         Vector3 position = gameObject.GetRootPosition();
         Vector3 directionJump = destination - position;
@@ -32,7 +32,7 @@ public class AExplosiveJump : Ability {
         Force jumpForce = Force.Const(directionJump, speedJump, distJump / speedJump);
         ep.Add(jumpForce, EntityPhysics.PhysicPriority.DASH);
         yield return new WaitForSeconds(distJump / speedJump);
-        ep.RootGet<EntityHealthModfier>().AddModifier(dashResistance);
+        ep.GetRootComponent<EntityHealthModfier>().AddModifier(dashResistance);
         ImpactDamage();
     }
 

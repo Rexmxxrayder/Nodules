@@ -8,7 +8,7 @@ public class EffectApply : MonoBehaviour {
     [SerializeField] private bool onlyOneHit;
     private Dictionary<EntityEffectManager, int> inside = new();
     private void OnTriggerEnter(Collider other) {
-        EntityEffectManager eem = other.gameObject.RootGet<EntityEffectManager>();
+        EntityEffectManager eem = other.gameObject.GetRootComponent<EntityEffectManager>();
         if (eem != null) {
             if (!inside.ContainsKey(eem)) {
                 inside.Add(eem, 0);
@@ -24,7 +24,7 @@ public class EffectApply : MonoBehaviour {
 
     private void OnTriggerExit(Collider other) {
         if (!onlyOneHit) {
-            EntityEffectManager eem = other.gameObject.RootGet<EntityEffectManager>();
+            EntityEffectManager eem = other.gameObject.GetRootComponent<EntityEffectManager>();
             if (eem != null) {
                 if (inside.ContainsKey(eem)) {
                     inside[eem]--;

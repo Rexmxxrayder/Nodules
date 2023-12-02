@@ -22,7 +22,7 @@ public class PowderEffect : EntityEffect {
         if (!base.EndEffect()) {
             return false;
         }
-        entityEffectManager.RootGet<EntityHealth>().RemoveHealth(Damage, "Powder");
+        entityEffectManager.GetRootComponent<EntityHealth>().RemoveHealth(Damage, "Powder");
         GameObject.Destroy(powderCollider.gameObject);
         return true;
     }

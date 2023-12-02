@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class EntityMainCollider3D : EntityCollider3D {
     [SerializeField] List<EntityCollider3D> colliders = new();
-
     protected override void LoadSetup() {
         colliders.Clear();
         foreach (EntityCollider3D collider in GetComponentsInChildren<EntityCollider3D>()) {
